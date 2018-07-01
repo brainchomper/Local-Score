@@ -1,10 +1,7 @@
 const router = require("express").Router();
-const articleRoutes = require("./articles");
-const nytRoutes = require("./nyt");
+const transactionAPI = require("./transactionAPI");
 
-// NYT routes
-router.use("/articles", articleRoutes);
-
-router.use("/nyt", nytRoutes);
+// Book routes
+router.use("/transactionfeed", transactionAPI);
 
 module.exports = router;
