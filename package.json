@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^3.5.0",
+    "concurrently": "^3.6.0",
     "nodemon": "^1.11.0"
   },
   "dependencies": {
@@ -32,9 +32,13 @@
     "url": "https://github.com/brainchomper/new-local-score/issues"
   },
   "homepage": "https://github.com/brainchomper/new-local-score#readme",
-	"description": "",
-	"proxy": {
-		"/api" : { "target" : "http://localhost:3001/"},
-		"/assets" : { "target" : "http://localhost:3001/"}
-			} ,
+  "description": "",
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:3001/"
+    },
+    "/assets": {
+      "target": "http://localhost:3001/"
+    }
+  }
 }
