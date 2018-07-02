@@ -6,6 +6,7 @@ module.exports = {
       .then(userResults => {
 				res.send(userResults)
 				})
-				.catch()
+				.catch(err => res.status(422).json(err));
+
 			}
 		};
