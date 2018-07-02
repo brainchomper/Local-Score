@@ -14,7 +14,7 @@ class ProductFeed extends Component {
 		//call the api 
 // axios.get("/api/transactionfeed").then((res) => console.log('asjdf'))
 console.log("Howdy");
-axios.get("api/transactionfeed/").then(data => console.log(data));
+axios.get("api/transactions/All").then(data => console.log(data));
 
 // ,  (data) => 
 // {this.setState({dataState: response}

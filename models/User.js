@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema ({
 	FirstName: {type: String, required: true},
 	LastName: {type: String, required: true},
-
 	//are we still doing address?  I can build this out more specifically if so
 	Address: {
 		type: String, required: true

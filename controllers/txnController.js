@@ -7,7 +7,7 @@ module.exports = {
 		db.Transaction
 			.find({})
 			.sort({ Date: -1 })
-			.then(dbModel => res.json(dbModel))
+			.then(dbModel => res.send(dbModel))
 			.catch(err => res.status(422).json(err));
 	},
 	// find all the transactions associated with the transaction

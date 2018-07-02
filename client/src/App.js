@@ -7,8 +7,9 @@ import Login from "./pages/Login.js";
 import CardsPage from "./pages/CardsPage";
 import ProductFeed from "./pages/ProductFeed";
 import TeamPage from './pages/TeamPage';
-import Landing from './pages/Landing.js'
-import Account from './pages/Account.js'
+import Landing from './pages/Landing.js';
+import Account from './pages/Account.js';
+import TransactionPage from "./pages/TransactionPage"
 
 class App extends Component {
 	constructor(props) {
@@ -48,6 +49,7 @@ class App extends Component {
 						<Route exact path="/login" component={Login}/>
 						<Route exact path="/products" component={ProductFeed}/>
 						<Route exact path="/account" component={Account}/>
+						<Route exact path ="/NewTransactions" component={TransactionPage}/>
 
 						</Switch>
 					</Router>
