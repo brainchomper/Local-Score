@@ -1,10 +1,13 @@
 const router = require("express").Router();
-const articleRoutes = require("./articles");
-const nytRoutes = require("./nyt");
+const transactionAPI = require("./transactionAPI");
+const userAPI = require('./userAPI');
 
-// NYT routes
-router.use("/articles", articleRoutes);
+// Use the Transactions route 
+router.use("/transactions", transactionAPI);
 
-router.use("/nyt", nytRoutes);
+//Use the Users route
+router.use("/users", userAPI);
+
+
 
 module.exports = router;
