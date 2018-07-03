@@ -6,6 +6,8 @@ const app = require("express");
 router.route("/All")
   .get(uController.findAll);
 
+router.route("/UserLogin/")
+	.get(uController.findOrCreate(PassportInfo))
 // router.get('/', (req, res) => {
 // 	console.log('hi jason')
 // })
