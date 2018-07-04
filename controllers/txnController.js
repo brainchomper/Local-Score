@@ -28,7 +28,7 @@ module.exports = {
 		.then( txnCheck => {
 			if (!txnCheck.Rejected || !txnCheck.Completed){
 				//do the things
-				this.next(req, res)
+				next(req, res)
 			} else {
 				// else don't do the things
 				return res.send("FAILURE");
