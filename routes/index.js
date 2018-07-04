@@ -13,7 +13,7 @@ const logins = require("./logins")
 	router.use("/logins", logins);
 // If no API routes are hit, send the React app
 router.use(function(req, res) {
-  res.sendFile(path.join(__dirname, "../client/docs/index.js"));
+  res.sendFile(path.join(__dirname, "../client/index.js"));
 });
 
 module.exports = router;
