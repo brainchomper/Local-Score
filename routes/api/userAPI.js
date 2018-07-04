@@ -6,13 +6,9 @@ const app = require("express");
 router.route("/All")
   .get(uController.findAll);
 
-router.route("/UserLogin/")
-	.get(uController.findOrCreate(PassportInfo))
-// router.get('/', (req, res) => {
-// 	console.log('hi jason')
-// })
-
-// Matches with "/api/books/:id"
+	//Matches with /api/users/UserLogin
+// router.route("/UserLogin")
+// 	.get(uController.findOrCreate(PassportInfo))
 
 
 module.exports = router;

@@ -16,12 +16,13 @@ module.exports = {
 						{$set: req.body}, function(err, result){
 							if (err) {
 								console.log("err: ", err)
-								res.status(422).json(err)
 							}
 							console.log("Result was: " + result);
 							res.send(result);
 						})
 				})
+				.catch(err => json(err));
+
 			},
 			updateUser: function(req, res) {
 				db.User.findByIdAndUpdate(req.body._id, {$set:req.body}, function(err, result){

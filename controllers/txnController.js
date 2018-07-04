@@ -12,62 +12,88 @@ module.exports = {
 	},
 	// find all the transactions associated with the transaction
 	findHistory: function (req, res) {
-		db.Transaction
+		db.Product
 			.findById(req.params.id)
+			.populate('TxnHistory')
 			// if the result doesn't have any PreviousTxns in the key then we know that the transaction is an origination and we can just send it
-			.then(function (dbResults) {
-				if (!dbResults.PreviousTxns.length) {
-					return res.json(dbResults)
-					// if there is any length to the PreviousTxns Array then we do a for loop and concat the data into a placeholder item
-				} else {
-					let txnData = [];
-					for (var i = 0; i < dbResults.PreviousTxns.length; i++) {
-						db.Transaction.findById(dbResults.PreviousTxns[i])
-							.then(function (prevTxnResults) {
-								txnData.concat(prevTxnResults)
-							})
-							.catch(err => res.status(422).json(err));
-					};
-					res.json(txnData);
-				}
+			.then(productResults => {
+				res.json(productResults)
 			})
 			.catch(err => res.status(422).json(err));
 	},
-	// create: function (req, res) {
-	// 	db.Transaction
-	// 		.create(req.body)
-	// 		.then(dbModel => res.json(dbModel))
-	// 		.catch(err => res.status(422).json(err));
-	// },
-	validateTxn: function (req, res) {
-		const {userID, TransactionID} = req.body
-		db.Transaction
-		.findByID({_id: TransactionID})
-		.then(txnResult => {
-			const {Rejected, Completed} = txnResult;
-			if (!Rejected || !Completed) {
-				this.updateField(TransactionID, Party2Approved, true)
+
+	checkTxnStatus: function(req, res, next) {
+		// first check the transaction to see if it has been rejected or not.  proceed after
+		db.Transaction.findById(req.params._id)
+		.then( txnCheck => {
+			if (!txnCheck.Rejected || !txnCheck.Completed){
+				//do the things
+				this.next(req, res)
+			} else {
+				// else don't do the things
+				return res.send("FAILURE");
 			}
-		}
-		)
+		})
 		.catch(err => res.status(422).json(err))
 	},
 	rejectTxn: function (req, res) {
-		const {userID, TransactionID} = req.body
 		db.Transaction
-		.findByID({_id: TransactionID})
-		.then(txnResult => {
-			const {Rejected, Completed} = txnResult;
-			if (!Rejected || !Completed) {
-				this.updateField(TransactionID, Rejected, true)
-			}
-		}
-		)
-		.catch(err => res.status(422).json(err))
+			.findByIdAndUpdate(
+				{ _id: TransactionID }, 
+				{"$set" : { "Rejected": true, "Completed": true}},
+			(err, response) => err ? res.json(err) : res.json(response)
+			)
+			.catch(err => res.status(422).json(err))
 	},
-	// end reject txn
-	updateField: function (txnId, fieldtoUpdate, updatedValue) {
-		findOneAndUpdate({ _id: txnID }, { fieldtoUpdate: updatedValue })
-		.catch(err => res.status(422).json(err))
-	}
+
+	approveTxn: function(req, res) {
+		db.Transaction
+			.findByIdAndUpdate(
+				{ _id: req.params.id }, 
+				{"$set" : { "Completed": true, "Party2Approved" : true}},
+			(err, response) => err ? res.json(err) : res.json(response)
+			)
+			.catch(err => res.status(422).json(err))
+	},
+
+//end reject txn
+	newProduct: function (req, res) {
+		// create a new product using the JSON built from the state
+		db.Product.create(req.body)
+		// take the information from the new product we just posted 
+			.then(newProduct => {
+				//destructure
+				const { _id, CreatedBy, TxnHistory } = newProduct;
+				//build new object
+				const txnInfo = {
+					Party1: CreatedBy,
+					Party2: CreatedBy,
+					Party2Approved: true,
+					ProductID: _id,
+					Completed: true
+				};
+				//make a new transaction (because posting an object means that you are having a transaction)
+				db.Transaction
+					.create(txnInfo)
+					// take the new txn information
+					.then(newTxnInfo => {
+					// update the Product that we built by pushing into the TxnHistory
+						db.Product
+						.updateOne({_id: _id}, {"$push" : {"TxnHistory": newTxnInfo._id}}, (err, result) => {
+							//end the function
+							err ? res.json(err) : res.json("SUCCESS")
+						} )
+					})
+			})
+	},
+	newTxn: function(req, res) {
+		// make a new transaction
+		db.Transaction.create(req.body)
+		// take the new info 
+		.then(newTxn => {
+			// query the product database and update the TxnHistory Array to include the newTxn
+			db.Product.findByIdAndUpdate(req.body.ProductID, {"$push" : {"TxnHistory" : newTxn._id }}, (err, result) => err ? res.json(err) : res.json("SUCCESS") 
+		)
+		})}
+
 };
