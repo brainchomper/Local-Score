@@ -1,8 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Container, Row, Col, TabPane, TabContent, Nav, NavItem, NavLink, Input, InputFile, InputSwitch } from 'mdbreact';
+import { Container, Row, Col, TabPane, TabContent, Nav, NavItem, NavLink, Input, InputSwitch, Badge } from 'mdbreact';
 import classnames from 'classnames';
-import Feed from './Feed';
+import PWOM from './PWOM';
+import PWOO from './PWOO';
+import CompletedTransactions from './CompletedTransactions'
 
 
 class TabsPage extends React.Component {
@@ -38,12 +40,17 @@ class TabsPage extends React.Component {
                   </NavLink>
 								</NavItem>
 								<NavItem>
-									<NavLink to="#" className={classnames({ active: this.state.activeItemClassicTabs1 === '2' })} onClick={() => { this.toggleClassicTabs1('2'); }}>
-										Pending Transactions
+									<NavLink to="#" className={classnames({ active: this.state.activeItemClassicTabs1 === '2' })} onClick={() => { this.toggleClassicTabs1('2'); }}><Badge badgeColor="info">3</Badge>
+										Pending Waiting On Me
                   </NavLink>
 								</NavItem>
 								<NavItem>
 									<NavLink to="#" className={classnames({ active: this.state.activeItemClassicTabs1 === '3' })} onClick={() => { this.toggleClassicTabs1('3'); }}>
+										Pending Waiting On Other
+                  </NavLink>
+								</NavItem>
+								<NavItem>
+									<NavLink to="#" className={classnames({ active: this.state.activeItemClassicTabs1 === '4' })} onClick={() => { this.toggleClassicTabs1('4'); }}>
 										Completed Transactions
                   </NavLink>
 								</NavItem>
@@ -60,13 +67,18 @@ class TabsPage extends React.Component {
 								</TabPane>
 								<TabPane tabId="2">
 									<Container>
-<Feed />
-										<InputSwitch></InputSwitch>
+										<PWOM />
+
 									</Container>
 								</TabPane>
 								<TabPane tabId="3">
 									<Container>
-<Feed />
+										<PWOO />
+									</Container>
+								</TabPane>
+								<TabPane tabId="4">
+									<Container>
+										<CompletedTransactions />
 									</Container>
 								</TabPane>
 							</TabContent>
