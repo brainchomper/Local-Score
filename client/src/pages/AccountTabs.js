@@ -60,7 +60,7 @@ class TabsPage extends React.Component {
 								</TabPane>
 								<TabPane tabId="2">
 									<Container>
-
+<Feed />
 										<InputSwitch></InputSwitch>
 									</Container>
 								</TabPane>
