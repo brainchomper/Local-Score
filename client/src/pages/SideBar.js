@@ -152,15 +152,6 @@ render() {
           <div className="mt-5">
             <SideNav logo="https://mdbootstrap.com/img/logo/mdb-transparent.png" isOpenWithButton={isOpenWithButtonA} breakWidth={1300} style={sideStyle} hidden href="/">
 						<Avatar tag="img" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(10).jpg" className="rounded-circle z-depth-1-half img-fluid mt-2 pr-1 pl-1" alt="Sample avatar"/>
-              <li>
-							
-                <ul className="social">
-                  <li><a href="#!"><Fa icon="facebook"></Fa></a></li>
-                  <li><a href="#!"><Fa icon="pinterest"></Fa></a></li>
-                  <li><a href="#!"><Fa icon="google-plus"></Fa></a></li>
-                  <li><a href="#!"><Fa icon="twitter"></Fa></a></li>
-                </ul>
-              </li>
               <SideNavNav>
                 {/* <SideNavCat name="Submit blog" onClick={this.onClick0} isOpen={this.state.accordion === 0 } icon="chevron-right">
                     <SideNavItem>Submit listing</SideNavItem>
@@ -177,12 +168,13 @@ render() {
                 <SideNavCat name="Contact me" onClick={this.onClick3} isOpen={this.state.accordion === 3 } icon="envelope-o">
                   <SideNavItem>FAQ</SideNavItem>
                   <SideNavItem>Write a message</SideNavItem>
-                </SideNavCat> */}
-								<SideNavCat name="Pages Made" onClick={this.onClick4} isOpen={this.state.accordion === 4 } icon="chevron-right">
-                    <SideNavItem href="/login">Login - Sign Up</SideNavItem>
+								</SideNavCat> */}
+								<SideNavItem href="/login">Login - Sign Up</SideNavItem>
                     <SideNavItem href="/team">Team</SideNavItem>
 										<SideNavItem href="/products">Products</SideNavItem>
 										<SideNavItem href="/account">Account</SideNavItem>
+								<SideNavCat name="Pages Made" onClick={this.onClick4} isOpen={this.state.accordion === 4 } icon="chevron-right">
+                    
                 </SideNavCat>
 								<SideNavCat name="DISTRIBUTOR MODE" onClick={this.onClick5} isOpen={this.state.accordion === 5 } icon="chevron-right">
 										<SideNavItem><InputSwitch ></InputSwitch></SideNavItem>
