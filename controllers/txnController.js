@@ -39,7 +39,7 @@ module.exports = {
 	rejectTxn: function (req, res) {
 		db.Transaction
 			.findByIdAndUpdate(
-				{ _id: TransactionID }, 
+				{ _id: req.params.id }, 
 				{"$set" : { "Rejected": true, "Completed": true}},
 			(err, response) => err ? res.json(err) : res.json(response)
 			)

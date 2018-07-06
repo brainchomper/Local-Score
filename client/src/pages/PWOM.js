@@ -7,6 +7,13 @@ export const PWOM = props => {
 	const { Party1, Product } = data;
 	const groundState = Product.Ground ? "ground" : "not ground";
 	const HistoryURL = ("/ProductHistoryFeed/" + Product._id);
+	const RejectURL = ("/api/transactions/rejectTxn/" + data._id);
+	const AcceptURL = ("/api/transactions/acceptTxn/" + data._id);
+
+	rejectTxn = (RejectURL) => axios(RejectURL).then( response =>console.log("Modal Pop", response));
+
+	acceptTxn = (AcceptURL) => axios(RejectURL.then( response => console.log(response)));
+
 	<Container style={{ maxWidth: '80%' }}>
 		<Card cascade>
 			<CardBody cascade>
@@ -16,7 +23,9 @@ export const PWOM = props => {
 				<Link>See all transactions associated with this product</Link>
 				<Row>
 					<CardText>I verify that this transaction is correct:</CardText>
-					<Button tag="a" floating gradient="blue"><Fa icon="check" /></Button>
+					<Button tag="a" floating gradient="blue" onClick = {this.acceptTxn(AcceptURL)}><Fa icon="check" /></Button>
+					<Button onClick = {this.rejectTxn({RejectURL})}>Reject This Transaction </Button>
+
 				</Row>
 			</CardBody>
 			<div className="rounded-bottom mdb-color lighten-3 text-center pt-3">

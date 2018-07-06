@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Fa, CardFooter, CardBody, Card, CardText, CardTitle, Button } from 'mdbreact';
 import Link from 'react-router-dom';
+const axios = import("axios");
 
 export const PWOO = props => {
 	const { data } = props;
 	const { Party2, Product } = data;
 	const groundState = Product.Ground ? "ground" : "not ground";
 	const HistoryURL = ("/ProductHistoryFeed/" + Product._id);
+	const RejectURL = ("/api/transactions/rejectTxn/" + data._id);
+
+	rejectTxn = (RejectURL) => axios(RejectURL).then( response =>console.log("Modal Pop", response));
+
 	<Container style={{ maxWidth: '80%' }}>
 		<Card cascade>
 			<CardBody cascade>
 				<CardTitle>Transaction {data._id}</CardTitle>
 				<CardText>You are currently waiting on {FirstName} {LastName} to approve this transaction of purchasing {Product.Name} for {data.Price}.</CardText>
 				<CardText>{Product.Name} is a {Product.Roast} coffee that is {groundState}.</CardText>Í
-				<Link>See all transactions associated with this product</Link>
+				<Link to={HistoryURL}>See all transactions associated with this product</Link>
+				<Button onClick = {this.rejectTxn({RejectURL})}>Reject This Transaction </Button>
 			</CardBody>
 			<div className="rounded-bottom mdb-color lighten-3 text-center pt-3">
 				<ul className="list-unstyled list-inline font-small">
