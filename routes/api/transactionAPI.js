@@ -18,11 +18,16 @@ router.route("/new_transaction")
 		.post(txnController.newTxn);
 
 router.route("/rejectTxn/:id")
-		.put(txnController.checkTxnStatus(req, res, rejectTxn));
+		.put(txnController.checkTxnStatus(txnController.rejectTxn));
 
 router.route("/approveTxn/:id")
-		.put(txnController.checkTxnStatus(req, res, approveTxn));
+		.put(txnController.checkTxnStatus(txnController.approveTxn));
 
+router.route("/PWOM/:userID")
+		.get(txnController.TWOM)
+
+router.route("/PWOO/:userID")
+		.get(txnController.TWOO)
 
 
 module.exports = router;
