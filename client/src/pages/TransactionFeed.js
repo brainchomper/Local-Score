@@ -18,7 +18,7 @@ class TransactionFeed extends React.Component {
 						<h4 className="text-center pt-3">Bought 'Product' From</h4>
 						<CardImage className="img-fluid pb-3" src="./images/arrows.png" />
 
-						<Button block className="pt-3" href="#">Learn More</Button></div>
+						<Button block className="pt-3" color="success" href="#">Learn More</Button></div>
 					<div className="col">
 					<CardUp className="orange lighten-1" />
 						<Avatar className="mx-auto white">
