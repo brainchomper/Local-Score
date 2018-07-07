@@ -4,7 +4,6 @@ const session = require('express-session');
 const morgan = require('morgan');
 const mongoose = require("mongoose");
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
 
 
 const routes = require("./routes");
@@ -41,6 +40,7 @@ mongoose.connect(MONGODB_URI);
 // Set up passport to authenticate
 const User = require('./models/User');
 passport.use(new LocalStrategy(User.authenticate()));
+passport.use(new GoogleStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 

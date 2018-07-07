@@ -4,7 +4,7 @@ const router = require("express").Router();
 const apiRoutes = require("./api");
 const app = express();
 const logins = require("./logins")
-const AuthRoutes = require("../Auth/index");
+const AuthRoutes = require("../routes/api/auth");
 
 
 
