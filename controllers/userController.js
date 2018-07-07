@@ -1,4 +1,39 @@
 const db = require("../models");
+const seedFileUsers = [
+	{
+		FirstName: "John",
+	LastName: "Stuart",
+	// tracks the products that the user has bought on the app or created.  
+	Inventory: [],
+	Picture: "String",
+	SocialKey: 17
+	},
+	{
+		FirstName: "Kevin",
+	LastName: "Smith",
+	// tracks the products that the user has bought on the app or created.  
+	Inventory: [],
+	Picture: "String",
+	SocialKey: 18
+	},
+	{
+		FirstName: "Joe",
+	LastName: "Calderon",
+	// tracks the products that the user has bought on the app or created.  
+	Inventory: [],
+	Picture: "String",
+	SocialKey: 19
+	}
+	,
+	{
+		FirstName: "Alex",
+	LastName: "Butler",
+	// tracks the products that the user has bought on the app or created.  
+	Inventory: [],
+	Picture: "String",
+	SocialKey: 20
+	}
+]
 
 module.exports = {
   findAll: function(req, res) {
@@ -33,5 +68,18 @@ module.exports = {
 					console.log("Result was: " + result);
 					res.send(result);
 				})
-			}
-		};
+			},
+			newUser: function(req, res) {
+				console.log(seedFileUsers)
+				db.User.collection.insertMany(seedFileUsers)
+				.then(dbResult =>{
+				console.log("Yas it worked");
+				process.exit(0)
+				})
+				.catch(err => {
+					console.error(err);
+					process.exit(1);
+			})
+		}
+	};
+		
