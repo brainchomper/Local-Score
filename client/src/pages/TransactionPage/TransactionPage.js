@@ -2,8 +2,6 @@ import {React, Component} from "react";
 import { Col, Row, Container } from "../../components/Grid";
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'mdbreact';
 import BoardingSurvey from "../../components/BoardingSurvey";
-import SellingSurvey from "../../components/SellingSurvey";
-import TransformingSurvey from "../../components/TransformingSurvey";
 const axios = require('axios');
 
 
@@ -50,30 +48,11 @@ class TransactionPage extends Component {
 		});
 	};
 
-	surveyRender(stateEval) {
-		switch (stateEval) {
-			case "Boarding":
-				return <BoardingSurvey data ={this.handleInputChange} />;
-				break;
-			case "Selling":
-				return <SellingSurvey data ={this.handleInputChange} />;
-				break;
-			case "Transforming":
-				return <TransformingSurvey data ={this.handleInputChange} />
-				break;
-			default:
-				return console.log("The " + stateEval + "hasn't been set yet.")
-				break;
-		}
-	};
 
 
 	render() {
 		return (
 			<Container>
-				<h2>
-					Will You Be Selling the Product, Boarding It, or Transforming it?
-			</h2>
 				<Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
 					<DropdownToggle caret color="primary">
 						{this.state.dropdownValue}
