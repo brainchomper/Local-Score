@@ -13,6 +13,7 @@ module.exports = {
 			findOrCreate: function(req, res) {
 				db.User.findOrCreate({ SocialKey: req.body.SocialKey }).then( uResult => {
 					// we will need to build out the JSON object that we pass through on the API call to update the info.  Need to work with Joe to see what is available in the call. 
+					console.log("req.body" , req.body);
 					db.User.findByIdAndUpdate(uResult._id,
 						{$set: req.body}, function(err, result){
 							if (err) {

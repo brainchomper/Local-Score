@@ -22,8 +22,8 @@ class App extends Component {
 			LastName: "",
 			userID: ""
 		};
-		this.handleTogglerClick = this.handleTogglerClick.bind(this);
 		this.handleNavbarClick = this.handleNavbarClick.bind(this);
+		this.handleTogglerClick = this.handleTogglerClick.bind(this);
 
 	}
 
