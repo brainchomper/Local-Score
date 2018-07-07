@@ -3,15 +3,16 @@ import { Container, Row, Col, Input, Button } from 'mdbreact';
 const axios = require("axios");
 
 class FormsPage extends React.Component {
-	constructur(props);
-	super(props);
+	constructor(props){
+	super(props)
 	
-	state = {
+	this.state = {
 		FirstName: "",
 		LastName: "",
 		SocialKey: "",
 		Image: ""
 	}
+};
 	
 	submit = event => {
 		event.preventDefault();

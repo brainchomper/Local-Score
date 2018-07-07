@@ -18,6 +18,9 @@ class App extends Component {
 		super(props);
 		this.state = {
 			collapsed: false,
+			FirstName: "",
+			LastName: "",
+			userID: ""
 		};
 		this.handleTogglerClick = this.handleTogglerClick.bind(this);
 		this.handleNavbarClick = this.handleNavbarClick.bind(this);
@@ -54,6 +57,7 @@ class App extends Component {
 						<Route exact path ="/NewTransactions" component={BoardingSurvey}  className="mt-5"/>
 						<Route exact path ="/transactionpage" component={TransactionPage} />
 						<Route exact path ="/Admin" component={Admin}/>
+						<Route path = "/TransactionHistory/:id" component = {ProductFeed} />
 						</Switch>
 					</Router>
 
