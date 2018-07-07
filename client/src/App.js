@@ -10,7 +10,8 @@ import TeamPage from './pages/TeamPage';
 import Landing from './pages/Landing.js';
 import Account from './pages/Account.js';
 import TransactionPage from "./pages/TransactionPage";
-import BoardingSurvey from "./components/BoardingSurvey";
+import BoardingSurvey from "./components/BoardingSurvey"
+import Admin from "./pages/Admin.js"
 
 class App extends Component {
 	constructor(props) {
@@ -52,6 +53,7 @@ class App extends Component {
 						<Route exact path="/account" component={Account}/>
 						<Route exact path ="/NewTransactions" component={BoardingSurvey}  className="mt-5"/>
 						<Route exact path ="/transactionpage" component={TransactionPage} />
+						<Route exact path ="/Admin" component={Admin}/>
 						</Switch>
 					</Router>
 
