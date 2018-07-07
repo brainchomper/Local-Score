@@ -11,6 +11,7 @@ class FormsPage extends React.Component {
 	render() {
 		
 		const responseGoogle = (response) => {
+			console.log(response);
 			const {profileObj} = response
 			const {familyName, givenName, googleId, imageUrl} = profileObj;
 			const user = {
@@ -19,7 +20,7 @@ class FormsPage extends React.Component {
 				SocialKey:googleId,
 				Picture: imageUrl
 			}
-			axios.post('/api/user/UserLogin', {user})
+			axios.put("/api/users/UserLogin", {user}).then(console.log("herpderp"))
 		}
 
 		return (

@@ -13,7 +13,7 @@ export const  TransactionFeed  = props => {
 						<Avatar className="mx-auto white">
 							<img src={Party1.Picture} className="rounded-circle z-depth-1 img-fluid" />
 						</Avatar>
-						<CardTitle className="text-center">{Party1.FirstName} {Party1.LasName}</CardTitle>
+						<CardTitle className="text-center">{Party1.FirstName} {Party1.LastName}</CardTitle>
 					</div>
 					<div className="col">
 						<h4 className="text-center pt-3">Bought {ProductId.Name} From</h4>
