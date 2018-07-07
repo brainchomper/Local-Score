@@ -4,13 +4,14 @@ const router = require("express").Router();
 const apiRoutes = require("./api");
 const app = express();
 const logins = require("./logins")
+const AuthRoutes = require("../routes/api/auth");
 
 
 
 // API Routes
 	router.use("/api", apiRoutes);
 //Joe's routes for the logins
-	router.use("/logins", logins);
+	router.use("/auth", AuthRoutes);
 // If no API routes are hit, send the React app
 router.use(function(req, res) {
   res.sendFile(path.join(__dirname, "../client/index.js"));

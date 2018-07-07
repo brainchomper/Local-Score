@@ -13,5 +13,4 @@ router.route("/UserLogin")
 router.route("/newUser")
 .post(uController.newUser)
 
-
 module.exports = router;

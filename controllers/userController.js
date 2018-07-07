@@ -1,39 +1,5 @@
 const db = require("../models");
-const seedFileUsers = [
-	{
-		FirstName: "John",
-	LastName: "Stuart",
-	// tracks the products that the user has bought on the app or created.  
-	Inventory: [],
-	Picture: "String",
-	SocialKey: 17
-	},
-	{
-		FirstName: "Kevin",
-	LastName: "Smith",
-	// tracks the products that the user has bought on the app or created.  
-	Inventory: [],
-	Picture: "String",
-	SocialKey: 18
-	},
-	{
-		FirstName: "Joe",
-	LastName: "Calderon",
-	// tracks the products that the user has bought on the app or created.  
-	Inventory: [],
-	Picture: "String",
-	SocialKey: 19
-	}
-	,
-	{
-		FirstName: "Alex",
-	LastName: "Butler",
-	// tracks the products that the user has bought on the app or created.  
-	Inventory: [],
-	Picture: "String",
-	SocialKey: 20
-	}
-]
+
 
 module.exports = {
   findAll: function(req, res) {
@@ -47,6 +13,7 @@ module.exports = {
 			findOrCreate: function(req, res) {
 				db.User.findOrCreate({ SocialKey: req.body.SocialKey }).then( uResult => {
 					// we will need to build out the JSON object that we pass through on the API call to update the info.  Need to work with Joe to see what is available in the call. 
+					console.log("req.body" , req.body);
 					db.User.findByIdAndUpdate(uResult._id,
 						{$set: req.body}, function(err, result){
 							if (err) {
@@ -70,12 +37,9 @@ module.exports = {
 				})
 			},
 			newUser: function(req, res) {
-				console.log(seedFileUsers)
-				db.User.collection.insertMany(seedFileUsers)
-				.then(dbResult =>{
-				console.log("Yas it worked");
-				process.exit(0)
-				})
+				console.log(req.body);
+				db.User.create(req.body)
+				.then(res.send("NEW USER BOARDED"))
 				.catch(err => {
 					console.error(err);
 					process.exit(1);
