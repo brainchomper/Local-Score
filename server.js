@@ -31,7 +31,8 @@ app.use(passport.session());
 
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://heroku_lpzn4w43:eh39cjr8ipejloq6cdel3u7i8o@ds119161.mlab.com:19161/heroku_lpzn4w43";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://heroku_z6khhtb6:bpk11r963bgmcsbldc62uck9q2@ds125001.mlab.com:25001/heroku_z6khhtb6";
+
 
 console.log(MONGODB_URI);
 
