@@ -9,8 +9,8 @@ const TransactionSchema = new Schema({
 
 	Price: {},
 
-	ProductID: { type: Schema.ObjectID, ref: "Product"},
-	Rejected: { type: Boolean, default: false },
+	ProductID: { type: Schema.ObjectId, ref: "Product"},
+	Rejected: { type: Boolean, required: true,  default: false },
 	Completed: { type: Boolean, required: true, default: false },
 
 });
