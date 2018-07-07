@@ -18,8 +18,8 @@ class App extends Component {
 		this.state = {
 			collapsed: false,
 		};
-		this.handleTogglerClick = this.handleTogglerClick.bind(this);
 		this.handleNavbarClick = this.handleNavbarClick.bind(this);
+		this.handleTogglerClick = this.handleTogglerClick.bind(this);
 
 	}
 

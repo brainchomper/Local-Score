@@ -10,5 +10,4 @@ router.route("/All")
 // router.route("/UserLogin")
 // 	.get(uController.findOrCreate(PassportInfo))
 
-
 module.exports = router;
