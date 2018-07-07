@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Fa, CardFooter, CardBody, Card, CardText, CardTitle, Button } from 'mdbreact';
-import Link from 'react-router-dom';
+import {Link} from 'react-router-dom';
+const axios = import("axios");
+
 
 export const PWOM = props => {
 	const { data } = props;
@@ -10,15 +12,15 @@ export const PWOM = props => {
 	const RejectURL = ("/api/transactions/rejectTxn/" + data._id);
 	const AcceptURL = ("/api/transactions/acceptTxn/" + data._id);
 
-	rejectTxn = (RejectURL) => axios(RejectURL).then( response =>console.log("Modal Pop", response));
+	const rejectTxn = (RejectURL) => axios(RejectURL).then( response =>console.log("Modal Pop", response));
 
-	acceptTxn = (AcceptURL) => axios(RejectURL.then( response => console.log(response)));
+	const acceptTxn = (AcceptURL) => axios(RejectURL.then( response => console.log(response)));
 
 	<Container style={{ maxWidth: '80%' }}>
 		<Card cascade>
 			<CardBody cascade>
 				<CardTitle>Transaction {data._id}</CardTitle>
-				<CardText>{FirstName} {LastName} is currently waiting on you to approve this transaction of purchasing {Product.Name} for {data.Price}.</CardText>
+				<CardText>{Party1.FirstName} {Party1.LastName} is currently waiting on you to approve this transaction of purchasing {Product.Name} for {data.Price}.</CardText>
 				<CardText>{Product.Name} is a {Product.Roast} coffee that is {groundState}.</CardText>
 				<Link>See all transactions associated with this product</Link>
 				<Row>
