@@ -21,46 +21,50 @@ module.exports = {
 			})
 			.catch(err => res.status(422).json(err));
 	},
-
-	checkTxnStatus: function(req, res, next) {
-		// first check the transaction to see if it has been rejected or not.  proceed after
-		db.Transaction.findById(req.params.id)
-		.then( txnCheck => {
-			if (!txnCheck.Rejected || !txnCheck.Completed){
-				//do the things
-				next(req, res)
-			} else {
-				// else don't do the things
-				return res.send("FAILURE");
-			}
-		})
-		.catch(err => res.status(422).json(err))
-	},
 	rejectTxn: function (req, res) {
-		db.Transaction
-			.findByIdAndUpdate(
-				{ _id: req.params.id }, 
-				{"$set" : { "Rejected": true, "Completed": true}},
-			(err, response) => err ? res.json(err) : res.json(response)
-			)
+		db.Transaction.findById(req.params.id)
+			.then(txnCheck => {
+				if (!txnCheck.Rejected || !txnCheck.Completed) {
+					//do the things
+					db.Transaction
+						.findByIdAndUpdate(
+						{ _id: req.params.id },
+						{ "$set": { "Rejected": true, "Completed": true } },
+						(err, response) => err ? res.json(err) : res.json(response)
+						)
+						.catch(err => res.status(422).json(err))
+				} else {
+					// else don't do the things
+					return res.send("FAILURE");
+				}
+			})
 			.catch(err => res.status(422).json(err))
 	},
 
-	approveTxn: function(req, res) {
-		db.Transaction
-			.findByIdAndUpdate(
-				{ _id: req.params.id }, 
-				{"$set" : { "Completed": true, "Party2Approved" : true}},
-			(err, response) => err ? res.json(err) : res.json(response)
-			)
+	approveTxn: function (req, res) {
+		db.Transaction.findById(req.params.id)
+			.then(txnCheck => {
+				if (!txnCheck.Rejected || !txnCheck.Completed) {
+					//do the things
+					db.Transaction
+						.findByIdAndUpdate(
+						{ _id: req.params.id },
+						{ "$set": { "Completed": true, "Party2Approved": true } },
+						(err, response) => err ? res.json(err) : res.json(response)
+						)
+						.catch(err => res.status(422).json(err))
+				} else {
+					// else don't do the things
+					return res.send("FAILURE");
+				}
+			})
 			.catch(err => res.status(422).json(err))
 	},
-
-//end reject txn
+	//end reject txn
 	newProduct: function (req, res) {
 		// create a new product using the JSON built from the state
 		db.Product.create(req.body)
-		// take the information from the new product we just posted 
+			// take the information from the new product we just posted 
 			.then(newProduct => {
 				//destructure
 				const { _id, CreatedBy, TxnHistory } = newProduct;
@@ -77,39 +81,42 @@ module.exports = {
 					.create(txnInfo)
 					// take the new txn information
 					.then(newTxnInfo => {
-					// update the Product that we built by pushing into the TxnHistory
+						// update the Product that we built by pushing into the TxnHistory
 						db.Product
-						.updateOne({_id: _id}, {"$push" : {"TxnHistory": newTxnInfo._id}}, (err, result) => {
-							//end the function
-							err ? res.json(err) : res.json("SUCCESS")
-						} )
+							.updateOne({ _id: _id }, { "$push": { "TxnHistory": newTxnInfo._id } }, (err, result) => {
+								//end the function
+								err ? res.json(err) : res.json("SUCCESS")
+							})
 					})
 			})
 	},
-	newTxn: function(req, res) {
-		// make a new transaction
-		db.Transaction.create(req.body)
+newTxn: function(req, res) {
+	// make a new transaction
+	db.Transaction.create(req.body)
 		// take the new info 
 		.then(newTxn => {
 			// query the product database and update the TxnHistory Array to include the newTxn
-			db.Product.findByIdAndUpdate(req.body.ProductID, {"$push" : {"TxnHistory" : newTxn._id }}, (err, result) => err ? res.json(err) : res.json("SUCCESS") 
-		)
-		})},
-	TWOM: function(req,res) {
-		// first we populate the Transactions w/ the user info
-		db.Transaction
+			db.Product.findByIdAndUpdate(req.body.ProductID, { "$push": { "TxnHistory": newTxn._id } }, (err, result) => err ? res.json(err) : res.json("SUCCESS")
+			)
+		})
+},
+TWOM: function(req, res) {
+	// first we populate the Transactions w/ the user info
+	db.Transaction
 		.find({})
 		.populate("Party2")
 		.populate("Party1")
 		.then(allTxns => {
 			const TWOM = allTxns.filter(txn => txn.Party2._id === req.params.userID);
+			console.log(TWOM)
+			console.log("We are hitting TWOM")
 			res.json(TWOM)
 		})
 		.catch(err => res.status(422).json(err))
-	},
-	TWOO: function(req,res) {
-		// first we populate the Transactions w/ the user info
-		db.Transaction
+},
+TWOO: function(req, res) {
+	// first we populate the Transactions w/ the user info
+	db.Transaction
 		.find({})
 		.populate("Party2")
 		.populate("Party1")
@@ -119,9 +126,11 @@ module.exports = {
 
 			// we are pinging the server as /api/transactions/:userID so this is why we pass this params in
 			const TWOO = allTxns.filter(txn => txn.Party1._id === req.params.userID);
+			console.log(TWOO.length)
+			console.log("We are hitting TWOO")
 			res.json(TWOO)
 		})
 		.catch(err => res.status(422).json(err))
-	},
+},
 
 };

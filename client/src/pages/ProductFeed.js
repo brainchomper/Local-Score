@@ -1,41 +1,39 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Card, CardImage, CardBody, CardTitle, CardText, CardFooter, Fa, Tooltip, Badge, Button } from 'mdbreact';
 import axios from 'axios';
+import { TransactionFeed } from './TransactionFeed';
 
 class ProductFeed extends Component {
 	constructor (props) {
 		super(props) 
+
+		const params =  this.props.match.params.id
+
 		this.state = {
-			dataState : null
+			transactions : [],
+			params: params
 		}
 	};
-
+	renderTransactions = (dataSet) => dataSet.map(each => <TransactionFeed data = {each} />) 
   componentDidMount() {
 		//call the api 
 // axios.get("/api/transactionfeed").then((res) => console.log('asjdf'))
+console.log("the params of the page rendering (AKA /transactionfeed/:id", this.props.match.params.id)
 console.log("Howdy");
-axios.get("api/transactions/All").then(data => console.log(data));
 
-// ,  (data) => 
-// {this.setState({dataState: response}
-// )
-// console.log('hello')}) 
-		//does this work?
-		
+const paramParseURL = this.state.params === null ? "api/transactions/All" : ("api/transactions/" + this.state.params);
+
+axios.get(paramParseURL).then(data => 
+{this.setState({transactions: data})}
+)
 	};
-
-	test() {
-		console.log('howdy');
-		const yas = "fghjkuytgyujbgu";
-		console.log(yas)
-	}
 	// render statement
 	render() {
 		return (
 			<div>
 			<p>
 We need to put a loading gif in here or something			</p>
-		{this.state.dataState === null ? "" : "There is data, placeholder for a callback on the response const"   } 
+		{this.state.transactions.length === 0 ?  console.log("No Data"): this.renderTransactions(this.state.transactions)   } 
 			</div>
 		)
 	}
