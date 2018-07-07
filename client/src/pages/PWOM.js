@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Fa, CardFooter, CardBody,Card, CardText, CardTitle, Button } from 'mdbreact';
+import { Container, Row, Col, Fa, CardFooter, CardBody, Card, CardText, CardTitle, Button } from 'mdbreact';
+import Link from 'react-router-dom';
 
-class PWOM extends Component {
-  render() {
-    return(
-      <Container style={{maxWidth: '80%'}}>
-<Card cascade>
-    <CardBody cascade>
-        <CardTitle>Card title</CardTitle>
-        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-				<Button tag="a" floating gradient="blue"><Fa icon="check" /></Button>
-    </CardBody>
-    <div className="rounded-bottom mdb-color lighten-3 text-center pt-3">
-        <ul className="list-unstyled list-inline font-small">
-            <li className="list-inline-item pr-2 white-text"><Fa icon="clock-o"></Fa> 05/10/2015</li>
-        </ul>
-    </div>
-</Card>
-      </Container>
-    );
-  }
-}
+export const PWOM = props => {
+	const { data } = props;
+	const { Party1, Product } = data;
+	const groundState = Product.Ground ? "ground" : "not ground";
+	const HistoryURL = ("/ProductHistoryFeed/" + Product._id);
+	const RejectURL = ("/api/transactions/rejectTxn/" + data._id);
+	const AcceptURL = ("/api/transactions/acceptTxn/" + data._id);
+
+	rejectTxn = (RejectURL) => axios(RejectURL).then( response =>console.log("Modal Pop", response));
+
+	acceptTxn = (AcceptURL) => axios(RejectURL.then( response => console.log(response)));
+
+	<Container style={{ maxWidth: '80%' }}>
+		<Card cascade>
+			<CardBody cascade>
+				<CardTitle>Transaction {data._id}</CardTitle>
+				<CardText>{FirstName} {LastName} is currently waiting on you to approve this transaction of purchasing {Product.Name} for {data.Price}.</CardText>
+				<CardText>{Product.Name} is a {Product.Roast} coffee that is {groundState}.</CardText>
+				<Link>See all transactions associated with this product</Link>
+				<Row>
+					<CardText>I verify that this transaction is correct:</CardText>
+					<Button tag="a" floating gradient="blue" onClick = {this.acceptTxn(AcceptURL)}><Fa icon="check" /></Button>
+					<Button onClick = {this.rejectTxn({RejectURL})}>Reject This Transaction </Button>
+
+				</Row>
+			</CardBody>
+			<div className="rounded-bottom mdb-color lighten-3 text-center pt-3">
+				<ul className="list-unstyled list-inline font-small">
+					<li className="list-inline-item pr-2 white-text"><Fa icon="clock-o"></Fa> 05/10/2015</li>
+				</ul>
+			</div>
+		</Card>
+	</Container>
+};
 
 export default PWOM;
