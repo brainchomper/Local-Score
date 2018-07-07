@@ -6,11 +6,12 @@ const app = require("express");
 router.route("/All")
   .get(uController.findAll);
 
-// router.get('/', (req, res) => {
-// 	console.log('hi jason')
-// })
+	//Matches with /api/users/UserLogin
+router.route("/UserLogin")
+	.post(uController.findOrCreate)
 
-// Matches with "/api/books/:id"
+router.route("/newUser")
+.post(uController.newUser)
 
 
 module.exports = router;

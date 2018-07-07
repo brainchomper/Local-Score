@@ -9,7 +9,8 @@ import ProductFeed from "./pages/ProductFeed";
 import TeamPage from './pages/TeamPage';
 import Landing from './pages/Landing.js';
 import Account from './pages/Account.js';
-import TransactionPage from "./pages/TransactionPage"
+import TransactionPage from "./pages/TransactionPage";
+import BoardingSurvey from "./components/BoardingSurvey";
 
 class App extends Component {
 	constructor(props) {
@@ -49,8 +50,7 @@ class App extends Component {
 						<Route exact path="/login" component={Login}/>
 						<Route exact path="/products" component={ProductFeed}/>
 						<Route exact path="/account" component={Account}/>
-						<Route exact path ="/NewTransactions" component={TransactionPage}/>
-
+						<Route exact path ="/NewTransactions" component={BoardingSurvey}  className="mt-5"/>
 						</Switch>
 					</Router>
 

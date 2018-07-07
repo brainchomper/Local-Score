@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import {Card, Row} from 'mdbreact';
 import {CardImage} from "../CardImage";
+import Link from "react-router-dom";
 
 const FeedTab = props => {
-	const {Party1, Party2, Details, ProductDetails, Date, PreviousTxns, OriginID} = props;
+	const {Party1, Party2, Details, ProductDetails, Date, PreviousTxns, OriginID} = props.data;
 	const transform = (p1Image === p2Image ? true : false);
 	const p1Link = ("/users/" + Party1._id);
 	const p2Link = ("/users/" + Party2._id);
-	const oLink = ("/transactions/" + OriginID) 
+	const oLink = ("TransactionFeed/transactions/" + OriginID) 
 
 	buildTxnDetails = (transform, Party1, Party2, Details, ProductDetails, OriginID) =>
 	{
@@ -29,7 +30,7 @@ const FeedTab = props => {
 		<p>
 		{this.buildTxnDtails(transform, Party1, Party2, Details, ProductDetails, OriginID)}
 		</p>
-		<a href={oLink}>Trace this product back to origin</a>
+		<Link to={oLink}>Trace this product back to origin</Link>
 		</div>
 		<CardImage src = {Party2.Picture} alt = "Party2Picture" href = {p2Link} />
 		</Row>
