@@ -108,6 +108,8 @@ TWOM: function(req, res) {
 		.populate("Party1")
 		.then(allTxns => {
 			const TWOM = allTxns.filter(txn => txn.Party2._id === req.params.userID);
+			console.log(TWOM)
+			console.log("We are hitting TWOM")
 			res.json(TWOM)
 		})
 		.catch(err => res.status(422).json(err))
@@ -124,6 +126,8 @@ TWOO: function(req, res) {
 
 			// we are pinging the server as /api/transactions/:userID so this is why we pass this params in
 			const TWOO = allTxns.filter(txn => txn.Party1._id === req.params.userID);
+			console.log(TWOO.length)
+			console.log("We are hitting TWOO")
 			res.json(TWOO)
 		})
 		.catch(err => res.status(422).json(err))

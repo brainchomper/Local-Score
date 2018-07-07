@@ -2,8 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes");
-const passport = require('passport');
-const passportSetup = require('./config/passport-setup');
+// const passport = require('passport');
+// const passportSetup = require('./config/passport-setup');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -19,11 +19,13 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // initialize passport
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://heroku_lpzn4w43:eh39cjr8ipejloq6cdel3u7i8o@ds119161.mlab.com:19161/heroku_lpzn4w43";
+
+console.log(MONGODB_URI);
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB

@@ -15,7 +15,8 @@ class TabsPage extends React.Component {
 		this.state = {
 			activeItemClassicTabs1: '1',
 			PWOM: [],
-			PWOO: []
+			PWOO: [],
+			userID: 1
 		};
 	}
 
@@ -32,13 +33,17 @@ class TabsPage extends React.Component {
 		// toggle the tabs to 1
 		this.toggleClassicTabs1('1')
 		const queryURL = ("api/transactions/PWOM/" + (this.state.userID))
-		axios.get(queryURL).then( queryResults => this.setState(PWOM: queryResults)
+		console.log("we are doing the PWOM thing");
+		console.log("queryURL = " , queryURL)
+		axios.get(queryURL).then( queryResults => this.setState({PWOM: queryResults})
 		)
 	};
 	PWOOQuery() {
 		this.toggleClassicTabs1('3');
 		const queryURL = ("api/transactions/PWOO/" + (this.state.userID))
-		axios.get(queryURL).then(queryResults => this.setState(PWOO: queryResults))
+		console.log("we are doing the PWOO thing");
+		console.log("queryURL = " , queryURL)
+		axios.get(queryURL).then(queryResults => this.setState({PWOO: queryResults}))
 	};
 	renderPWOM() {
 		return this.state.PWOM.map(each => <PWOM data = {each} />)
