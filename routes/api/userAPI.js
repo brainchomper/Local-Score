@@ -7,8 +7,11 @@ router.route("/All")
   .get(uController.findAll);
 
 	//Matches with /api/users/UserLogin
-// router.route("/UserLogin")
-// 	.get(uController.findOrCreate(PassportInfo))
+router.route("/UserLogin")
+	.post(uController.findOrCreate)
+
+router.route("/newUser")
+.post(uController.newUser)
 
 
 module.exports = router;

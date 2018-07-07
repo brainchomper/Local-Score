@@ -18,10 +18,10 @@ router.route("/new_transaction")
 		.post(txnController.newTxn);
 
 router.route("/rejectTxn/:id")
-		.put(txnController.checkTxnStatus(txnController.rejectTxn));
+		.put(txnController.rejectTxn);
 
 router.route("/approveTxn/:id")
-		.put(txnController.checkTxnStatus(txnController.approveTxn));
+		.put(txnController.approveTxn);
 
 router.route("/PWOM/:userID")
 		.get(txnController.TWOM)

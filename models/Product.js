@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema( {
 	TxnHistory: [{
-		type: Schema.Types.ObjectId, ref: "Transaction"
+		type: Schema.ObjectId, ref: "Transaction"
 	}],
 	Name: {type: String, required: true},
 	CreateDate: {type: Date, default:Date.now, required: true},
