@@ -52,8 +52,8 @@ class App extends Component {
 						<Route exact path="/products" component={ProductFeed}/>
 						<Route exact path="/account" component={Account}/>
 						<Route exact path ="/NewTransactions" component={BoardingSurvey}  className="mt-5"/>
+						<Route exact path ="/transactionpage" component={TransactionPage} />
 						<Route exact path ="/Admin" component={Admin}/>
-
 						</Switch>
 					</Router>
 
