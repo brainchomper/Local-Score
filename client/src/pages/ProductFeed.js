@@ -6,17 +6,25 @@ import { TransactionFeed } from './TransactionFeed';
 class ProductFeed extends Component {
 	constructor (props) {
 		super(props) 
+
+		const params =  this.props.match.params.id
+
 		this.state = {
-			transactions : []
+			transactions : [],
+			params: params
 		}
 	};
 	renderTransactions = (dataSet) => dataSet.map(each => <TransactionFeed data = {each} />) 
   componentDidMount() {
 		//call the api 
 // axios.get("/api/transactionfeed").then((res) => console.log('asjdf'))
+console.log("the params of the page rendering (AKA /transactionfeed/:id", this.props.match.params.id)
 console.log("Howdy");
-axios.get("api/transactions/All").then(data => 
-{this.setState({dataState: data})}
+
+const paramParseURL = this.state.params === null ? "api/transactions/All" : ("api/transactions/" + this.state.params);
+
+axios.get(paramParseURL).then(data => 
+{this.setState({transactions: data})}
 )
 	};
 	// render statement
