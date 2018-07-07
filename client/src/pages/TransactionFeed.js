@@ -3,6 +3,7 @@ import { Button, Card, CardBody, CardImage, CardTitle, CardText, Row, Col, Avata
 
 class TransactionFeed extends React.Component {
 	render() {
+		return (
 			<Card testimonial>
 
 				<div className="row">
@@ -27,7 +28,7 @@ class TransactionFeed extends React.Component {
 						</div>
 				</div>
 			</Card>
-		
+		)
 	}
 }
 export default TransactionFeed;
