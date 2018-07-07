@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem, Footer, NavLink, Container } from 'mdbreact';
+import mdbreact from 'mdbreact';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.css';
 import SideBar from "./pages/SideBar";

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, CardBody, CardImage, CardTitle, CardText, Row, Col, Avatar, CardUp } from 'mdbreact';
+import { Button, Card, CardImage, CardTitle, Avatar, CardUp } from 'mdbreact';
 
 class TransactionFeed extends React.Component {
 	render() {
@@ -10,7 +10,7 @@ class TransactionFeed extends React.Component {
 					<div className="col">
 						<CardUp className="blue lighten-1" />
 						<Avatar className="mx-auto white">
-							<img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg" className="rounded-circle z-depth-1 img-fluid" />
+							<img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg" className="rounded-circle z-depth-1 img-fluid" alt="" />
 						</Avatar>
 						<CardTitle className="text-center">Party1</CardTitle>
 					</div>
@@ -22,7 +22,7 @@ class TransactionFeed extends React.Component {
 					<div className="col">
 					<CardUp className="orange lighten-1" />
 						<Avatar className="mx-auto white">
-							<img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(26).jpg" className="rounded-circle z-depth-1 img-fluid" />
+							<img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(26).jpg" className="rounded-circle z-depth-1 img-fluid" alt="" />
 						</Avatar>
 						<CardTitle className="text-center">Party2</CardTitle>
 						</div>
