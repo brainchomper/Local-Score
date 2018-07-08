@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem, Footer, NavLink, Container } from 'mdbreact';
+import mdbreact from 'mdbreact';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.css';
 import SideBar from "./pages/SideBar";
 import Login from "./pages/Login.js";
-import CardsPage from "./pages/CardsPage";
 import ProductFeed from "./pages/ProductFeed";
 import TeamPage from './pages/TeamPage';
 import Landing from './pages/Landing.js';
@@ -54,7 +53,7 @@ class App extends Component {
 						<Route exact path="/login" component={Login}/>
 						<Route exact path="/products" component={ProductFeed}/>
 						<Route exact path="/account" component={Account}/>
-						<Route exact path ="/NewTransactions" component={BoardingSurvey}  className="mt-5"/>
+						<Route exact path ="/NewProduct" component={BoardingSurvey}  className="mt-5"/>
 						<Route exact path ="/transactionpage" component={TransactionPage} />
 						<Route exact path ="/Admin" component={Admin}/>
 						<Route path = "/TransactionHistory/:id" component = {ProductFeed} />

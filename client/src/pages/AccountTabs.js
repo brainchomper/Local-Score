@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Container, Row, Col, TabPane, TabContent, Nav, NavItem, NavLink, Input, InputSwitch, Badge } from 'mdbreact';
+import { Container, Row, Col, TabPane, TabContent, Nav, NavItem, NavLink, Input, Badge } from 'mdbreact';
 import classnames from 'classnames';
 import PWOM from './PWOM';
 import PWOO from './PWOO';

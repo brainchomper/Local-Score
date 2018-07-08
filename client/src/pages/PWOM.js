@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Container, Row, Col, Fa, CardFooter, CardBody, Card, CardText, CardTitle, Button } from 'mdbreact';
+import React from 'react';
+import { Container, Row, Fa, CardBody, Card, CardText, CardTitle, Button } from 'mdbreact';
 import {Link} from 'react-router-dom';
 const axios = import("axios");
 
 
 export const PWOM = props => {
-	const { data } = props;
+	const {data} = props;
 	const { Party1, Product } = data;
 	const groundState = Product.Ground ? "ground" : "not ground";
 	const HistoryURL = ("/ProductHistoryFeed/" + Product._id);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Fa, Button } from 'mdbreact';
+import { Container, Row, Col, Fa} from 'mdbreact';
 
 class FeaturesPage extends Component {
   render() {

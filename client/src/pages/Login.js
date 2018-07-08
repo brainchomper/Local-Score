@@ -1,8 +1,7 @@
 import React from 'react';
-import { Container, Row, Col, Input, Button, Fa, Card, CardBody, ModalFooter } from 'mdbreact';
+import { Container, Row, Col, Input, Button, Fa, Card } from 'mdbreact';
 import "./Login.css";
 import { GoogleLogin } from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
 const axios = require('axios');
 
 
@@ -11,15 +10,17 @@ class FormsPage extends React.Component {
 	render() {
 		
 		const responseGoogle = (response) => {
+			console.log(response);
 			const {profileObj} = response
-			const {familyName, givenName, googleId, imageUrl} = profileObj;
+			const {familyName, givenName, googleId, imageUrl, email} = profileObj;
 			const user = {
 				FirstName: givenName,
 				LastName: familyName,
 				SocialKey:googleId,
-				Picture: imageUrl
+				Picture: imageUrl,
+				Email: email
 			}
-			axios.post('/api/user/UserLogin', {user})
+			axios.put("/api/users/UserLogin", {user}).then(console.log("herpderp"))
 		}
 
 		return (

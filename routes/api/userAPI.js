@@ -8,9 +8,7 @@ router.route("/All")
 
 	//Matches with /api/users/UserLogin
 router.route("/UserLogin")
-	.post(uController.findOrCreate)
+	.put(uController.findOrCreate)
 
-router.route("/newUser")
-.post(uController.newUser)
 
 module.exports = router;
