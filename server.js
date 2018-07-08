@@ -31,10 +31,6 @@ app.use(routes);
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://heroku_z6khhtb6:bpk11r963bgmcsbldc62uck9q2@ds125001.mlab.com:25001/heroku_z6khhtb6";
-<<<<<<< HEAD
-=======
-
->>>>>>> b405b4b18e5e5113c06886f8b95be185b31d75bc
 
 console.log(MONGODB_URI);
 
