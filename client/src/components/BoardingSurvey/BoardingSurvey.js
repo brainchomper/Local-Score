@@ -48,10 +48,13 @@ class BoardingSurvey extends React.Component {
 			<Container>
 				<Card>
 					{/* product name */}
-<div className="row">
-<div className="col">
+<div className="row pt-2">
+<div className="col-2"></div>
+<div className="col-8">
+
 <Input label="Product Name" value={this.state.product} onChange={this.handleInputChange}/>
 </div>
+<div className="col-2"></div>
 </div>
 
 					{/* type */}
