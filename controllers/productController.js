@@ -1,7 +1,7 @@
 const db = require("../models");
 
 module.exports = {
-	newProduct: function(req, res) {
+	newProduct: function (req, res) {
 		//reference the new product details we sent in from the boarding survery 
 		const newProductDetails = req.body.newProduct;
 		//console log for good measure
@@ -28,14 +28,23 @@ module.exports = {
 					// take the NEW txn information
 					.then(newTxnInfo => {
 						//double checking that the _id from above is still referencing the newProduct _id
-						console.log("_id from new product: " , _id)
+						console.log("_id from new product: ", _id)
 						// update the Product that we built by pushing into the TxnHistory
 						db.Product
 							.updateOne({ _id: _id }, { "$push": { "TxnHistory": newTxnInfo._id } }, (err, result) => {
 								//end the function
 								err ? res.json(err) : res.json("SUCCESS")
 								// end of the giant function for new Product
-							})})})}
+							})
+					})
+			})
+	},
+
+	findAll: function(req, res) {
+		db.Product.find({})
+		.then(allProducts => res.json(allProducts))
+		.catch(res.json("there was an error"))
+	}
 
 // this is the end of the exports
 }

@@ -10,7 +10,5 @@ router.route("/All")
 router.route("/UserLogin")
 	.put(uController.findOrCreate)
 
-router.route("/newUser")
-.post(uController.newUser)
 
 module.exports = router;

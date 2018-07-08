@@ -12,12 +12,17 @@ module.exports = {
 	},
 	findOrCreate: function (req, res) {
 		console.log(req)
+		//deconstruct the item sent over by the request
 		const {SocialKey, Email} = req.body.user;
+		//use a unique variable to identify the user, allows them to enter their email or their SocialKey
 		const uniqueCheck = SocialKey === "" ? {Email: Email} : {SocialKey: SocialKey};
 		console.log(uniqueCheck);
+		// use the variable to check in the database
 		db.User.findOne(uniqueCheck)
+		//see if there is a user with the email or socialkey
 		.then(result => {
 			console.log("The result is: of the unique check is" + result)
+			//if not then we will create a new user using the json object passed through from the req
 		if (result === null) {
 			console.log(req.body.user);
 			db.User
@@ -28,6 +33,7 @@ module.exports = {
 
 			.catch(err => res.json("error: " + err))
 		}
+		//otherwise we will update the existing user to get their most recent picture and name.
 		else {
 			db.User
 			.findByIdAndUpdate( result._id, {$set: req.body})
@@ -35,27 +41,9 @@ module.exports = {
 			.catch(err => res.json("Error at update user:" + err))
 		}
 		})
-	//catch for the end of the fucntion
+	//catch for the end of the function
 		.catch(err => res.json(err))
 	},
-	updateUser: function (req, res) {
-		db.User.findByIdAndUpdate(req.body._id, { $set: req.body }, function (err, result) {
-			if (err) {
-				console.log("err: ", err)
-				res.status(422).json(err)
-			}
-			console.log("Result was: " + result);
-			res.send(result);
-		})
-	},
-	newUser: function (req, res) {
-		console.log(req.body);
-		db.User.create(req.body)
-			.then(res.send("NEW USER BOARDED"))
-			.catch(err => {
-				console.error(err);
-				process.exit(1);
-			})
-	}
+
 };
 

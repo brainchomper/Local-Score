@@ -1,12 +1,20 @@
 import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Card, Button, CardBody, CardTitle, InputNumeric } from 'mdbreact';
+import {PlaceHolderProducts, PlaceHolderUsers, ProductDropDown, UserDropDown} from '../../components/DropDownItems';
+const axios = require('axios');
+
+
 class TransactionPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.toggle = this.toggle.bind(this);
 		this.state = {
 			CustomerDropdown: false,
-			ProductDropdown: false
+			ProductDropdown: false,
+			OtherUsers: [],
+			UsersAvailable: false,
+			Products: [],
+			ProductsAvailable: false,
 		};
 	}
 	toggle() {
@@ -14,6 +22,42 @@ class TransactionPage extends React.Component {
 			CustomerDropdown: !this.state.CustomerDropdown,
 			ProductDropdown: !this.state.ProductDropdown
 		});
+	}
+
+	componentDidMount() {
+		// check if the users are available.  if they are not, then go get them
+		this.state.usersAvailable ? console.log("Users available now") : this.getUsers ;
+		//then check if the products are available.  if they aren't then go get them. 
+		this.state.productsAvailable ? console.log("Products available now") : this.getProducts ;
+	}
+
+	getUsers() {
+		axios
+		.get("/api/users/All")
+		.then(userResults => {
+			this.setState({
+				OtherUsers: userResults,
+				UsersAvailable: true
+			})
+	})}
+
+	getProducts() {
+		axios
+		.get("/api/products/All")
+		.then(productResults => {
+			this.setState({
+				Products: productResults,
+				ProductsAvailable: true
+			})
+		})
+	}
+
+	renderUserOptions(){
+		return	this.state.OtherUsers.map(eachUser => <UserDropDown data = {eachUser}/>)
+	}
+
+	renderProductOptions(){
+		return this.state.Products.map(eachProduct => <ProductDropDown data = {eachProduct} />)
 	}
 
 	render() {
@@ -31,10 +75,7 @@ class TransactionPage extends React.Component {
 									Customer
           </DropdownToggle>
 								<DropdownMenu>
-									<DropdownItem href="#">.</DropdownItem>
-									<DropdownItem href="#">Another Action</DropdownItem>
-									<DropdownItem href="#">Something else here</DropdownItem>
-									<DropdownItem href="#">Something else here</DropdownItem>
+									{this.state.usersAvailable ?  this.renderUserOptions : <PlaceHolderUsers /> }
 								</DropdownMenu>
 							</Dropdown>
 						</div>
@@ -44,10 +85,7 @@ class TransactionPage extends React.Component {
 									Product
           </DropdownToggle>
 								<DropdownMenu>
-									<DropdownItem href="#">.</DropdownItem>
-									<DropdownItem href="#">Another Action</DropdownItem>
-									<DropdownItem href="#">Something else here</DropdownItem>
-									<DropdownItem href="#">Something else here</DropdownItem>
+									{this.state.ProductsAvailable ? this.renderProductOptions : <PlaceHolderProducts />}
 								</DropdownMenu>
 							</Dropdown>
 						</div>
