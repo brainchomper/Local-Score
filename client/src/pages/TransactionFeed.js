@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, CardBody, CardImage, CardTitle, CardText, Row, Col, Avatar, CardUp } from 'mdbreact';
+import { Button, Card, CardImage, CardTitle, Avatar, CardUp } from 'mdbreact';
 
 export const  TransactionFeed  = props => {
 	const {data} = props;

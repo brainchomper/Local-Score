@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Container, Row, Col, Card, CardBody, Fa, Button, Input, FormInline } from 'mdbreact';
-import axios from "axios";
+import React from 'react';
+import { Container, Card, Button, Input} from 'mdbreact';
+
 
 
 class BoardingSurvey extends React.Component {

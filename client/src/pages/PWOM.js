@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Container, Row, Col, Fa, CardFooter, CardBody, Card, CardText, CardTitle, Button } from 'mdbreact';
+import React from 'react';
+import { Container, Row, Fa, CardBody, Card, CardText, CardTitle, Button } from 'mdbreact';
 import {Link} from 'react-router-dom';
 const axios = import("axios");
 
