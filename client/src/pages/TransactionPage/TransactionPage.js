@@ -8,6 +8,7 @@ class TransactionPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.toggle = this.toggle.bind(this);
+		this.toggleProduct = this.toggleProduct.bind(this);
 		this.state = {
 			CustomerDropdown: false,
 			ProductDropdown: false,
@@ -20,7 +21,11 @@ class TransactionPage extends React.Component {
 	toggle() {
 		this.setState({
 			CustomerDropdown: !this.state.CustomerDropdown,
-			ProductDropdown: !this.state.ProductDropdown
+		});
+	}
+	toggleProduct() {
+		this.setState({
+			ProductDropdown: !this.state.ProductDropdown,
 		});
 	}
 
@@ -91,7 +96,7 @@ class TransactionPage extends React.Component {
 							</Dropdown>
 						</div>
 						<div className="col">
-							<Dropdown isOpen={this.state.ProductDropdown} toggle={this.toggle} size="lg">
+							<Dropdown isOpen={this.state.ProductDropdown} toggle={this.toggleProduct} size="lg">
 								<DropdownToggle caret color="primary">
 									Product
           </DropdownToggle>

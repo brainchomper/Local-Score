@@ -69,10 +69,12 @@ class BoardingSurvey extends React.Component {
 			<Container>
 				<Card>
 					{/* product name */}
+
 <div className="row">
 <div className="col">
 <Input name="ProductName" value={this.state.ProductName} onChange={this.handleInputChange} placeholder="Enter Product Name Here"/>
 </div>
+<div className="col-2"></div>
 </div>
 
 					{/* type */}
