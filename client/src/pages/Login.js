@@ -13,12 +13,13 @@ class FormsPage extends React.Component {
 		const responseGoogle = (response) => {
 			console.log(response);
 			const {profileObj} = response
-			const {familyName, givenName, googleId, imageUrl} = profileObj;
+			const {familyName, givenName, googleId, imageUrl, email} = profileObj;
 			const user = {
 				FirstName: givenName,
 				LastName: familyName,
 				SocialKey:googleId,
-				Picture: imageUrl
+				Picture: imageUrl,
+				Email: email
 			}
 			axios.put("/api/users/UserLogin", {user}).then(console.log("herpderp"))
 		}
