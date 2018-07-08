@@ -43,19 +43,7 @@ class FormsPage extends React.Component {
 		});
 	};
 
-	handleFormSubmit = event => {
-		// Preventing the default behavior of the form submit (which is to refresh the page)
-		event.preventDefault();
 
-		// Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-		alert(`Hello ${this.state.firstName} ${this.state.lastName}`);
-		this.setState({
-			FirstName: "",
-			LastName: "",
-			SocialKey: "",
-			Image: ""
-		});
-	}
 
 
 	render() {
@@ -81,7 +69,7 @@ class FormsPage extends React.Component {
 							<label htmlFor="Image" className="grey-text">Image</label>
 							<input type="text" id="Image" className="form-control" value={this.state.Image} name="Image" onChange={this.handleInputChange} />
 							<div className="text-center mt-4">
-								<button className="btn btn-outline-warning" type="submit">Send<i className="fa fa-paper-plane-o ml-2" onClick={this.handleFormSubmit}></i></button>
+								<button className="btn btn-outline-warning" type="submit" onClick={this.submit}>Send<i className="fa fa-paper-plane-o ml-2" ></i></button>
 							</div>
 						</form>
 					</Col>

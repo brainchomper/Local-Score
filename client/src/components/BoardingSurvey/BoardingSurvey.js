@@ -2,13 +2,14 @@ import React from 'react';
 import { Container, Card, Button, Input} from 'mdbreact';
 
 
+
 class BoardingSurvey extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			product: "",
+			ProductName: "",
 			Roast: "DARK",
-			Ground: "GROUND"
+			Ground: false
 		}
 		this.onClick1 = this.onClick1.bind(this);
 		this.onClick2 = this.onClick2.bind(this);
@@ -26,10 +27,12 @@ class BoardingSurvey extends React.Component {
 	}
 
 	onClick3() {
-		this.setState({ Ground: "GROUND" });
+		// sets the ground boolean to true
+		this.setState({ Ground: true });
 	}
 	onClick4() {
-		this.setState({ Ground: "WHOLE" });
+		//sets the ground boolean to false
+		this.setState({ Ground: false });
 	}
 
 	handleInputChange = event => {
@@ -42,6 +45,24 @@ class BoardingSurvey extends React.Component {
     });
   };
 
+	submitProduct = event => {
+		//prevent the button from reloading the page
+		event.preventDefault();
+		// destructure the state
+		const {ProductName, Roast, Ground} = this.state
+		//use the state to build an object to pass through the call
+		const newProduct = {
+			Name: ProductName,
+			Roast: Roast,
+			Ground: Ground,
+			CreatedBy: "Need to pass from parent"
+		};
+		axios.post("/api/products/newProduct", {newProduct})
+				 .then(results => {console.log(results);
+					console.log("This is where Kevin's sideover thing will come in")
+				})
+		
+	}
 
 	render() {
 		return (
@@ -50,7 +71,7 @@ class BoardingSurvey extends React.Component {
 					{/* product name */}
 <div className="row">
 <div className="col">
-<Input label="Product Name" value={this.state.product} onChange={this.handleInputChange}/>
+<Input name="ProductName" value={this.state.ProductName} onChange={this.handleInputChange} placeholder="Enter Product Name Here"/>
 </div>
 </div>
 
@@ -63,11 +84,11 @@ class BoardingSurvey extends React.Component {
 					</div>
 					<div className="col-6 text-center">
 					<h6>Grind Type:</h6>
-						<Input onClick={this.onClick3} checked={this.state.Ground === "GROUND" ? true : false} label="Ground" type="radio" id="ground" />
-						<Input onClick={this.onClick4} checked={this.state.Ground === "WHOLE" ? true : false} label="Whole Bean" type="radio" id="whole"  />
+						<Input onClick={this.onClick3} checked={this.state.Ground ? true : false} label="Ground" type="radio" id="ground" />
+						<Input onClick={this.onClick4} checked={!this.state.Ground ? true : false} label="Whole Bean" type="radio" id="whole"  />
 					</div>
 					</div>
-					<Button block color="primary">Submit Product</Button>
+					<Button block color="primary" onClick = {this.submitProduct}>Submit Product</Button>
 				</Card>
 			</Container>
 

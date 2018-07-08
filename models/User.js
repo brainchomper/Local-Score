@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const findOrCreate = require("mongoose-find-or-create")
-const passportLocalMongoose = require('passport-local-mongoose');
+// const passportLocalMongoose = require('passport-local-mongoose');
 
 const UserSchema = new Schema ({
 	FirstName: {type: String, required: true},
@@ -9,11 +8,12 @@ const UserSchema = new Schema ({
 	// tracks the products that the user has bought on the app or created.  
 	Inventory: [],
 	Picture: {type: String, required: true},
-	SocialKey: {type: String, unique: true, required: true}
-})
+	SocialKey: {type: String, unique: true, required: true},
+	Email: {type: String, unique: true},
+	Password: {unique: true, type: String}
+});
 
-UserSchema.plugin(findOrCreate);
-UserSchema.plugin(passportLocalMongoose);
+// UserSchema.plugin(passportLocalMongoose);
 
 const User = mongoose.model("User", UserSchema);
 

@@ -5,7 +5,7 @@ const axios = import("axios");
 
 
 export const PWOM = props => {
-	const { data } = props;
+	const {data} = props;
 	const { Party1, Product } = data;
 	const groundState = Product.Ground ? "ground" : "not ground";
 	const HistoryURL = ("/ProductHistoryFeed/" + Product._id);
