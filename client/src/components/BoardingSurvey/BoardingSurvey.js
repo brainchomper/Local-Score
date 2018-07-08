@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Card, Button, Input} from 'mdbreact';
-
+const axios = require('axios');
 
 
 class BoardingSurvey extends React.Component {

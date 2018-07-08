@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Fa, CardFooter, CardBody,Card, CardText, CardTitle, Button } from 'mdbreact';
+import { Container,  Fa, CardBody,Card, CardText, CardTitle } from 'mdbreact';
 
 class CompletedTransations extends Component {
   render() {

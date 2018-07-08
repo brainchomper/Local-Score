@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.css';
 import SideBar from "./pages/SideBar";
 import Login from "./pages/Login.js";
-import CardsPage from "./pages/CardsPage";
 import ProductFeed from "./pages/ProductFeed";
 import TeamPage from './pages/TeamPage';
 import Landing from './pages/Landing.js';

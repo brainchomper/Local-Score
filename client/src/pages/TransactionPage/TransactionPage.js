@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Card, CardImage, Button, Fa, CardBody, CardTitle, CardText, Input, InputNumeric } from 'mdbreact';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Card, Button, CardBody, CardTitle, InputNumeric } from 'mdbreact';
 class TransactionPage extends React.Component {
 	constructor(props) {
 		super(props);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Navbar, NavbarNav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Fa, SideNavItem, SideNavCat, SideNavNav, SideNav, Container, InputSwitch, Avatar } from 'mdbreact';
+import { Navbar, NavbarNav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Fa, SideNavItem, SideNavCat, SideNavNav, SideNav, InputSwitch, Avatar } from 'mdbreact';
 import './SideBar.css';
 
 class DoubleNavigationWithHiddenSideNavFixedNavbar extends React.Component  {
@@ -144,7 +144,6 @@ render() {
   const isOpenWithButtonA = this.state.toggleStateA;
   const navStyle = { backgroundColor: "#3f5c80", color: "#fff"}
   const sideStyle = { backgroundColor: '#6a9ed3', width: "100%"}
-  const mainStyle={margin: "0 auto", maxWidth: "1000px", paddingTop: '5.5rem'};
   const button1 = <div href="#!" onClick={this.handleToggleClickA} key="sideNavToggleA" style={{lineHeight: '32px', marginRight: '1em', verticalAlign: 'middle'}}><Fa icon="bars" color="white" size="2x"></Fa></div>
   const specialCaseNavbarStyles = {WebkitBoxOrient: 'horizontal', flexDirection: 'row'};
     return (

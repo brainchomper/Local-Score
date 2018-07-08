@@ -1,8 +1,7 @@
 import React from 'react';
-import { Container, Row, Col, Input, Button, Fa, Card, CardBody, ModalFooter } from 'mdbreact';
+import { Container, Row, Col, Input, Button, Fa, Card } from 'mdbreact';
 import "./Login.css";
 import { GoogleLogin } from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
 const axios = require('axios');
 
 
