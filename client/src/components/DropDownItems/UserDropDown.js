@@ -4,7 +4,7 @@ import {DropdownItem} from 'mdbreact';
 class UserDropDown extends React.Component {
 	render(){
 		return (
-		<DropdownItem>Now searching for available products</DropdownItem>
+		<DropdownItem><div>Now searching for available products</div></DropdownItem>
 		)
 	}
 }

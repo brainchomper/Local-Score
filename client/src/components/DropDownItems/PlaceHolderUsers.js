@@ -4,7 +4,7 @@ import {DropdownItem} from 'mdbreact';
 class PlaceHolderUsers extends React.Component {
 	render(){
 		return (
-		<DropdownItem>Now searching for available Users</DropdownItem>
+		<DropdownItem><div>Now searching for available Users</div></DropdownItem>
 		)}
 }
 
