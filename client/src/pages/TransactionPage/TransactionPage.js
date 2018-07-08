@@ -25,28 +25,37 @@ class TransactionPage extends React.Component {
 	}
 
 	componentDidMount() {
+		console.log("The component mounted successfully")
+		console.log("Products: " , this.state.Products);
+		console.log("Users: " , this.state.OtherUsers)
 		// check if the users are available.  if they are not, then go get them
-		this.state.usersAvailable ? console.log("Users available now") : this.getUsers ;
+		this.state.UsersAvailable ? console.log("Users available now") : this.getUsers() ;
 		//then check if the products are available.  if they aren't then go get them. 
-		this.state.productsAvailable ? console.log("Products available now") : this.getProducts ;
+		this.state.ProductsAvailable ? console.log("Products available now") : this.getProducts() ;
 	}
 
 	getUsers() {
+		console.log("getting new users")
 		axios
 		.get("/api/users/All")
 		.then(userResults => {
+			console.log("We have recieved new users")
+			console.log(userResults.data)
 			this.setState({
-				OtherUsers: userResults,
+				OtherUsers: [userResults.data],
 				UsersAvailable: true
 			})
 	})}
 
 	getProducts() {
+		console.log("Getting new products")
 		axios
 		.get("/api/products/All")
 		.then(productResults => {
+			console.log("We have received new product results")
+			console.log(productResults)
 			this.setState({
-				Products: productResults,
+				Products: [productResults],
 				ProductsAvailable: true
 			})
 		})
@@ -57,7 +66,8 @@ class TransactionPage extends React.Component {
 	}
 
 	renderProductOptions(){
-		return this.state.Products.map(eachProduct => <ProductDropDown data = {eachProduct} />)
+		return 
+			this.state.Products.map(eachProduct => <ProductDropDown data = {eachProduct} />)
 	}
 
 	render() {
@@ -76,6 +86,7 @@ class TransactionPage extends React.Component {
           </DropdownToggle>
 								<DropdownMenu>
 									{this.state.usersAvailable ?  this.renderUserOptions : <PlaceHolderUsers /> }
+									<DropdownItem>DFGHJKLKJGFGH</DropdownItem>
 								</DropdownMenu>
 							</Dropdown>
 						</div>

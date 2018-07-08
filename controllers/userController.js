@@ -5,7 +5,8 @@ module.exports = {
 	findAll: function (req, res) {
 		db.User.find({})
 			.then(userResults => {
-				res.send(userResults)
+				console.log("The user results: " , userResults)
+				res.json(userResults)
 			})
 			.catch(err => res.status(422).json(err));
 
