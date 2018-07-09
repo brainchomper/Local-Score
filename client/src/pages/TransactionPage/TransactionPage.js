@@ -11,13 +11,13 @@ class TransactionPage extends React.Component {
 		super(props);
 		this.toggle = this.toggle.bind(this);
 		this.toggleProduct = this.toggleProduct.bind(this);
+		this.cLogState = this.cLogState.bind(this);
 		this.state = {
 			CustomerDropdown: false,
 			ProductDropdown: false,
-			OtherUsers: [],
-			UsersAvailable: false,
-			Products: [],
-			ProductsAvailable: false,
+			Price: "",
+			Customer: "",
+			Product: ""
 		};
 	}
 	toggle() {
@@ -31,54 +31,36 @@ class TransactionPage extends React.Component {
 		});
 	}
 
-	componentDidMount() {
-		console.log("The component mounted successfully")
-		console.log("Products: " , this.state.Products);
-		console.log("Users: " , this.state.OtherUsers)
-		// check if the users are available.  if they are not, then go get them
-		this.state.UsersAvailable ? console.log("Users available now") : this.getUsers() ;
-		//then check if the products are available.  if they aren't then go get them. 
-		this.state.ProductsAvailable ? console.log("Products available now") : this.getProducts() ;
+	cLogState() {
+		console.log("the state is currently:");
+		console.log(this.state)
 	}
 
-	getUsers() {
-		console.log("getting new users")
+	handleInputChange = event => {
+		// Getting the value and name of the input which triggered the change
+		const { name, value } = event.target;
+
+		// Updating the input's state
+		this.setState({
+			[name]: value
+		});
+	};
+
+	submitTxn() {
+		const { Price, Customer, Product } = this.state;
+		const newTxn = {
+			Party1: "Pull me in",
+			Party2: Customer,
+			ProductID: Product
+		}
 		axios
-		.get("/api/users/All")
-		.then(userResults => {
-			console.log("We have recieved new users")
-			console.log(userResults.data)
-			this.setState({
-				OtherUsers: [userResults.data],
-				UsersAvailable: true
-			})
-	})}
-
-	getProducts() {
-		console.log("Getting new products")
-		axios
-		.get("/api/products/All")
-		.then(productResults => {
-			console.log("We have received new product results")
-			console.log(productResults)
-			this.setState({
-				Products: [productResults],
-				ProductsAvailable: true
-			})
-		})
-	}
-
-	renderUserOptions(){
-		return	this.state.OtherUsers.map(eachUser => <UserDropDown data = {eachUser}/>)
-	}
-
-	renderProductOptions(){
-		return 
-			this.state.Products.map(eachProduct => <ProductDropDown data = {eachProduct} />)
+			.post("/api/transactions/newTransaction", { newTxn })
+			.then(console.log("the txn posted correctly"))
 	}
 
 	render() {
 		return (
+
 			<div className="row mx-auto"  style={{ maxWidth: '50%' }}>
 			<div className="col mt-4">
 			<Card>
@@ -88,14 +70,12 @@ class TransactionPage extends React.Component {
 					<div className="row text-center">
 						<div className="col">
 						<h4>Select User</h4>
-						<UserAutoSearch />
+						<UserAutoSearch data = {this.state.OtherUsers}/>
 							<Dropdown isOpen={this.state.CustomerDropdown} toggle={this.toggle} size="lg">
 								<DropdownToggle caret color="primary">
 									Customer
           </DropdownToggle>
 								<DropdownMenu>
-									{this.state.usersAvailable ?  this.renderUserOptions : <PlaceHolderUsers /> }
-									<DropdownItem>DFGHJKLKJGFGH</DropdownItem>
 								</DropdownMenu>
 							</Dropdown>
 						</div>
@@ -109,22 +89,21 @@ class TransactionPage extends React.Component {
 
           </DropdownToggle>
 								<DropdownMenu>
-									{/* {this.state.ProductsAvailable ? this.renderProductOptions : <PlaceHolderProducts />} */}
 								</DropdownMenu>
 							</Dropdown>
 						</div>
 					</div>
 
 					<h5 className="text-center">Item Price $</h5>
-					<InputNumeric precision={2} value={10} step={0.01} className="mb-2" color="success"/>
+							<InputNumeric name="Price" precision={2} value={10} step={0.01} className="mb-2" color="success" onChange={this.handleInputChange} />
 
-					<Button block color="success" size="lg" href="#">Submit New Transaction</Button>
-				</CardBody>
+							<Button block color="success" size="lg" onClick={this.cLogState}>Submit New Transaction</Button>
+						</CardBody>
 
-			</Card>
+					</Card>
+				</div>
 			</div>
-			</div>
-			
+
 
 		);
 	}

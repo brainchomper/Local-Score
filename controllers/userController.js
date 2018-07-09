@@ -8,7 +8,6 @@ module.exports = {
 				console.log("The user results: " , userResults)
 				res.json(userResults)
 			})
-			.catch(err => res.status(422).json(err));
 
 	},
 	findOrCreate: function (req, res) {

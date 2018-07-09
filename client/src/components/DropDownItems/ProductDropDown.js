@@ -9,7 +9,9 @@ class ProductDropDown extends React.Component {
 		}
 	}
 
-
+	consoleIt(){
+		console.log("This is a Product Drop down")
+	}
 
 	render() {
 		return (

@@ -38,7 +38,6 @@ module.exports = {
 					return res.send("FAILURE");
 				}
 			})
-			.catch(err => res.status(422).json(err))
 	},
 
 	approveTxn: function (req, res) {
@@ -52,23 +51,21 @@ module.exports = {
 						{ "$set": { "Completed": true, "Party2Approved": true } },
 						(err, response) => err ? res.json(err) : res.json(response)
 						)
-						.catch(err => res.status(422).json(err))
 				} else {
 					// else don't do the things
 					return res.send("FAILURE");
 				}
 			})
-			.catch(err => res.status(422).json(err))
 	},
 	//end reject txn
 
 	newTxn: function (req, res) {
 		// make a new transaction
-		db.Transaction.create(req.body)
+		db.Transaction.create(req.body.data)
 			// take the new info 
 			.then(newTxn => {
 				// query the product database and update the TxnHistory Array to include the newTxn
-				db.Product.findByIdAndUpdate(req.body.ProductID, { "$push": { "TxnHistory": newTxn._id } }, (err, result) => err ? res.json(err) : res.json("SUCCESS")
+				db.Product.findByIdAndUpdate(req.body.data.ProductID, { "$push": { "TxnHistory": newTxn._id } }, (err, result) => err ? res.json(err) : res.json("SUCCESS")
 				)
 			})
 	},
