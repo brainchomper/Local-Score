@@ -1,64 +1,9 @@
 import React, { Component } from 'react';
 import Autosuggest from 'react-autosuggest';
 import "./ProductAutoSearch.css";
-const products = [
-  {
-    name: 'C',
-    year: 1972
-  },
-  {
-    name: 'C#',
-    year: 2000
-  },
-  {
-    name: 'C++',
-    year: 1983
-  },
-  {
-    name: 'Clojure',
-    year: 2007
-  },
-  {
-    name: 'Elm',
-    year: 2012
-  },
-  {
-    name: 'Go',
-    year: 2009
-  },
-  {
-    name: 'Haskell',
-    year: 1990
-  },
-  {
-    name: 'Java',
-    year: 1995
-  },
-  {
-    name: 'Javascript',
-    year: 1995
-  },
-  {
-    name: 'Perl',
-    year: 1987
-  },
-  {
-    name: 'PHP',
-    year: 1995
-  },
-  {
-    name: 'Python',
-    year: 1991
-  },
-  {
-    name: 'Ruby',
-    year: 1995
-  },
-  {
-    name: 'Scala',
-    year: 2003
-  }
-];
+const axios = require('axios');
+let products = [];
+let productID = '';
 
 // https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
 function escapeRegexCharacters(str) {
@@ -82,6 +27,7 @@ function getSuggestionValue(suggestion) {
 }
 
 function renderSuggestion(suggestion) {
+	productID = suggestion._id
   return (
     <span>{suggestion.name}</span>
   );
@@ -93,13 +39,15 @@ class ProductSearch extends React.Component {
 
     this.state = {
       value: '',
-      suggestions: []
+			suggestions: [],
+			ProductID: ''
     };    
   }
 
   onChange = (event, { newValue, method }) => {
     this.setState({
-      value: newValue
+			value: newValue,
+			ProductID: productID
     });
   };
   
@@ -113,14 +61,22 @@ class ProductSearch extends React.Component {
     this.setState({
       suggestions: []
     });
-  };
+	};
+	
+	componentDidMount(){
+		axios.get("/api/products/All").then(productsResult => {
+			products = productsResult.data;
+			console.log("new products", products)
+		})
+	}
 
   render() {
-    const { value, suggestions } = this.state;
+    const { value, suggestions, ProductID } = this.state;
     const inputProps = {
       placeholder: "Product Seach",
       value,
-      onChange: this.onChange
+			onChange: this.onChange,
+			id: ProductID
     };
 
     return (

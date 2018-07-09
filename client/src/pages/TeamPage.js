@@ -1,97 +1,85 @@
-import React from 'react';
-import { Container, Row, Col, Card, CardBody, Avatar, Fa} from 'mdbreact';
+import React, { Component } from 'react';
+import { Container, Row, Col, Card, CardBody, Avatar, Mask, Fa, View, Button} from 'mdbreact';
 
 const TeamPage = () =>  {
-  
   return(
     <Container>
-      <Card className="my-5 px-5 pb-1 text-center">
-        <CardBody>
-          <h2 className="h1-responsive font-weight-bold my-3">Our amazing team</h2>
-          <p className="grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur veniam.</p>
-          <Row className="text-md-left">
-            <Col lg="6" md="12" className="mb-5"> 
-              <Col md="4" lg="6" className="float-left">
-                <Avatar src="https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg" className="mx-auto mb-md-0 mb-4 rounded z-depth-1 img-fluid" tag="img" alt="Sample avatar"/>
-              </Col>
-              <Col md="8" lg="6" className="float-right">
-                <h4 className="font-weight-bold mb-3">John</h4>
-                <h6 className="font-weight-bold grey-text mb-3">Web Designer</h6>
-                <p className="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
-                <a className="p-2 fa-lg fb-ic">
-                  <Fa icon="facebook"/>
-                </a>
-                <a className="p-2 fa-lg tw-ic">
-                  <Fa icon="twitter"/>
-                </a>
-                <a className="p-2 fa-lg dribbble-ic">
-                  <Fa icon="dribbble"/>
-                </a>
-              </Col>
-            </Col>
+      <section className="pt-4">
+        {/* <h2 className="h1-responsive font-weight-bold my-5">Our amazing team</h2>
+				<p className="grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur veniam.</p> */}
+        <Row className="text-center">
+          <Col lg="3" md="6"  className="mb-lg-0 mb-5">
+            <Avatar tag="img" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg" className="rounded-circle z-depth-1 img-fluid" alt="Sample avatar"/>
+            <h5 className="font-weight-bold mt-4 mb-3">John Stuart</h5>
+            <p className="text-uppercase blue-text">Graphic designer</p>
+            <p className="grey-text">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci  sed quia non numquam modi tempora eius.</p>
+            <ul className="list-unstyled mb-0">
 
-            <Col lg="6" md="12" className="mb-5"> 
-              <Col md="4" lg="6" className="float-left">
-                <Avatar src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg" className="mx-auto mb-md-0 mb-4 rounded z-depth-1 img-fluid" tag="img" alt="Sample avatar"/>
-              </Col>
-              <Col md="8" lg="6" className="float-right">
-                <h4 className="font-weight-bold mb-3">Kevin Smith</h4>
-                <h6 className="font-weight-bold grey-text mb-3">Front End Developer</h6>
-                <p className="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
-                <a className="p-2 fa-lg fb-ic">
-                  <Fa icon="facebook"/>
-                </a>
-                <a className="p-2 fa-lg yt-ic">
-                  <Fa icon="youtube"/>
-                </a>
-                <a className="p-2 fa-lg ins-ic">
-                  <Fa icon="instagram"/>
-                </a>
-              </Col>
-            </Col>
+              <a className="p-2 fa-lg">
+                <Fa icon="facebook" className="blue-text"/>
+              </a>
+              <a className="p-2 fa-lg">
+                <Fa icon="twitter" className="blue-text"/>
+              </a>
+              <a className="p-2 fa-lg">
+                <Fa icon="instagram" className="blue-text"/>
+              </a>
+            </ul>
+          </Col>
+          <Col lg="3" md="6"  className="mb-lg-0 mb-5">
+            <Avatar tag="img" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg" className="rounded-circle z-depth-1 img-fluid" alt="Sample avatar"/>
+            <h5 className="font-weight-bold mt-4 mb-3">Kevin Smith</h5>
+            <p className="text-uppercase blue-text">Frontend Developer</p>
+            <p className="grey-text">Aspiring Full Stack Web Developer that specializes in Front End Developement.
+						<img src="./images/team/QRKevin.png" alt="Kevin Smith PNG" className="img-fluid px-4" href="https://kvnsmith.com" target="blank"/>
+						<a href="https://kvnsmith.com">kvnsmith.com</a></p>
+						<ul className="list-unstyled mb-0">
+							<a className="p-2 fa-lg" target="blank" href="https://github.com/brainchomper">
+                <Fa icon="github" className="blue-text"/>
+              </a>
+							<a className="p-2 fa-lg" target="blank" href="https://www.linkedin.com/in/kvnsmith">
+                <Fa icon="linkedin" className="blue-text"/>
+              </a>
+							<a className="p-2 fa-lg">
+                <Fa icon="twitter" target="blank" href="https://twitter.com/_kvnsmith" className="blue-text"/>
+              </a>
+            </ul>
 
-            <Col lg="6" md="12" className="mb-5"> 
-              <Col md="4" lg="6" className="float-left">
-                <Avatar src="https://mdbootstrap.com/img/Photos/Avatars/img%20(26).jpg" className="mx-auto mb-md-0 mb-4 rounded z-depth-1 img-fluid" tag="img" alt="Sample avatar"/>
-              </Col>
-              <Col md="8" lg="6" className="float-right">
-                <h4 className="font-weight-bold mb-3">Joe</h4>
-                <h6 className="font-weight-bold grey-text mb-3">Web Developer</h6>
-                <p className="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
-                <a className="p-2 fa-lg fb-ic">
-                  <Fa icon="facebook"/>
-                </a>
-                <a className="p-2 fa-lg tw-ic">
-                  <Fa icon="twitter"/>
-                </a>
-                <a className="p-2 fa-lg github-ic">
-                  <Fa icon="github"/>
-                </a>
-              </Col>
-            </Col>
+          </Col>
+          <Col lg="3" md="6"  className="mb-lg-0 mb-5">
+            <Avatar tag="img" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg" className="rounded-circle z-depth-1 img-fluid" alt="Sample avatar"/>
+            <h5 className="font-weight-bold mt-4 mb-3">Joe Calderon</h5>
+            <p className="text-uppercase blue-text">Photographer</p>
+            <p className="grey-text">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim est fugiat nulla id eu laborum.</p>
+            <ul className="list-unstyled mb-0">
 
-            <Col lg="6" md="12" className="mb-5"> 
-              <Col md="4" lg="6" className="float-left">
-                <Avatar src="https://mdbootstrap.com/img/Photos/Avatars/img%20(29).jpg" className="mx-auto mb-md-0 mb-4 rounded z-depth-1 img-fluid" tag="img" alt="Sample avatar"/>
-              </Col>
-              <Col md="8" lg="6" className="float-right">
-                <h4 className="font-weight-bold mb-3">Alex</h4>
-                <h6 className="font-weight-bold grey-text mb-3">Front-end Developer</h6>
-                <p className="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur.</p>
-                <a className="p-2 fa-lg gplus-ic">
-                  <Fa icon="google-plus"/>
-                </a>
-                <a className="p-2 fa-lg li-ic">
-                  <Fa icon="linkedin"/>
-                </a>
-                <a className="p-2 fa-lg email-ic">
-                  <Fa icon="envelope"/>
-                </a>
-              </Col>
-            </Col>
-          </Row>
-        </CardBody>
-      </Card>
+              <a className="p-2 fa-lg">
+                <Fa icon="facebook" className="blue-text"/>
+              </a>
+              <a className="p-2 fa-lg">
+                <Fa icon="instagram" className="blue-text"/>
+              </a>
+              <a className="p-2 fa-lg">
+                <Fa icon="dribbble" className="blue-text"/>
+              </a>
+            </ul>
+          </Col>
+          <Col lg="3" md="6"  className="mb-lg-0 mb-5">
+            <Avatar tag="img" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg" className="rounded-circle z-depth-1 img-fluid" alt="Sample avatar"/>
+            <h5 className="font-weight-bold mt-4 mb-3">Alex Butler</h5>
+            <p className="text-uppercase blue-text">Backend Developer</p>
+            <p className="grey-text">Perspiciatis repellendus ad odit consequuntur, eveniet earum nisi qui consectetur totam officia voluptates perferendis voluptatibus aut.</p>
+            <ul className="list-unstyled mb-0">
+              <a className="p-2 fa-lg">
+                <Fa icon="facebook" className="blue-text"/>
+              </a>
+              <a className="p-2 fa-lg">
+                <Fa icon="github" className="blue-text"/>
+              </a>
+            </ul>
+          </Col>
+        </Row>
+      </section>
     </Container>
   );
 }
