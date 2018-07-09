@@ -64,11 +64,11 @@ module.exports = {
 
 	newTxn: function (req, res) {
 		// make a new transaction
-		db.Transaction.create(req.body)
+		db.Transaction.create(req.body.data)
 			// take the new info 
 			.then(newTxn => {
 				// query the product database and update the TxnHistory Array to include the newTxn
-				db.Product.findByIdAndUpdate(req.body.ProductID, { "$push": { "TxnHistory": newTxn._id } }, (err, result) => err ? res.json(err) : res.json("SUCCESS")
+				db.Product.findByIdAndUpdate(req.body.data.ProductID, { "$push": { "TxnHistory": newTxn._id } }, (err, result) => err ? res.json(err) : res.json("SUCCESS")
 				)
 			})
 	},
