@@ -15,10 +15,6 @@ class TransactionPage extends React.Component {
 		this.state = {
 			CustomerDropdown: false,
 			ProductDropdown: false,
-			OtherUsers: [],
-			UsersAvailable: false,
-			Products: [],
-			ProductsAvailable: false,
 			Price: "",
 			Customer: "",
 			Product: ""
@@ -74,7 +70,7 @@ class TransactionPage extends React.Component {
 					<div className="row text-center">
 						<div className="col">
 						<h4>Select User</h4>
-						<UserAutoSearch />
+						<UserAutoSearch data = {this.state.OtherUsers}/>
 							<Dropdown isOpen={this.state.CustomerDropdown} toggle={this.toggle} size="lg">
 								<DropdownToggle caret color="primary">
 									Customer

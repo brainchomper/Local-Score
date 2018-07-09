@@ -38,7 +38,6 @@ module.exports = {
 					return res.send("FAILURE");
 				}
 			})
-			.catch(err => res.status(422).json(err))
 	},
 
 	approveTxn: function (req, res) {
@@ -52,13 +51,11 @@ module.exports = {
 						{ "$set": { "Completed": true, "Party2Approved": true } },
 						(err, response) => err ? res.json(err) : res.json(response)
 						)
-						.catch(err => res.status(422).json(err))
 				} else {
 					// else don't do the things
 					return res.send("FAILURE");
 				}
 			})
-			.catch(err => res.status(422).json(err))
 	},
 	//end reject txn
 
