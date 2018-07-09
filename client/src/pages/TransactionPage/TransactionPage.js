@@ -1,6 +1,8 @@
 import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Card, Button, CardBody, CardTitle, InputNumeric } from 'mdbreact';
-import { PlaceHolderProducts, PlaceHolderUsers, ProductDropDown, UserDropDown } from '../../components/DropDownItems';
+import {PlaceHolderProducts, PlaceHolderUsers, ProductDropDown, UserDropDown} from '../../components/DropDownItems';
+import UserAutoSearch from "../../components/UserAutoSearch";
+import ProductAutoSearch from "../../components/ProductAutoSearch";
 const axios = require('axios');
 
 
@@ -62,33 +64,42 @@ class TransactionPage extends React.Component {
 
 	render() {
 		return (
-			<div className="row mx-auto" style={{ maxWidth: '50%' }}>
-				<div className="col mt-4">
-					<Card>
-						<CardBody>
-							<CardTitle className="text-center">Create New Transaction</CardTitle>
 
-							<div className="row text-center">
-								<div className="col">
-									<Dropdown isOpen={this.state.CustomerDropdown} toggle={this.toggle} size="lg">
-										<DropdownToggle caret color="primary">
-											Customer
+			<div className="row mx-auto"  style={{ maxWidth: '50%' }}>
+			<div className="col mt-4">
+			<Card>
+				<CardBody>
+					<CardTitle className="text-center">Create New Transaction</CardTitle>
+<hr/>
+					<div className="row text-center">
+						<div className="col">
+						<h4>Select User</h4>
+						<UserAutoSearch />
+							<Dropdown isOpen={this.state.CustomerDropdown} toggle={this.toggle} size="lg">
+								<DropdownToggle caret color="primary">
+									Customer
           </DropdownToggle>
-										<DropdownMenu>
-										</DropdownMenu>
-									</Dropdown>
-								</div>
-								<div className="col">
-									<Dropdown isOpen={this.state.ProductDropdown} toggle={this.toggleProduct} size="lg">
-										<DropdownToggle caret color="primary">
-										</DropdownToggle>
-										<DropdownMenu>
-										</DropdownMenu>
-									</Dropdown>
-								</div>
-							</div>
+								<DropdownMenu>
+								</DropdownMenu>
+							</Dropdown>
+						</div>
+						<div className="col">
+						<h4>Select Product</h4>
 
+						<ProductAutoSearch />
+							<Dropdown isOpen={this.state.ProductDropdown} toggle={this.toggleProduct} size="lg">
+								<DropdownToggle caret color="primary">
+									Product
 
+          </DropdownToggle>
+								<DropdownMenu>
+								</DropdownMenu>
+							</Dropdown>
+						</div>
+					</div>
+
+					<h5 className="text-center">Item Price $</h5>
+					<InputNumeric precision={2} value={10} step={0.01} className="mb-2" color="success"/>
 							<h3 className="text-center">Item Price $</h3>
 							<InputNumeric name="Price" precision={2} value={10} step={0.01} className="mb-2" color="success" onChange={this.handleInputChange} />
 
