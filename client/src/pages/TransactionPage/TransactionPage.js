@@ -10,7 +10,6 @@ class TransactionPage extends React.Component {
 		this.toggle = this.toggle.bind(this);
 		this.toggleProduct = this.toggleProduct.bind(this);
 		this.cLogState = this.cLogState.bind(this);
-		this.makeDivs = this.makeDivs.bind(this);
 		this.state = {
 			CustomerDropdown: false,
 			ProductDropdown: false,
