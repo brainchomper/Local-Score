@@ -3,6 +3,7 @@ import Autosuggest from 'react-autosuggest';
 import "./ProductAutoSearch.css";
 const axios = require('axios');
 let products = [];
+let productID = '';
 
 // https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
 function escapeRegexCharacters(str) {
@@ -26,6 +27,7 @@ function getSuggestionValue(suggestion) {
 }
 
 function renderSuggestion(suggestion) {
+	productID = suggestion._id
   return (
     <span>{suggestion.name}</span>
   );
@@ -37,13 +39,15 @@ class ProductSearch extends React.Component {
 
     this.state = {
       value: '',
-      suggestions: []
+			suggestions: [],
+			ProductID: ''
     };    
   }
 
   onChange = (event, { newValue, method }) => {
     this.setState({
-      value: newValue
+			value: newValue,
+			ProductID: productID
     });
   };
   
@@ -67,11 +71,12 @@ class ProductSearch extends React.Component {
 	}
 
   render() {
-    const { value, suggestions } = this.state;
+    const { value, suggestions, ProductID } = this.state;
     const inputProps = {
       placeholder: "Product Seach",
       value,
-      onChange: this.onChange
+			onChange: this.onChange,
+			id: ProductID
     };
 
     return (

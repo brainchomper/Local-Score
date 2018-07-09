@@ -95,8 +95,6 @@ class TransactionPage extends React.Component {
 					</div>
 
 					<h5 className="text-center">Item Price $</h5>
-					<InputNumeric precision={2} value={10} step={0.01} className="mb-2" color="success"/>
-							<h3 className="text-center">Item Price $</h3>
 							<InputNumeric name="Price" precision={2} value={10} step={0.01} className="mb-2" color="success" onChange={this.handleInputChange} />
 
 							<Button block color="success" size="lg" onClick={this.cLogState}>Submit New Transaction</Button>
