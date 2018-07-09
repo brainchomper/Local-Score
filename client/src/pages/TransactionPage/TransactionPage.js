@@ -1,6 +1,8 @@
 import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Card, Button, CardBody, CardTitle, InputNumeric } from 'mdbreact';
 import {PlaceHolderProducts, PlaceHolderUsers, ProductDropDown, UserDropDown} from '../../components/DropDownItems';
+import UserAutoSearch from "../../components/UserAutoSearch";
+import ProductAutoSearch from "../../components/ProductAutoSearch";
 const axios = require('axios');
 
 
@@ -82,9 +84,11 @@ class TransactionPage extends React.Component {
 			<Card>
 				<CardBody>
 					<CardTitle className="text-center">Create New Transaction</CardTitle>
-
+<hr/>
 					<div className="row text-center">
 						<div className="col">
+						<h4>Select User</h4>
+						<UserAutoSearch />
 							<Dropdown isOpen={this.state.CustomerDropdown} toggle={this.toggle} size="lg">
 								<DropdownToggle caret color="primary">
 									Customer
@@ -96,18 +100,22 @@ class TransactionPage extends React.Component {
 							</Dropdown>
 						</div>
 						<div className="col">
+						<h4>Select Product</h4>
+
+						<ProductAutoSearch />
 							<Dropdown isOpen={this.state.ProductDropdown} toggle={this.toggleProduct} size="lg">
 								<DropdownToggle caret color="primary">
 									Product
+
           </DropdownToggle>
 								<DropdownMenu>
-									{this.state.ProductsAvailable ? this.renderProductOptions : <PlaceHolderProducts />}
+									{/* {this.state.ProductsAvailable ? this.renderProductOptions : <PlaceHolderProducts />} */}
 								</DropdownMenu>
 							</Dropdown>
 						</div>
 					</div>
 
-					<h3 className="text-center">Item Price $</h3>
+					<h5 className="text-center">Item Price $</h5>
 					<InputNumeric precision={2} value={10} step={0.01} className="mb-2" color="success"/>
 
 					<Button block color="success" size="lg" href="#">Submit New Transaction</Button>
