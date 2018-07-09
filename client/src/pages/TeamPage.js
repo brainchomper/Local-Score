@@ -32,10 +32,10 @@ const TeamPage = () => {
 
 					{/* Kevin */}
 					<Col lg="3" md="6" className="mb-lg-0 mb-5">
-						<Avatar tag="img" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg" className="rounded-circle z-depth-1 img-fluid" alt="Sample avatar" />
+						<Avatar tag="img" src="./images/team/kvn.png" className=" hoverable rounded-circle z-depth-1 img-fluid" alt="Sample avatar" />
 						<h5 className="font-weight-bold mt-4 mb-3">Kevin Smith</h5>
 						<p className="text-uppercase blue-text">Frontend Developer</p>
-						<p className="grey-text">Full MERN Developer specializing in Front End Developement.
+						<p className="grey-text hoverable px-2">Full MERN Developer specializing in Front End Developement.
 						<img src="./images/team/QRKevin.png" alt="Kevin Smith PNG" className="img-fluid px-4" href="https://kvnsmith.com" target="blank" />
 							<a href="https://kvnsmith.com">kvnsmith.com</a></p>
 						<ul className="list-unstyled mb-0">
