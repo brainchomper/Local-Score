@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Fa} from 'mdbreact';
+import Alerts from "../components/Alerts";
+import UserAutoSearch from "../components/UserAutoSearch"
+import ProductAutoSearch from "../components/ProductAutoSearch"
 
 class FeaturesPage extends Component {
   render() {
     return(
       <Container>
+				<Alerts />
+				<UserAutoSearch />
+				<ProductAutoSearch />
         <section className="my-5">
           <h2 className="h1-responsive font-weight-bold text-center my-5">Why is it so great?</h2>
           <p className="lead grey-text w-responsive text-center mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>

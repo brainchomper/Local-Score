@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Navbar, NavbarNav, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Fa, SideNavItem, SideNavCat, SideNavNav, SideNav, InputSwitch, Avatar } from 'mdbreact';
+import { Navbar, NavbarNav, NavItem, NavLink, Fa, SideNavItem, SideNavNav, SideNav, Avatar, Badge } from 'mdbreact';
 import './SideBar.css';
 
 class DoubleNavigationWithHiddenSideNavFixedNavbar extends React.Component  {
@@ -152,33 +152,11 @@ render() {
             <SideNav logo="https://mdbootstrap.com/img/logo/mdb-transparent.png" isOpenWithButton={isOpenWithButtonA} breakWidth={1300} style={sideStyle} hidden href="/">
 						<Avatar tag="img" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(10).jpg" className="rounded-circle z-depth-1-half img-fluid mt-2 pr-1 pl-1" alt="Sample avatar"/>
               <SideNavNav>
-                {/* <SideNavCat name="Submit blog" onClick={this.onClick0} isOpen={this.state.accordion === 0 } icon="chevron-right">
-                    <SideNavItem>Submit listing</SideNavItem>
-                    <SideNavItem>Registration form</SideNavItem>
-                </SideNavCat>
-                <SideNavCat name="Instruction" onClick={this.onClick1} isOpen={this.state.accordion === 1 } icon="hand-pointer-o">
-                  <SideNavItem>For bloggers</SideNavItem>
-                  <SideNavItem>For authors</SideNavItem>
-                </SideNavCat>
-                <SideNavCat name="About" onClick={this.onClick2} isOpen={this.state.accordion === 2 } icon="eye">
-                  <SideNavItem>Instruction</SideNavItem>
-                  <SideNavItem>Monthly meetings</SideNavItem>
-                </SideNavCat>
-                <SideNavCat name="Contact me" onClick={this.onClick3} isOpen={this.state.accordion === 3 } icon="envelope-o">
-                  <SideNavItem>FAQ</SideNavItem>
-                  <SideNavItem>Write a message</SideNavItem>
-								</SideNavCat> */}
 								<SideNavItem href="/login">Login - Sign Up</SideNavItem>
-                    <SideNavItem href="/team">Team</SideNavItem>
-										<SideNavItem href="/products">Products</SideNavItem>
-										<SideNavItem href="/account">Account</SideNavItem>
-								<SideNavCat name="Pages Made" onClick={this.onClick4} isOpen={this.state.accordion === 4 } icon="chevron-right">
-                    
-                </SideNavCat>
-								<SideNavCat name="DISTRIBUTOR MODE" onClick={this.onClick5} isOpen={this.state.accordion === 5 } icon="chevron-right">
-										<SideNavItem><InputSwitch ></InputSwitch></SideNavItem>
-								</SideNavCat>
-								
+                <SideNavItem href="/team">Team</SideNavItem>
+								<SideNavItem href="/products">Products</SideNavItem>
+								<SideNavItem href="/account">Account</SideNavItem>
+								<SideNavItem href="/transactionpage">New Transactions</SideNavItem>
               </SideNavNav>
             </SideNav>
             <Navbar style={navStyle} dark expand="md" fixed="top">
@@ -194,17 +172,6 @@ render() {
                 
                 <NavItem>
                     <NavLink to="#!"><Fa icon="user" className="d-inline-inline"/>  <div className="d-none d-md-inline">Account</div></NavLink>
-                </NavItem>
-                <NavItem>
-                  <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                    <DropdownToggle nav caret> <div className="d-none d-md-inline">Dropdown</div></DropdownToggle>
-                    <DropdownMenu right>
-                      <DropdownItem href="#!">Action</DropdownItem>
-                      <DropdownItem href="#!">Another Action</DropdownItem>
-                      <DropdownItem href="#!">Something else here</DropdownItem>
-                      <DropdownItem href="#!">Something else here</DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
                 </NavItem>
               </NavbarNav>
             </Navbar>
