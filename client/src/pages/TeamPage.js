@@ -11,7 +11,7 @@ const TeamPage = () => {
 
 					{/* John*/}
 					<Col lg="3" md="6" className="mb-lg-0 mb-5">
-						<Avatar tag="img" src="./image/team/john.jpg" className="rounded-circle z-depth-1 img-fluid" alt="Sample avatar" />
+						<Avatar tag="img" src="./image/team/john.png" className="rounded-circle z-depth-1 img-fluid" alt="Sample avatar" />
 						<h5 className="font-weight-bold mt-4 mb-3">John Stuart</h5>
 						<p className="text-uppercase blue-text">Full Stack Web Developer / API Brain</p>
 						<p className="grey-text">Full MERN Developer focused on API building and Data Structure</p>
