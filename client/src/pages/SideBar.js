@@ -146,11 +146,11 @@ render() {
   const sideStyle = { backgroundColor: '#6a9ed3', width: "100%"}
   const button1 = <div href="#!" onClick={this.handleToggleClickA} key="sideNavToggleA" style={{lineHeight: '32px', marginRight: '1em', verticalAlign: 'middle'}}><Fa icon="bars" color="white" size="2x"></Fa></div>
   const specialCaseNavbarStyles = {WebkitBoxOrient: 'horizontal', flexDirection: 'row'};
-    return (
+    return ( 
         <Router>
           <div className="mt-5">
-            <SideNav logo="https://mdbootstrap.com/img/logo/mdb-transparent.png" isOpenWithButton={isOpenWithButtonA} breakWidth={1300} style={sideStyle} hidden href="/">
-						<Avatar tag="img" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(10).jpg" className="rounded-circle z-depth-1-half img-fluid mt-2 pr-1 pl-1" alt="Sample avatar"/>
+            <SideNav logo="./images/logo.png" isOpenWithButton={isOpenWithButtonA} breakWidth={1300} style={sideStyle} hidden href="/">
+						<Avatar tag="img" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(10).jpg" className="rounded-circle z-depth-1-half img-fluid mt-3 px-1" alt="User Image"/>
               <SideNavNav>
 								<SideNavItem href="/login">Login - Sign Up</SideNavItem>
                 <SideNavItem href="/team">Team</SideNavItem>
