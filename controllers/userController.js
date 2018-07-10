@@ -6,7 +6,16 @@ module.exports = {
 		db.User.find({})
 			.then(userResults => {
 				console.log("The user results: " , userResults)
-				res.json(userResults)
+				const trimmedUsers = userResults.map(user => {
+					const {FirstName, LastName, _id} = user
+					return {
+						FirstName: FirstName,
+						LastName: LastName,
+						_id: _id
+					}
+				})
+				console.log("the updated trimmed user:", trimmedUsers)
+				res.json(trimmedUsers)
 			})
 
 	},
