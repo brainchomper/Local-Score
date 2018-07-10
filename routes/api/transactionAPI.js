@@ -20,11 +20,8 @@ router.route("/rejectTxn/:id")
 router.route("/approveTxn/:id")
 		.put(txnController.approveTxn);
 
-router.route("/PWOM/:userID")
-		.get(txnController.TWOM)
-
-router.route("/PWOO/:userID")
-		.get(txnController.TWOO)
+router.route("/allUsersTxns/:userID")
+		.get(txnController.allUserTxns);
 
 
 module.exports = router;
