@@ -43,6 +43,7 @@ module.exports = {
 	findAll: function(req, res) {
 		db.Product.find({})
 		.then(allProducts => res.json(allProducts))
+		.catch("ugh")
 	}
 
 // this is the end of the exports
