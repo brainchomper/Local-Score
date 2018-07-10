@@ -73,26 +73,11 @@ class TransactionPage extends React.Component {
 						<div className="col">
 						<h4>Select User</h4>
 						<UserAutoSearch data = {this.state.OtherUsers}/>
-							<Dropdown isOpen={this.state.CustomerDropdown} toggle={this.toggle} size="lg">
-								<DropdownToggle caret color="primary">
-									Customer
-          </DropdownToggle>
-								<DropdownMenu>
-								</DropdownMenu>
-							</Dropdown>
 						</div>
 						<div className="col">
 						<h4>Select Product</h4>
 
 						<ProductAutoSearch />
-							<Dropdown isOpen={this.state.ProductDropdown} toggle={this.toggleProduct} size="lg">
-								<DropdownToggle caret color="primary">
-									Product
-
-          </DropdownToggle>
-								<DropdownMenu>
-								</DropdownMenu>
-							</Dropdown>
 						</div>
 					</div>
 
