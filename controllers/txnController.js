@@ -10,7 +10,7 @@ module.exports = {
 			.then(dbModel => res.send(dbModel))
 			.catch(err => res.status(422).json(err));
 	},
-	// find all the transactions associated with the transaction
+	// find all the transactions associated with the product id
 	findHistory: function (req, res) {
 		db.Product
 			.findById(req.params.id)
@@ -19,7 +19,6 @@ module.exports = {
 			.then(productResults => {
 				res.json(productResults)
 			})
-			.catch(err => res.status(422).json(err));
 	},
 	rejectTxn: function (req, res) {
 		db.Transaction.findById(req.params.id)
@@ -75,6 +74,7 @@ module.exports = {
 			.find({})
 			.populate("Party2")
 			.populate("Party1")
+			// then we go through all the transactions and only return those where the userId is set to party 2, since transactions are auto approved by the submitter as party 1
 			.then(allTxns => {
 				const TWOM = allTxns.filter(txn => txn.Party2._id === req.params.userID);
 				console.log(TWOM)
@@ -100,6 +100,43 @@ module.exports = {
 				res.json(TWOO)
 			})
 			.catch(err => res.status(422).json(err))
+	},
+	allUserTxns: function (req, res) {
+		db.Transaction
+			.find({})
+			.populate("Party1")
+			.populate("Party2")
+			.then(allTxns => {
+				// filter for where the user is the party1 or party2
+				const usersTxns = allTxns.filter(txn => txn.Party1._id === req.params.id || txn.Party2._id);
+				//trim out the user items from the parties in this giant stack
+				const trimTxns = usersTxns.map(each => {
+					// destructure
+					const { Party1, Party2, TxnDate, Rejected, Completed, Party2Approved, Price } = each;
+					//rebuild the party objects as smaller objects w/ less info
+					const uParty1 = {
+						FirstName: Party1.FirstName,
+						LastName: Party1.LastName,
+						Picture: Party1.Picture
+					};
+					const uParty2 = {
+						FirstName: Party2.FirstName,
+						LastName: Party2.LastName,
+						Picture: Party2.Picture
+					};
+					// make the new trimmed txn
+					const trimmedTxn = {
+						Party1: uParty1,
+						Party2: uParty2,
+						TxnDate: TxnDate, 
+						Rejected: Rejected, 
+						Completed: Completed, 
+						Party2Approved: Party2Approved, 
+						Price: Price
+					};
+					return trimmedTxn;
+				})
+			})
 	}
 
 };
