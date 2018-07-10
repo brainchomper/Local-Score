@@ -16,14 +16,26 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			LoggedIn: false,
 			collapsed: false,
 			FirstName: "",
 			LastName: "",
-			userID: ""
+			userID: "",
+			Picture: '',
 		};
 		this.handleNavbarClick = this.handleNavbarClick.bind(this);
 		this.handleTogglerClick = this.handleTogglerClick.bind(this);
+		this.updateUserState = this.updateUserState.bind(this)
+	}
 
+	updateUserState (auth, fname, lname, userID, picUrl) {
+		this.setState({
+			LoggedIn: auth,
+			FirstName: fname,
+			LastName: lname,
+			userID: userID,
+			Picture: picUrl
+		});
 	}
 
 	handleTogglerClick() {
@@ -54,7 +66,7 @@ class App extends Component {
 						<Route exact path="/products" component={ProductFeed}/>
 						<Route exact path="/account" component={Account}/>
 						<Route exact path ="/NewProduct" component={BoardingSurvey}  className="mt-5"/>
-						<Route exact path ="/transactionpage" component={TransactionPage} />
+						<Route exact path ="/transactionpage" component={TransactionPage } data = {this.updateUserState} />
 						<Route exact path ="/Admin" component={Admin}/>
 						<Route path = "/TransactionHistory/:id" component = {ProductFeed} />
 						</Switch>

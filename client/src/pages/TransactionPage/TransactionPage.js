@@ -9,6 +9,8 @@ const axios = require('axios');
 class TransactionPage extends React.Component {
 	constructor(props) {
 		super(props);
+		console.log("props yo")
+		console.log(props);
 		this.toggle = this.toggle.bind(this);
 		this.toggleProduct = this.toggleProduct.bind(this);
 		this.cLogState = this.cLogState.bind(this);
