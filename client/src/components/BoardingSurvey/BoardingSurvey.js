@@ -49,19 +49,21 @@ class BoardingSurvey extends React.Component {
 		//prevent the button from reloading the page
 		event.preventDefault();
 		// destructure the state
-		const {ProductName, Roast, Ground} = this.state
+		const {ProductName, Roast, Ground} = this.state;
+		const npm = ProductName.toUpperCase()
 		//use the state to build an object to pass through the call
 		const newProduct = {
-			Name: ProductName,
+			Name: npm,
 			Roast: Roast,
 			Ground: Ground,
-			CreatedBy: "Need to pass from parent"
+			CreatedBy: "pass me in",
 		};
 		axios.post("/api/products/newProduct", {newProduct})
 				 .then(results => {console.log(results);
 					console.log("This is where Kevin's sideover thing will come in")
 				})
-		
+		// console.log("newproduct")
+		// console.log(newProduct)
 	}
 
 	render() {

@@ -11,21 +11,18 @@ const TeamPage = () => {
 
 					{/* John*/}
 					<Col lg="3" md="6" className="mb-lg-0 mb-5">
-						<Avatar tag="img" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg" className="rounded-circle z-depth-1 img-fluid" alt="Sample avatar" />
+						<Avatar tag="img" src="./image/team/john.png" className="rounded-circle z-depth-1 img-fluid" alt="Sample avatar" />
 						<h5 className="font-weight-bold mt-4 mb-3">John Stuart</h5>
-						<p className="text-uppercase blue-text">Graphic designer</p>
-						<p className="grey-text">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci  sed quia non numquam modi tempora eius.</p>
+						<p className="text-uppercase blue-text">Full Stack Web Developer / API Brain</p>
+						<p className="grey-text">Full MERN Developer focused on API building and Data Structure</p>
+						<p className = "grey-text">I like smol dogs, coffee and coding.</p>
 						<ul className="list-unstyled mb-0">
-
-							<a className="p-2 fa-lg">
-								<Fa icon="facebook" className="blue-text" />
-							</a>
-							<a className="p-2 fa-lg">
-								<Fa icon="twitter" className="blue-text" />
-							</a>
-							<a className="p-2 fa-lg">
-								<Fa icon="instagram" className="blue-text" />
-							</a>
+						<a className="p-2 fa-lg" target="blank" href="https://github.com/johnstuart670">
+						<Fa icon="github" className="blue-text" />
+					</a>
+					<a className="p-2 fa-lg" target="blank" href="https://www.linkedin.com/in/john-stuart-78b523a9/">
+						<Fa icon="linkedin" className="blue-text" />
+					</a>
 						</ul>
 					</Col>
 					{/* /John */}
