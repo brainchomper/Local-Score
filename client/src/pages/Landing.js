@@ -5,7 +5,9 @@ import UserAutoSearch from "../components/UserAutoSearch";
 import ProductAutoSearch from "../components/ProductAutoSearch";
 import {Link} from 'react-router-dom';
 
-class FeaturesPage extends Component {
+class Landing extends Component {
+
+
 	render() {
 		return (
 			<Container className="my-5">
@@ -23,4 +25,4 @@ class FeaturesPage extends Component {
 	};
 }
 
-export default FeaturesPage;
+export default Landing;
