@@ -9,7 +9,7 @@ const PWOOList = props => {
 			<PWOO props={each} />
 		})
 	} else {
-		return <div>Placeholder Div</div>
+		return <div>There are no Transactions waiting on others.</div>
 	}
 }
 

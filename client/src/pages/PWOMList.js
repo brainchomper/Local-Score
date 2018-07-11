@@ -9,7 +9,7 @@ const PWOMList = props => {
 			<PWOM props={each} />
 		})
 	} else {
-		return <div>Placeholder Div</div>
+		return <div>There are no transactions waiting on me.</div>
 	}
 }
 
