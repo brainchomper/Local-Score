@@ -9,7 +9,6 @@ class ContactPage extends Component {
 			<Container>
 				<AccountTabs />
 				<hr />
-				<TransactionFeed />
 			</Container>
 		);
 	};

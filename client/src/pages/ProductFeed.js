@@ -5,7 +5,7 @@ import { TransactionFeed } from './TransactionFeed';
 class ProductFeed extends Component {
 	constructor (props) {
 		super(props) 
-
+		console.log(props)
 		const params =  this.props.match.params.id
 
 		this.state = {

@@ -19,17 +19,17 @@ function getSuggestions(value) {
 
   const regex = new RegExp('^' + escapedValue, 'i');
 
-  return products.filter(product => regex.test(product.name));
+  return products.filter(product => regex.test(product.Name));
 }
 
 function getSuggestionValue(suggestion) {
-  return suggestion.name;
+  return suggestion.Name;
 }
 
 function renderSuggestion(suggestion) {
 	productID = suggestion._id
   return (
-    <span>{suggestion.name}</span>
+    <span>{suggestion.Name}</span>
   );
 }
 

@@ -68,75 +68,34 @@ module.exports = {
 				)
 			})
 	},
-	TWOM: function (req, res) {
-		// first we populate the Transactions w/ the user info
-		db.Transaction
-			.find({})
-			.populate("Party2")
-			.populate("Party1")
-			// then we go through all the transactions and only return those where the userId is set to party 2, since transactions are auto approved by the submitter as party 1
-			.then(allTxns => {
-				const TWOM = allTxns.filter(txn => txn.Party2._id === req.params.userID);
-				console.log(TWOM)
-				console.log("We are hitting TWOM")
-				res.json(TWOM)
-			})
-			.catch(err => res.status(422).json(err))
-	},
-	TWOO: function (req, res) {
-		// first we populate the Transactions w/ the user info
-		db.Transaction
-			.find({})
-			.populate("Party2")
-			.populate("Party1")
-			// then we use a filter on the results to return only where the user submitted is in slot one
-			.then(allTxns => {
-				// if the user is in slot 1 that means that they were the submitter of the transaction according to the data schema we set up
-
-				// we are pinging the server as /api/transactions/:userID so this is why we pass this params in
-				const TWOO = allTxns.filter(txn => txn.Party1._id === req.params.userID);
-				console.log(TWOO.length)
-				console.log("We are hitting TWOO")
-				res.json(TWOO)
-			})
-			.catch(err => res.status(422).json(err))
-	},
+	
 	allUserTxns: function (req, res) {
+		// first we populate the Transactions w/ the user info
 		db.Transaction
 			.find({})
-			.populate("Party1")
 			.populate("Party2")
-			.then(allTxns => {
-				// filter for where the user is the party1 or party2
-				const usersTxns = allTxns.filter(txn => txn.Party1._id === req.params.id || txn.Party2._id);
-				//trim out the user items from the parties in this giant stack
-				const trimTxns = usersTxns.map(each => {
-					// destructure
-					const { Party1, Party2, TxnDate, Rejected, Completed, Party2Approved, Price } = each;
-					//rebuild the party objects as smaller objects w/ less info
-					const uParty1 = {
-						FirstName: Party1.FirstName,
-						LastName: Party1.LastName,
-						Picture: Party1.Picture
-					};
-					const uParty2 = {
-						FirstName: Party2.FirstName,
-						LastName: Party2.LastName,
-						Picture: Party2.Picture
-					};
-					// make the new trimmed txn
-					const trimmedTxn = {
-						Party1: uParty1,
-						Party2: uParty2,
-						TxnDate: TxnDate, 
-						Rejected: Rejected, 
-						Completed: Completed, 
-						Party2Approved: Party2Approved, 
-						Price: Price
-					};
-					return trimmedTxn;
-				})
+			.populate("Party1")
+			.populate("ProductID")
+			// then we use a filter on the results to return only where the user submitted is in slot one
+			.then( allTxns => {
+				// if the user is in slot 1 that means that they were the submitter of the transaction according to the data schema we set up				
+				// we are pinging the server as /api/transactions/:userID so this is why we pass this params in
+				const TWOO = allTxns.filter(txn => txn.Party1._id.toString() === req.params.userID && !txn.Completed)
+				const TWOM = allTxns.filter(txn => txn.Party2._id.toString() === req.params.userID && !txn.Completed);
+				const COMPLETED = allTxns
+				.filter(txn => (
+					txn.Party1._id.toString() === req.params.userID && txn.Completed && txn.Party1._id.toString() != txn.Party2._id.toString()) 
+					|| 
+					(txn.Party2._id.toString() === req.params.userID && txn.Completed && txn.Party1._id.toString() != txn.Party2._id.toString()));
+//build a response obj with the arrays
+				const APIReturn = {
+					TWOO: TWOO,
+					TWOM: TWOM,
+					COMPLETED: COMPLETED
+				}
+				res.json(APIReturn)
 			})
+			.catch(err => console.log(err))
+	},
+	
 	}
-
-};
