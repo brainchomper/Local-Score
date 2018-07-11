@@ -4,12 +4,13 @@ import PWOO from './PWOO';
 
 const PWOOList = props => {
 	console.log("props in the PWOOList")
-	console.log(props)
-
-	return props.data.data.map((each) => {
-		<PWOO data = {each} />
-	})
+	if (props.props.queriesComplete && typeof props.props.PWOM !== "undefined") {
+		return props.PWOO.map((each) => {
+			<PWOO props={each} />
+		})
+	} else {
+		return <div>Placeholder Div</div>
+	}
 }
-
 
 export default PWOOList;
