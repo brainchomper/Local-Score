@@ -50,19 +50,19 @@ class TabsPage extends React.Component {
 	}
 
 // query that runs the api query for transactions waiting on the user
-renderPWOM() {
-	console.log("Seeing if the renderPWOM works????")
-	this.state.queriesComplete ? <PWOMList data={this.state.PWOM} /> : <Button> THIS IS A PLACEHOLDER BUTTON</Button>
-}
-renderPWOO() {
-	console.log("testing PWOO")
-	this.state.queriesComplete ? <PWOOList data={this.state.PWOO} /> : <Button> THIS IS A PLACEHOLDER BUTTON</Button>
-}
+// renderPWOM() {
+// 	console.log("Seeing if the renderPWOM works????")
+// 	this.state.queriesComplete ?  <PWOMList data={this.state.PWOM} /> : <Button> THIS IS A PLACEHOLDER BUTTON</Button>
+// }
+// renderPWOO() {
+// 	console.log("testing PWOO")
+// 	this.state.queriesComplete ? <PWOOList data={this.state.PWOO} /> : <Button> THIS IS A PLACEHOLDER BUTTON</Button>
+// }
 
-renderCompleted() {
-	console.log("also testing the stupid render for the list")
-	this.state.queriesComplete ? <CompletedList data={this.state.COMPLETED} /> : <Button> THIS IS A PLACEHOLDER BUTTON</Button>
-}
+// renderCompleted() {
+// 	console.log("also testing the stupid render for the list")
+// 	this.state.queriesComplete ? <CompletedList data={this.state.COMPLETED} /> : <Button> THIS IS A PLACEHOLDER BUTTON</Button>
+// }
 
 render() {
 	return (
@@ -90,17 +90,17 @@ render() {
 						<TabContent className="card" activeItem={this.state.activeItemClassicTabs1}>
 							<TabPane tabId="2">
 								<Container>
-									{this.renderPWOM()}
+								<PWOOList props = {this.state} />
 								</Container>
 							</TabPane>
 							<TabPane tabId="3">
 								<Container>
-									{this.renderPWOO()}
+									<PWOMList props = {this.state} />
 								</Container>
 							</TabPane>
 							<TabPane tabId="4">
 								<Container>
-									{this.renderCompleted()}
+									<CompletedList props = {this.state} />
 								</Container>
 							</TabPane>
 						</TabContent>
