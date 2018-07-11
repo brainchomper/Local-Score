@@ -8,9 +8,9 @@ const UserSchema = new Schema ({
 	// tracks the products that the user has bought on the app or created.  
 	Inventory: [],
 	Picture: {type: String, required: true},
-	SocialKey: {type: String, unique: true, required: true},
+	SocialKey: {type: String, unique: true},
 	Email: {type: String, unique: true},
-	Password: {unique: true, type: String}
+	Password: { type: String}
 });
 
 // UserSchema.plugin(passportLocalMongoose);

@@ -16,4 +16,7 @@ router.route("/UserLogin")
 router.route("/register")
 .post(uController.registerFn)
 
+router.route("/passwordLogin")
+	.post(uController.pwdLogin)
+
 module.exports = router;
