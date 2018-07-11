@@ -75,13 +75,18 @@ module.exports = {
 			.find({})
 			.populate("Party2")
 			.populate("Party1")
+			.populate("ProductID")
 			// then we use a filter on the results to return only where the user submitted is in slot one
 			.then( allTxns => {
 				// if the user is in slot 1 that means that they were the submitter of the transaction according to the data schema we set up				
 				// we are pinging the server as /api/transactions/:userID so this is why we pass this params in
 				const TWOO = allTxns.filter(txn => txn.Party1._id.toString() === req.params.userID && !txn.Completed)
 				const TWOM = allTxns.filter(txn => txn.Party2._id.toString() === req.params.userID && !txn.Completed);
-				const COMPLETED = allTxns.filter(txn => (txn.Party1._id.toString() === req.params.userID && txn.Completed) || (txn.Party2._id.toString() === req.params.userID && txn.Completed));
+				const COMPLETED = allTxns
+				.filter(txn => (
+					txn.Party1._id.toString() === req.params.userID && txn.Completed && txn.Party1._id.toString() != txn.Party2._id.toString()) 
+					|| 
+					(txn.Party2._id.toString() === req.params.userID && txn.Completed && txn.Party1._id.toString() != txn.Party2._id.toString()));
 //build a response obj with the arrays
 				const APIReturn = {
 					TWOO: TWOO,
