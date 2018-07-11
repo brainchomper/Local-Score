@@ -66,10 +66,10 @@ class App extends Component {
 		return (
 
 			<React.Fragment>
-				<Landing props={this.state} />
+				{/* <Landing props={this.state} /> */}
 				<Router>
 					<Switch>
-						<Route exact path="/" component={Landing} />
+						<Route exact path="/" render={() => <Landing props={this.state} /> } />
 						<Route exact path="/team" component={TeamPage} />
 
 						<Route exact path="/welcome" component={UI} />
