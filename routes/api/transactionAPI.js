@@ -3,7 +3,7 @@ const txnController = require ("../../controllers/txnController.js");
 const app = require("express");
 
 // Matches with "/api/transactions/All
-router.route("/All")
+router.route("/feed")
   .get(
 		txnController.findAll);
 

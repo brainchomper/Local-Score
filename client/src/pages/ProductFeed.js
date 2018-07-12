@@ -1,42 +1,41 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { TransactionFeed } from './TransactionFeed';
+import  CompletedList  from './CompletedList';
+
 
 class ProductFeed extends Component {
-	constructor (props) {
-		super(props) 
+	constructor(props) {
+		super(props)
 		console.log(props)
-		const params =  this.props.match.params.id
+		const params = this.props.match.params.id
 
 		this.state = {
-			transactions : [],
-			params: params
+			COMPLETED: [],
+			params: params,
+			userID: "",
+			queryResults: false
 		}
 	};
-	renderTransactions = (dataSet) => dataSet.map(each => <TransactionFeed data = {each} />) 
-  componentDidMount() {
+
+	componentDidMount() {
 		//call the api 
-// axios.get("/api/transactionfeed").then((res) => console.log('asjdf'))
-console.log("the params of the page rendering (AKA /transactionfeed/:id", this.props.match.params.id)
-console.log("Howdy");
-
-const paramParseURL = this.state.params === null ? "api/transactions/All" : ("api/transactions/" + this.state.params);
-
-axios.get(paramParseURL).then(data => 
-{this.setState({transactions: data})}
-)
-	};
-	// render statement
-	render() {
-		return (
-			<div>
-			<p>
-We need to put a loading gif in here or something			</p>
-		{this.state.transactions.length === 0 ?  console.log("No Data"): this.renderTransactions(this.state.transactions)   } 
-			</div>
+		console.log("the params of the page rendering (AKA /transactionfeed/:id", this.props.match.params.id)
+		console.log("Howdy");
+		axios
+			.get("/api/transactions/feed")
+			.then(queryResults =>
+				this.setState({
+					COMPLETED: queryResults.data,
+					queriesComplete: true
+				}))
+	}
+// render statement
+render() {
+	return (
+		<CompletedList props={this.state} />
 		)
 	}
-
 }
+
 
 export default ProductFeed;
