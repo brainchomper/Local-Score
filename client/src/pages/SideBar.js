@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Navbar, NavbarNav, NavItem, NavLink, Fa, SideNavItem, SideNavNav, SideNav, Avatar, Badge } from 'mdbreact';
+import { Navbar, NavbarNav, NavItem, NavLink, Fa, SideNavItem, SideNavNav, SideNav, Avatar } from 'mdbreact';
 import './SideBar.css';
 
 class DoubleNavigationWithHiddenSideNavFixedNavbar extends React.Component  {

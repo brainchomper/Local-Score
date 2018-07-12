@@ -74,13 +74,13 @@ class App extends Component {
 					<Switch>
 						<Route exact path="/" render={() => <Landing props={this.state} /> } />
 						<Route exact path="/welcome" render={() => <UI props={this.state} /> } />
-						<Route exact path="/team" component={TeamPage} />
-						<Route exact path="/login" component={Login} />
-						<Route exact path="/products" component={ProductFeed} />
-						<Route exact path="/account" component={Account} />
-						<Route exact path="/new-product" component={BoardingSurvey} className="mt-5" />
-						<Route exact path="/transactions" component={TransactionPage} data={this.updateUserState} />
-						<Route path="/TransactionHistory/:id" component={ProductFeed} />
+						<Route exact path="/team" render={() => < TeamPage props = {this.state} />} />
+						<Route exact path="/login" render={() => < Login props = {this.state} />} />
+						<Route exact path="/products" render={() => < ProductFeed props = {this.state} />} />
+						<Route exact path="/account" render={() => < Account props = {this.state} />} />
+						<Route exact path="/new-product" render={() => < BoardingSurvey props = {this.state} />} />
+						<Route exact path="/transactions" render={() => < TransactionPage props = {this.state} />} />
+						<Route path="/TransactionHistory/:id" render={() => < ProductFeed props = {this.state} />} />
 					</Switch>
 				</Router>
 			</React.Fragment>

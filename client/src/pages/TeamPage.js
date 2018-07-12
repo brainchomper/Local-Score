@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Container, Row, Col, Card, CardBody, Avatar, Mask, Fa, View, Button } from 'mdbreact';
+import React from 'react';
+import { Container, Row, Col, Avatar, Fa } from 'mdbreact';
 
 const TeamPage = () => {
 	return (
