@@ -7,7 +7,7 @@
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
-    "install": "cd client && yarn install",
+    "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
@@ -48,7 +48,6 @@
     "url": "https://github.com/brainchomper/new-local-score/issues"
   },
   "homepage": "https://github.com/brainchomper/new-local-score#readme",
-  "description": "",
   "proxy": {
     "/api": {
       "target": "http://localhost:3001/"
@@ -56,5 +55,7 @@
     "/assets": {
       "target": "http://localhost:3001/"
     }
-  }
+  },
+  "keywords": [],
+  "description": ""
 }
