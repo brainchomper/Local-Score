@@ -11,6 +11,7 @@ import Account from './pages/Account.js';
 import TransactionPage from "./pages/TransactionPage";
 import BoardingSurvey from "./components/BoardingSurvey"
 import UI from "./pages/UI";
+import Register from "./components/Auth/Register";
 
 // context
 // const Context = React.createContext();
@@ -75,6 +76,7 @@ class App extends Component {
 					<Switch>
 						<Route exact path="/" render={() => <Landing props={this.state} /> } />
 						<Route exact path="/welcome" render={() => <UI props={this.state} /> } />
+						<Route exact path="/register" component={Register} />
 						<Route exact path="/team" render={() => < TeamPage props = {this.state} />} />
 						<Route exact path="/login" render={() => < Login props = {this.state} propFn = {this.updateUserState} />} />
 						<Route exact path="/products" render={() => < ProductFeed props = {this.state} />} />
