@@ -1,34 +1,45 @@
 import React, { Component } from 'react';
 import mdbreact from 'mdbreact';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import './index.css';
 import SideBar from "./pages/SideBar";
 import Login from "./pages/Login.js";
 import ProductFeed from "./pages/ProductFeed";
 import TeamPage from './pages/TeamPage';
-import Landing from './pages/Landing.js';
+import Landing from './components/Landing';
 import Account from './pages/Account.js';
 import TransactionPage from "./pages/TransactionPage";
 import BoardingSurvey from "./components/BoardingSurvey"
-import Admin from "./pages/Admin.js"
+import UI from "./pages/UI";
 
+// context
+// const Context = React.createContext();
+
+// class Provider extends Component {
+// 	return(
+// 		<Context.Provider>
+// 		</Context.Provider>
+// 	)
+
+// }
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			user: {
-				UID: "",
-				FName: "",
-				LName: "",
-				Picture: ""
-			},
-			auth: false
+			LoggedIn: true,
+			collapsed: false,
+			FirstName: "",
+			LastName: "",
+			userID: "",
+			Picture: '',
+
 		};
 		this.handleNavbarClick = this.handleNavbarClick.bind(this);
 		this.handleTogglerClick = this.handleTogglerClick.bind(this);
 	}
 
-	updateUserState (obj, boolean) {
+	updateUserState(auth, fname, lname, userID, picUrl) {
+
 		this.setState({
 			user: obj,
 			auth: boolean
@@ -51,26 +62,27 @@ class App extends Component {
 		const collapsed = this.state.collapsed;
 		const overlay = <div id="sidenav-overlay" style={{ backgroundColor: 'transparent' }} onClick={this.handleNavbarClick} />
 		return (
+
+
 <React.Fragment>
-
-				<SideBar />
-					
-					<Router>
-						<Switch>
-						<Route exact path="/" component={Landing}/>
-						<Route exact path="/team" component={TeamPage}/>
+				
+				<Router>
+					<Switch>
+						<Route exact path="/" render={() => <Landing props={this.state} /> } />
+						<Route exact path="/welcome" render={() => <UI props={this.state} /> } />
+						<Route exact path="/team" component={TeamPage} />
 						<Route exact path="/login" component={Login} />
-						<Route exact path="/products" component={ProductFeed}/>
-						<Route exact path="/account" component={Account}/>
-						<Route exact path ="/NewProduct" component={BoardingSurvey}  className="mt-5"/>
-						<Route exact path ="/transactionpage" component={TransactionPage } />
-						<Route exact path ="/Admin" component={Admin}/>
-						<Route path = "/TransactionHistory/:id" component = {ProductFeed} />
-						</Switch>
-					</Router>
+						<Route exact path="/products" component={ProductFeed} />
+						<Route exact path="/account" component={Account} />
+						<Route exact path="/new-product" component={BoardingSurvey} className="mt-5" />
+						<Route exact path="/transactions" component={TransactionPage} data={this.updateUserState} />
+						<Route path="/TransactionHistory/:id" component={ProductFeed} />
+					</Switch>
+				</Router>
+			</React.Fragment>
 
 
-</React.Fragment>
+
 		);
 	}
 }
