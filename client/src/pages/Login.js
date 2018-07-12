@@ -9,9 +9,13 @@ const axios = require('axios');
 class FormsPage extends React.Component {
 	constructor(props) {
 		super(props)
-		this.updateUserState = props.updateUserState.bind(this)
+		// this.LoginUserState = this.LoginUserState.bind(this)
 	}
 	render() {
+
+		// LoginUserState = (obj) => {
+		// 	props.updateUserState(obj, true)
+		// }
 
 		const responseGoogle = (response) => {
 			console.log(response);
@@ -28,7 +32,8 @@ class FormsPage extends React.Component {
 				.put("/api/users/UserLogin", { user })
 				.then(response => {
 					if (response.validate = true) {
-						{ this.updateUserState(user, true) }
+						// { this.LoginUserState(response, true) }
+						console.log("ugh")
 					} else (console.log("the user login was unsuccesful"))
 				}
 				)

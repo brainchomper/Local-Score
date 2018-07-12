@@ -7,17 +7,18 @@ const keys = require('../config/keys');
 module.exports = {
   findAll: function(req, res) {
     db.User.find({}).then(userResults => {
-      console.log("The user results: ", userResults);
       const trimmedUsers = userResults.map(user => {
-        const { FirstName, LastName, _id } = user;
+				const { FirstName, LastName, _id } = user;
+				// filter out the password and stuff
         return {
           FirstName: FirstName,
           LastName: LastName,
           _id: _id
-        };
-      });
-      console.log("the updated trimmed user:", trimmedUsers);
-      res.json(trimmedUsers);
+        }
+			});
+			// make another array that is filtering out the user that submitted the 
+			const noSubmitter = trimmedUsers.filter(each => each._id.toString() != req.params.userID)
+      res.json(noSubmitter);
     });
   },
 

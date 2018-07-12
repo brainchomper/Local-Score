@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Card, Button, CardBody, CardTitle, InputNumeric } from 'mdbreact';
-import {PlaceHolderProducts, PlaceHolderUsers, ProductDropDown, UserDropDown} from '../../components/DropDownItems';
+import { PlaceHolderProducts, PlaceHolderUsers, ProductDropDown, UserDropDown } from '../../components/DropDownItems';
 import UserAutoSearch from "../../components/UserAutoSearch";
 import ProductAutoSearch from "../../components/ProductAutoSearch";
 const axios = require('axios');
@@ -14,13 +14,16 @@ class TransactionPage extends React.Component {
 		this.cLogState = this.cLogState.bind(this);
 		this.updateCustomer = this.updateCustomer.bind(this);
 		this.updateProduct = this.updateProduct.bind(this);
+		this.submitTxn = this.submitTxn.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this)
 		this.state = {
 			CustomerLock: false,
 			ProductLock: false,
-			Price: "",
+			PriceLock: false,
+			Price: 10,
 			Customer: "",
 			Product: "",
-			Party1: "pass me from state"
+			Party1: "5b45699cc4777613b8084d18"
 		};
 	}
 	toggle() {
@@ -50,7 +53,7 @@ class TransactionPage extends React.Component {
 	updateProduct = (thing) => {
 		console.log("updating the product", thing)
 		this.setState({
-			Product : thing,
+			Product: thing,
 			ProductLock: true
 		})
 	}
@@ -66,43 +69,53 @@ class TransactionPage extends React.Component {
 	};
 
 	submitTxn() {
-		const { Price, Customer, Product } = this.state;
-		const newTxn = {
-			Party1: "Pull me in",
-			Party2: Customer,
-			ProductID: Product,
-			Price: ""
+		// destructure
+		console.log(this.state)
+		const { Price, Customer, Product, ProductLock, CustomerLock, PriceLock } = this.state;
+		//check if the user has locked in their product and customer and price
+		if (ProductLock && CustomerLock && PriceLock) {
+			// run the api query to post the transaction
+			const newTxn = {
+				Party1: "Pull me in",
+				Party2: Customer,
+				ProductID: Product,
+				Price: 10
+			}
+			return axios
+				.post("/api/transactions/newTransaction", { newTxn })
+				.then(console.log("the txn posted correctly"))
 		}
-		axios
-			.post("/api/transactions/newTransaction", { newTxn })
-			.then(console.log("the txn posted correctly"))
+		else {
+			return console.log("not everything is locked yet")
+		}
+
 	}
 
 	render() {
 		return (
 
-			<div className="row mx-auto"  style={{ maxWidth: '50%' }}>
-			<div className="col mt-4">
-			<Card>
-				<CardBody>
-					<CardTitle className="text-center">Create New Transaction</CardTitle>
-<hr/>
-					<div className="row text-center">
-						<div className="col">
-						<h4>Select User</h4>
-						<UserAutoSearch updateCustomer = {this.updateCustomer}/>
-						</div>
-						<div className="col">
-						<h4>Select Product</h4>
+			<div className="row mx-auto" style={{ maxWidth: '50%' }}>
+				<div className="col mt-4">
+					<Card>
+						<CardBody>
+							<CardTitle className="text-center">Create New Transaction</CardTitle>
+							<hr />
+							<div className="row text-center">
+								<div className="col">
+									<h4>Select User</h4>
+									<UserAutoSearch updateCustomer={this.updateCustomer} userId={this.state.Party1} />
+								</div>
+								<div className="col">
+									<h4>Select Product</h4>
 
-						<ProductAutoSearch updateProduct = {this.updateProduct} />
-						</div>
-					</div>
+									<ProductAutoSearch updateProduct={this.updateProduct} />
+								</div>
+							</div>
 
-					<h5 className="text-center">Item Price $</h5>
-							<InputNumeric name="Price" precision={2} value={10} step={0.01} className="mb-2" color="success" onChange={this.handleInputChange} />
+							<h5 className="text-center">Item Price $</h5>
+							<InputNumeric name="Price" precision={2} value={this.state.Price} step={0.01} className="mb-2" color="success" />
 
-							<Button block color="success" size="lg" onClick={this.cLogState}>Submit New Transaction</Button>
+							<Button block color="success" size="lg" onClick={this.submitTxn}>Submit New Transaction</Button>
 						</CardBody>
 
 					</Card>

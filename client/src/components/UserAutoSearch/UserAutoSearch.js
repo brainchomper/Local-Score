@@ -58,10 +58,12 @@ function renderSuggestion(suggestion, { query }) {
 class UserSearch extends React.Component {
 	constructor(props) {
 		super(props);
+		console.log(props)
+
 		this.state = {
 			value: '',
 			suggestions: [],
-			userID: ''
+			user: this.props.userId
 		};
 	}
 
@@ -71,19 +73,12 @@ class UserSearch extends React.Component {
 	}
 
 	onChange = (event, { newValue, method }) => {
-		console.log("New Value in onChange");
-		console.log(newValue);
-		console.log("this is what we updated the suggestion to: ")
-		console.log(userID)
 		this.setState({
 			value: newValue.trim(),
-			userID: userID
 		});
 	};
 
 	onSuggestionsFetchRequested = ({ value }) => {
-		console.log("this is the value from userID yo")
-		console.log(userID)
 		this.setState({
 			suggestions: getSuggestions(value)
 		});
@@ -96,16 +91,19 @@ class UserSearch extends React.Component {
 	};
 
 	componentDidMount() {
-		axios.get("/api/users/All").then(usersResult => {
+		const userTrail = this.state.user
+		const queryURL = ("/api/users/All/" + userTrail)
+		console.log(queryURL, "queryURL")
+		axios.get(queryURL).then(usersResult => {
 			user = usersResult.data;
-			console.log("new user", user)
+			console.log("new users", user)
 		})
 	}
 
 	render() {
 		const { value, suggestions, userID } = this.state;
 		const inputProps = {
-			placeholder: "Search for your customer here",
+			placeholder: "Search for customer",
 			value,
 			onChange: this.onChange,
 			id: userID

@@ -59,7 +59,7 @@ class App extends Component {
 						<Switch>
 						<Route exact path="/" component={Landing}/>
 						<Route exact path="/team" component={TeamPage}/>
-						<Route exact path="/login" component={Login}/>
+						<Route exact path="/login" component={Login} />
 						<Route exact path="/products" component={ProductFeed}/>
 						<Route exact path="/account" component={Account}/>
 						<Route exact path ="/NewProduct" component={BoardingSurvey}  className="mt-5"/>
