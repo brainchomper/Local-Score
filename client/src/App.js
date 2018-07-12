@@ -26,7 +26,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			LoggedIn: false,
+			LoggedIn: true,
 			collapsed: false,
 			FirstName: "",
 			LastName: "",
@@ -39,13 +39,14 @@ class App extends Component {
 		this.updateUserState = this.updateUserState.bind(this);
 	}
 
-	updateUserState(auth, fname, lname, userID, picUrl) {
-
+	updateUserState = (auth, fname, lname, userID, picUrl) => {
+		console.log("updating the things")
+		console.log(this.state);
 		this.setState({
 			LoggedIn: auth,
 			FirstName: fname,
 			LastName: lname,
-			userId: userID,
+			userID: userID,
 			Picture: picUrl
 		});
 	}
@@ -75,7 +76,7 @@ class App extends Component {
 						<Route exact path="/" render={() => <Landing props={this.state} /> } />
 						<Route exact path="/welcome" render={() => <UI props={this.state} /> } />
 						<Route exact path="/team" render={() => < TeamPage props = {this.state} />} />
-						<Route exact path="/login" render={() => < Login props = {this.state} />} />
+						<Route exact path="/login" render={() => < Login props = {this.state} propFn = {this.updateUserState} />} />
 						<Route exact path="/products" render={() => < ProductFeed props = {this.state} />} />
 						<Route exact path="/account" render={() => < Account props = {this.state} />} />
 						<Route exact path="/new-product" render={() => < BoardingSurvey props = {this.state} />} />

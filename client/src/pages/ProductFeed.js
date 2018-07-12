@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import  CompletedList  from './CompletedList';
+import CompletedList from './CompletedList';
+import { Redirect } from 'react-router-dom';
+
 
 
 class ProductFeed extends Component {
@@ -27,11 +29,16 @@ class ProductFeed extends Component {
 					queriesComplete: true
 				}))
 	}
-// render statement
-render() {
-	return (
-		<CompletedList props={this.state} />
-		)
+	// render statement
+	render() {
+		{console.log(this.props.props)}
+		if (!this.props.props.LoggedIn) {
+			return (<Redirect to="/" />)
+		} else {
+			return (
+				<CompletedList props={this.state} />
+			)
+		}
 	}
 }
 
