@@ -9,17 +9,18 @@ const axios = require('axios');
 class TransactionPage extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log("props yo")
-		console.log(props);
 		this.toggle = this.toggle.bind(this);
 		this.toggleProduct = this.toggleProduct.bind(this);
 		this.cLogState = this.cLogState.bind(this);
+		this.updateCustomer = this.updateCustomer.bind(this);
+		this.updateProduct = this.updateProduct.bind(this);
 		this.state = {
-			CustomerDropdown: false,
-			ProductDropdown: false,
+			CustomerLock: false,
+			ProductLock: false,
 			Price: "",
 			Customer: "",
-			Product: ""
+			Product: "",
+			Party1: "pass me from state"
 		};
 	}
 	toggle() {
@@ -38,6 +39,22 @@ class TransactionPage extends React.Component {
 		console.log(this.state)
 	}
 
+	updateCustomer = (thing) => {
+		console.log("updating the customer", thing)
+		this.setState({
+			Customer: thing,
+			CustomerLock: true
+		})
+	};
+
+	updateProduct = (thing) => {
+		console.log("updating the product", thing)
+		this.setState({
+			Product : thing,
+			ProductLock: true
+		})
+	}
+
 	handleInputChange = event => {
 		// Getting the value and name of the input which triggered the change
 		const { name, value } = event.target;
@@ -53,7 +70,8 @@ class TransactionPage extends React.Component {
 		const newTxn = {
 			Party1: "Pull me in",
 			Party2: Customer,
-			ProductID: Product
+			ProductID: Product,
+			Price: ""
 		}
 		axios
 			.post("/api/transactions/newTransaction", { newTxn })
@@ -72,12 +90,12 @@ class TransactionPage extends React.Component {
 					<div className="row text-center">
 						<div className="col">
 						<h4>Select User</h4>
-						<UserAutoSearch data = {this.state.OtherUsers}/>
+						<UserAutoSearch updateCustomer = {this.updateCustomer}/>
 						</div>
 						<div className="col">
 						<h4>Select Product</h4>
 
-						<ProductAutoSearch />
+						<ProductAutoSearch updateProduct = {this.updateProduct} />
 						</div>
 					</div>
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Autosuggest from 'react-autosuggest';
 import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
 import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
+import {Button} from 'mdbreact';
 import "./UserAutoSearch.css";
 const axios = require('axios');
 
@@ -55,14 +56,18 @@ function renderSuggestion(suggestion, { query }) {
 }
 
 class UserSearch extends React.Component {
-	constructor() {
-		super();
-
+	constructor(props) {
+		super(props);
 		this.state = {
 			value: '',
 			suggestions: [],
 			userID: ''
 		};
+	}
+
+	updateCustomer = () => {
+		const id = userID;
+		this.props.updateCustomer(userID);
 	}
 
 	onChange = (event, { newValue, method }) => {
@@ -71,7 +76,7 @@ class UserSearch extends React.Component {
 		console.log("this is what we updated the suggestion to: ")
 		console.log(userID)
 		this.setState({
-			value: newValue,
+			value: newValue.trim(),
 			userID: userID
 		});
 	};
@@ -107,6 +112,7 @@ class UserSearch extends React.Component {
 		};
 
 		return (
+			<React.Fragment>
 			<Autosuggest
 				suggestions={suggestions}
 				onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -114,6 +120,8 @@ class UserSearch extends React.Component {
 				getSuggestionValue={getSuggestionValue}
 				renderSuggestion={renderSuggestion}
 				inputProps={inputProps} />
+				<Button onClick={this.updateCustomer} >Lock in Customer </Button>
+				</React.Fragment>
 		);
 	}
 }

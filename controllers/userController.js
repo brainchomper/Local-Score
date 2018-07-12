@@ -45,14 +45,18 @@ module.exports = {
           db.User.create(newUser, function(err, userPostRes) {
             if (err) {
               return console.log(err);
-            }
+						}
+						userPostRes.validate = true;
             res.json(userPostRes);
           });
         }
         //otherwise we will update the existing user to get their most recent picture and name.
         else {
           db.User.findByIdAndUpdate(result._id, { $set: req.body })
-            .then(updatedUser => res.json("updated user:" + updatedUser))
+            .then(updatedUser =>{
+							upatedUser.validate = true;
+							res.json(updatedUser)
+						} )
             .catch(err => res.json("Error at update user:" + err));
         }
       });
@@ -85,7 +89,8 @@ module.exports = {
             db.User.create(newUser, function(err, UserPostRes) {
               if (err) {
                 return res.json(err);
-              }
+							}
+							UserPostRes.validate = true;
               res.json(UserPostRes);
             });
           });
@@ -116,7 +121,7 @@ module.exports = {
             { expiresIn: 3600 },
             (err, token) => {
               res.json({
-                success: true,
+                validate: true,
                 token: "Bearer " + token,
                 user: user
               });
