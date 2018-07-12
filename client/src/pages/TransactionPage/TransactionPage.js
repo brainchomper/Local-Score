@@ -8,6 +8,7 @@ const axios = require('axios');
 class TransactionPage extends React.Component {
 	constructor(props) {
 		super(props);
+		console.log(props)
 		this.cLogState = this.cLogState.bind(this);
 		this.updateCustomer = this.updateCustomer.bind(this);
 		this.updateProduct = this.updateProduct.bind(this);
