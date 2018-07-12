@@ -26,7 +26,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			LoggedIn: true,
+			LoggedIn: false,
 			collapsed: false,
 			FirstName: "",
 			LastName: "",
@@ -36,13 +36,17 @@ class App extends Component {
 		};
 		this.handleNavbarClick = this.handleNavbarClick.bind(this);
 		this.handleTogglerClick = this.handleTogglerClick.bind(this);
+		this.updateUserState = this.updateUserState.bind(this);
 	}
 
 	updateUserState(auth, fname, lname, userID, picUrl) {
 
 		this.setState({
-			user: obj,
-			auth: boolean
+			LoggedIn: auth,
+			FirstName: fname,
+			LastName: lname,
+			userId: userID,
+			Picture: picUrl
 		});
 	}
 
