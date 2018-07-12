@@ -7,11 +7,9 @@ class ProductFeed extends Component {
 	constructor(props) {
 		super(props)
 		console.log(props)
-		const params = this.props.match.params.id
 
 		this.state = {
 			COMPLETED: [],
-			params: params,
 			userID: "",
 			queryResults: false
 		}
@@ -19,7 +17,7 @@ class ProductFeed extends Component {
 
 	componentDidMount() {
 		//call the api 
-		console.log("the params of the page rendering (AKA /transactionfeed/:id", this.props.match.params.id)
+		// console.log("the params of the page rendering (AKA /transactionfeed/:id", this.props.match.params.id)
 		console.log("Howdy");
 		axios
 			.get("/api/transactions/feed")
