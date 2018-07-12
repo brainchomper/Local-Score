@@ -3,13 +3,13 @@ import { Route, Redirect } from 'react-router'
 
 
 class Loggedin extends Component {
-	constructor(props){
-		super(props);
+	// constructor(props){
+	// 	super(props);
 
-		this.state={
-			Loggedin: this.props.Loggedin
-		}
-	}
+	// 	this.state={
+	// 		Loggedin: this.props.props.props
+	// 	}
+	// }
 
 	renderConditionally() {
 		if (!this.state.Loggedin){

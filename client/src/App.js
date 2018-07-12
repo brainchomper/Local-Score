@@ -65,15 +65,14 @@ class App extends Component {
 		const overlay = <div id="sidenav-overlay" style={{ backgroundColor: 'transparent' }} onClick={this.handleNavbarClick} />
 		return (
 
-			<React.Fragment>
-				{/* <Landing props={this.state} /> */}
+
+<React.Fragment>
+				
 				<Router>
 					<Switch>
 						<Route exact path="/" render={() => <Landing props={this.state} /> } />
+						<Route exact path="/welcome" render={() => <UI props={this.state} /> } />
 						<Route exact path="/team" component={TeamPage} />
-
-						<Route exact path="/welcome" component={UI} />
-
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/products" component={ProductFeed} />
 						<Route exact path="/account" component={Account} />
