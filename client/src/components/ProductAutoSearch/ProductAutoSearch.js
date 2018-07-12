@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Autosuggest from 'react-autosuggest';
 import "./ProductAutoSearch.css";
+import {Button} from 'mdbreact';
 const axios = require('axios');
 let products = [];
 let productID = '';
@@ -33,16 +34,20 @@ function renderSuggestion(suggestion) {
   );
 }
 
-class ProductSearch extends React.Component {
-  constructor() {
-    super();
-
+class ProductAutoSearch extends React.Component {
+  constructor(props) {
+    super(props);
+		console.log(props)
     this.state = {
       value: '',
 			suggestions: [],
 			ProductID: ''
     };    
-  }
+	}
+	
+	updateProduct = () => {
+		this.props.updateProduct(productID)
+	}
 
   onChange = (event, { newValue, method }) => {
     this.setState({
@@ -80,15 +85,18 @@ class ProductSearch extends React.Component {
     };
 
     return (
+			<React.Fragment>
       <Autosuggest 
         suggestions={suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
-        inputProps={inputProps} />
+				inputProps={inputProps} />
+				<Button onClick = {this.updateProduct} > Lock in Product </Button>
+				</React.Fragment>
     );
   }
 }
 
-export default ProductSearch;
+export default ProductAutoSearch;

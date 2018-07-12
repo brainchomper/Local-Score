@@ -16,25 +16,22 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			LoggedIn: false,
-			collapsed: false,
-			FirstName: "",
-			LastName: "",
-			userID: "",
-			Picture: '',
+			user: {
+				UID: "",
+				FName: "",
+				LName: "",
+				Picture: ""
+			},
+			auth: false
 		};
 		this.handleNavbarClick = this.handleNavbarClick.bind(this);
 		this.handleTogglerClick = this.handleTogglerClick.bind(this);
-		this.updateUserState = this.updateUserState.bind(this)
 	}
 
-	updateUserState (auth, fname, lname, userID, picUrl) {
+	updateUserState (obj, boolean) {
 		this.setState({
-			LoggedIn: auth,
-			FirstName: fname,
-			LastName: lname,
-			userID: userID,
-			Picture: picUrl
+			user: obj,
+			auth: boolean
 		});
 	}
 
@@ -62,7 +59,7 @@ class App extends Component {
 						<Switch>
 						<Route exact path="/" component={Landing}/>
 						<Route exact path="/team" component={TeamPage}/>
-						<Route exact path="/login" component={Login}/>
+						<Route exact path="/login" component={Login} />
 						<Route exact path="/products" component={ProductFeed}/>
 						<Route exact path="/account" component={Account}/>
 						<Route exact path ="/NewProduct" component={BoardingSurvey}  className="mt-5"/>
