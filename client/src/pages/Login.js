@@ -7,20 +7,36 @@ const axios = require('axios');
 
 
 class FormsPage extends React.Component {
+	constructor(props) {
+		super(props)
+		// this.LoginUserState = this.LoginUserState.bind(this)
+	}
 	render() {
-		
+
+		// LoginUserState = (obj) => {
+		// 	props.updateUserState(obj, true)
+		// }
+
 		const responseGoogle = (response) => {
 			console.log(response);
-			const {profileObj} = response
-			const {familyName, givenName, googleId, imageUrl, email} = profileObj;
+			const { profileObj } = response
+			const { familyName, givenName, googleId, imageUrl, email } = profileObj;
 			const user = {
 				FirstName: givenName,
 				LastName: familyName,
-				SocialKey:googleId,
+				SocialKey: googleId,
 				Picture: imageUrl,
 				Email: email
 			}
-			axios.put("/api/users/UserLogin", {user}).then(console.log("herpderp"))
+			axios
+				.put("/api/users/UserLogin", { user })
+				.then(response => {
+					if (response.validate = true) {
+						// { this.LoginUserState(response, true) }
+						console.log("ugh")
+					} else (console.log("the user login was unsuccesful"))
+				}
+				)
 		}
 
 		return (
@@ -48,7 +64,7 @@ class FormsPage extends React.Component {
 								<p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2 white-text"> or Sign in with:</p>
 								<div className="row my-3 d-flex justify-content-center">
 									<Button type="button" color="white" rounded className="mr-md-3 z-depth-1a"><Fa icon="facebook" className="blue-text text-center" /></Button>
-									
+
 									<GoogleLogin
 										clientId="159481047934-p3svhsktles2sgevg3rg2iab3dlgkd3a.apps.googleusercontent.com"
 										buttonText="Login"

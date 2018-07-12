@@ -32,19 +32,17 @@ class App extends Component {
 			LastName: "",
 			userID: "",
 			Picture: '',
+
 		};
 		this.handleNavbarClick = this.handleNavbarClick.bind(this);
 		this.handleTogglerClick = this.handleTogglerClick.bind(this);
-		this.updateUserState = this.updateUserState.bind(this)
 	}
 
 	updateUserState(auth, fname, lname, userID, picUrl) {
+
 		this.setState({
-			LoggedIn: auth,
-			FirstName: fname,
-			LastName: lname,
-			userID: userID,
-			Picture: picUrl
+			user: obj,
+			auth: boolean
 		});
 	}
 
@@ -78,11 +76,11 @@ class App extends Component {
 						<Route exact path="/account" component={Account} />
 						<Route exact path="/new-product" component={BoardingSurvey} className="mt-5" />
 						<Route exact path="/transactions" component={TransactionPage} data={this.updateUserState} />
-
 						<Route path="/TransactionHistory/:id" component={ProductFeed} />
 					</Switch>
 				</Router>
 			</React.Fragment>
+
 
 
 		);

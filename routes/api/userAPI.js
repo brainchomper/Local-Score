@@ -5,7 +5,7 @@ const User = require("../../models/User");
 
 
 // Matches with "/api/users/
-router.route("/All")
+router.route("/All/:userID")
   .get(uController.findAll);
 
 	//Matches with /api/users/UserLogin
