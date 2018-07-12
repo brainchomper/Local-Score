@@ -11,11 +11,13 @@ const TeamPage = () => {
 
 					{/* John*/}
 					<Col lg="3" md="6" className="mb-lg-0 mb-5">
-						<Avatar tag="img" src="./images/team/john.png" className="rounded-circle z-depth-1 img-fluid" alt="Sample avatar" />
+						<Avatar tag="img" src="./images/team/john.png" className="rounded-circle hoverable z-depth-1 img-fluid" alt="Sample avatar" />
 						<h5 className="font-weight-bold mt-4 mb-3">John Stuart</h5>
-						<p className="text-uppercase blue-text">Full Stack Web Developer / API Brain</p>
-						<p className="grey-text">Full MERN Developer focused on API building and Data Structure</p>
+						<p className="text-uppercase blue-text">Full Stack Web Developer<br/>API Brain</p>
+						<p className="grey-text hoverable ">Full MERN Developer focused on API building and Data Structure</p>
 						<p className = "grey-text">I like smol dogs, coffee and coding.</p>
+						<img src="./images/team/QRJohn.png" alt="Kevin Smith PNG" className="img-fluid px-4" href="https://kvnsmith.com" target="blank" />
+
 						<ul className="list-unstyled mb-0">
 						<a className="p-2 fa-lg" target="blank" href="https://github.com/johnstuart670">
 						<Fa icon="github" className="blue-text" />
@@ -29,12 +31,11 @@ const TeamPage = () => {
 
 					{/* Kevin */}
 					<Col lg="3" md="6" className="mb-lg-0 mb-5">
-						<Avatar tag="img" src="./images/team/kvn.png" className=" r .hoverable rounded-circle z-depth-1 img-fluid" alt="Sample avatar" />
+						<Avatar tag="img" src="./images/team/kvn.png" className="hoverable rounded-circle z-depth-1 img-fluid" alt="Sample avatar" />
 						<h5 className="font-weight-bold mt-4 mb-3">Kevin Smith</h5>
-						<p className="text-uppercase blue-text">Frontend Developer</p>
-						<p className="grey-text hoverable px-2git pull origin master">Full MERN Developer specializing in Front End Developement.
+						<p className="text-uppercase blue-text">Full Stack Web Developer<br/>Frontend Mastermind</p>
+						<p className="grey-text hoverable px-2">Full MERN Developer specializing in Front End Developement. <p/>
 						<img src="./images/team/QRKevin.png" alt="Kevin Smith PNG" className="img-fluid px-4" href="https://kvnsmith.com" target="blank" />
-							<a href="https://kvnsmith.com">kvnsmith.com</a></p>
 						<ul className="list-unstyled mb-0">
 							<a className="p-2 fa-lg" target="blank" href="https://github.com/brainchomper">
 								<Fa icon="github" className="blue-text" />
@@ -46,25 +47,25 @@ const TeamPage = () => {
 								<Fa icon="twitter" target="blank" href="https://twitter.com/_kvnsmith" className="blue-text" />
 							</a>
 						</ul>
+						<a href="https://kvnsmith.com">kvnsmith.com</a></p>
+
 					</Col>
 					{/* /Kevin */}
 
 					{/* Joe */}
 					<Col lg="3" md="6" className="mb-lg-0 mb-5">
-						<Avatar tag="img" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg" className="rounded-circle z-depth-1 img-fluid" alt="Sample avatar" />
+						<Avatar tag="img" src="./images/team/joe.png" className="rounded-circle z-depth-1 img-fluid" alt="Sample avatar" />
 						<h5 className="font-weight-bold mt-4 mb-3">Joe Calderon</h5>
-						<p className="text-uppercase blue-text">Photographer</p>
-						<p className="grey-text">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim est fugiat nulla id eu laborum.</p>
-						<ul className="list-unstyled mb-0">
+						<p className="text-uppercase blue-text">Full Stack Web Developer<br/>Something Here</p>
+						<p className="grey-text hoverable ">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim est fugiat nulla id eu laborum.</p>
+						<img src="./images/team/QRJoe.png" alt="Kevin Smith PNG" className="img-fluid px-4" href="https://kvnsmith.com" target="blank" />
 
-							<a className="p-2 fa-lg">
-								<Fa icon="facebook" className="blue-text" />
+						<ul className="list-unstyled mb-0">
+							<a className="p-2 fa-lg" target="blank" href="https://github.com/gbert254">
+								<Fa icon="github" className="blue-text" />
 							</a>
-							<a className="p-2 fa-lg">
-								<Fa icon="instagram" className="blue-text" />
-							</a>
-							<a className="p-2 fa-lg">
-								<Fa icon="dribbble" className="blue-text" />
+							<a className="p-2 fa-lg" target="blank" href="https://www.linkedin.com/in/joseph-calderon/">
+								<Fa icon="linkedin" className="blue-text" />
 							</a>
 						</ul>
 					</Col>
