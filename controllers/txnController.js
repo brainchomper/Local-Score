@@ -7,7 +7,11 @@ module.exports = {
 		db.Transaction
 			.find({})
 			.sort({ Date: -1 })
-			.then(dbModel => res.send(dbModel))
+			.then(dbModel => {
+
+				res.send(dbModel)
+
+			})
 			.catch(err => res.status(422).json(err));
 	},
 	// find all the transactions associated with the product id
@@ -17,7 +21,13 @@ module.exports = {
 			.populate('TxnHistory')
 			// if the result doesn't have any PreviousTxns in the key then we know that the transaction is an origination and we can just send it
 			.then(productResults => {
-				res.json(productResults)
+				const nonRejects = productResults.TxnHistory.filter( each => {
+					// if the product wasn't rejected and it's completed
+					if (!each.Rejected && each.Completed ){
+						return each
+					}
+				})
+				res.json(nonRejects)
 			})
 	},
 	rejectTxn: function (req, res) {

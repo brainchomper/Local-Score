@@ -7,17 +7,18 @@ const keys = require('../config/keys');
 module.exports = {
   findAll: function(req, res) {
     db.User.find({}).then(userResults => {
-      console.log("The user results: ", userResults);
       const trimmedUsers = userResults.map(user => {
-        const { FirstName, LastName, _id } = user;
+				const { FirstName, LastName, _id } = user;
+				// filter out the password and stuff
         return {
           FirstName: FirstName,
           LastName: LastName,
           _id: _id
-        };
-      });
-      console.log("the updated trimmed user:", trimmedUsers);
-      res.json(trimmedUsers);
+        }
+			});
+			// make another array that is filtering out the user that submitted the 
+			const noSubmitter = trimmedUsers.filter(each => each._id.toString() != req.params.userID)
+      res.json(noSubmitter);
     });
   },
 
@@ -45,14 +46,18 @@ module.exports = {
           db.User.create(newUser, function(err, userPostRes) {
             if (err) {
               return console.log(err);
-            }
+						}
+						userPostRes.validate = true;
             res.json(userPostRes);
           });
         }
         //otherwise we will update the existing user to get their most recent picture and name.
         else {
           db.User.findByIdAndUpdate(result._id, { $set: req.body })
-            .then(updatedUser => res.json("updated user:" + updatedUser))
+            .then(updatedUser =>{
+							upatedUser.validate = true;
+							res.json(updatedUser)
+						} )
             .catch(err => res.json("Error at update user:" + err));
         }
       });
@@ -85,7 +90,8 @@ module.exports = {
             db.User.create(newUser, function(err, UserPostRes) {
               if (err) {
                 return res.json(err);
-              }
+							}
+							UserPostRes.validate = true;
               res.json(UserPostRes);
             });
           });
@@ -116,7 +122,7 @@ module.exports = {
             { expiresIn: 3600 },
             (err, token) => {
               res.json({
-                success: true,
+                validate: true,
                 token: "Bearer " + token,
                 user: user
               });
