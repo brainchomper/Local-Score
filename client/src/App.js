@@ -36,6 +36,7 @@ class App extends Component {
 		};
 		this.handleNavbarClick = this.handleNavbarClick.bind(this);
 		this.handleTogglerClick = this.handleTogglerClick.bind(this);
+		this.updateUserState = this.updateUserState.bind(this);
 	}
 
 	updateUserState(auth, fname, lname, userID, picUrl) {
