@@ -48,7 +48,6 @@
     "url": "https://github.com/brainchomper/new-local-score/issues"
   },
   "homepage": "https://github.com/brainchomper/new-local-score#readme",
-  "description": "",
   "proxy": {
     "/api": {
       "target": "http://localhost:3001/"
@@ -56,5 +55,7 @@
     "/assets": {
       "target": "http://localhost:3001/"
     }
-  }
+  },
+  "keywords": [],
+  "description": ""
 }
