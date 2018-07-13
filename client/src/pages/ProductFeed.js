@@ -2,43 +2,49 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import CompletedList from './CompletedList';
 import { Redirect } from 'react-router-dom';
-
+import { localCheck } from '../utils/LocalStorage';
 
 
 class ProductFeed extends Component {
 	constructor(props) {
 		super(props)
-		console.log(props)
+		console.log(this.state)
 
 		this.state = {
 			COMPLETED: [],
-			userID: "",
-			queryResults: false
+			queryResults: false,
+			FirstName: "",
+			LastName: "",
+			Picture: "",
+			userID: ""
 		}
 	};
 
 	componentDidMount() {
+		localCheck(({ fn, ln, p, id }) => {
+
+			axios
+				.get("/api/transactions/feed")
+				.then(queryResults =>
+					this.setState({
+						FirstName: fn,
+						LastName: ln,
+						Picture: p,
+						userId: id,
+						COMPLETED: queryResults.data,
+						queriesComplete: true
+					}, function () {
+						console.log(this.state)
+					}))
+		})
+
 		//call the api 
 		// console.log("the params of the page rendering (AKA /transactionfeed/:id", this.props.match.params.id)
-		console.log("Howdy");
-		axios
-			.get("/api/transactions/feed")
-			.then(queryResults =>
-				this.setState({
-					COMPLETED: queryResults.data,
-					queriesComplete: true
-				}))
+
 	}
 	// render statement
 	render() {
-		{console.log(this.props.props)}
-		if (!this.props.props.LoggedIn) {
-			return (<Redirect to="/" />)
-		} else {
-			return (
-				<CompletedList props={this.state} />
-			)
-		}
+		return <CompletedList props={this.state} />
 	}
 }
 

@@ -3,6 +3,7 @@ import { Container, Row, Col, Input, Button, Fa, Card } from 'mdbreact';
 import "./Login.css";
 import { Redirect, Link } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
+import { setLocal } from '../utils/LocalStorage';
 const axios = require('axios');
 
 class FormsPage extends React.Component {
@@ -11,10 +12,9 @@ class FormsPage extends React.Component {
 		console.log("Here are the props")
 		console.log(props)
 		this.responseGoogle = this.responseGoogle.bind(this);
-	};
+	}
 
 	updateParentLogin = (FirstName, LastName, Picture, _id) =>{
-
 		this.props.propFn(true, FirstName, LastName, _id, Picture)
 	}
 
@@ -38,8 +38,15 @@ class FormsPage extends React.Component {
 					console.log(this.props.propFn);
 					const {data} = response;
 					console.log(data)
-					const {FirstName, LastName, Picture, _id} = data
-
+					const {FirstName, LastName, Picture, _id} = data;
+					const LSUserValues = {
+						fn: FirstName,
+						ln: LastName,
+						p: Picture,
+						id: _id
+					}
+					setLocal("localScoreLoggedIn", true);
+					setLocal("LSUserValues", JSON.stringify(LSUserValues))
 					this.updateParentLogin( FirstName, LastName, Picture, _id)
 				} else (console.log("the user login was unsuccesful"))
 			}
