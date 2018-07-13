@@ -31,7 +31,7 @@ module.exports = {
 							return each
 						}
 					})
-					return res.json(nonRejects)
+					return res.json(nonRejects);
 				}
 				else return "why tho"
 				return
