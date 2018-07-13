@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const session = require('express-session');
 const mongoose = require("mongoose");
 const passport = require('passport');
+require('dotenv').config()
 
 const routes = require("./routes");
 
