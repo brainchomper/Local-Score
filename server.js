@@ -4,6 +4,7 @@ const session = require('express-session');
 const mongoose = require("mongoose");
 const passport = require('passport');
 require('dotenv').config()
+const path = require ("path");
 
 const routes = require("./routes");
 
@@ -18,7 +19,7 @@ app.use(bodyParser.json());
 console.log("process.env log", process.env.NODE_ENV);
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static("client/dist/"));
+	app.use(express.static(path.join(__dirname, "public")));
 }
 
 
