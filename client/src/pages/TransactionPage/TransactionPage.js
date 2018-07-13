@@ -1,6 +1,5 @@
 import React from 'react';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Card, Button, CardBody, CardTitle, InputNumeric } from 'mdbreact';
-import { PlaceHolderProducts, PlaceHolderUsers, ProductDropDown, UserDropDown } from '../../components/DropDownItems';
+import { Card, Button, CardBody, CardTitle, InputNumeric } from 'mdbreact';
 import UserAutoSearch from "../../components/UserAutoSearch";
 import ProductAutoSearch from "../../components/ProductAutoSearch";
 const axios = require('axios');
@@ -9,8 +8,7 @@ const axios = require('axios');
 class TransactionPage extends React.Component {
 	constructor(props) {
 		super(props);
-		this.toggle = this.toggle.bind(this);
-		this.toggleProduct = this.toggleProduct.bind(this);
+		console.log(props)
 		this.cLogState = this.cLogState.bind(this);
 		this.updateCustomer = this.updateCustomer.bind(this);
 		this.updateProduct = this.updateProduct.bind(this);
@@ -25,16 +23,6 @@ class TransactionPage extends React.Component {
 			Product: "",
 			Party1: "5b45699cc4777613b8084d18"
 		};
-	}
-	toggle() {
-		this.setState({
-			CustomerDropdown: !this.state.CustomerDropdown,
-		});
-	}
-	toggleProduct() {
-		this.setState({
-			ProductDropdown: !this.state.ProductDropdown,
-		});
 	}
 
 	cLogState() {

@@ -55,7 +55,7 @@ module.exports = {
         else {
           db.User.findByIdAndUpdate(result._id, { $set: req.body })
             .then(updatedUser =>{
-							upatedUser.validate = true;
+							updatedUser.validate = true;
 							res.json(updatedUser)
 						} )
             .catch(err => res.json("Error at update user:" + err));
