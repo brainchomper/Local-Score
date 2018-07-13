@@ -12,7 +12,7 @@ class FeaturesPage extends Component {
 			return (<Redirect to="/welcome" />)
 		} else {
 			return (
-				<Container className="my-5">
+				<Container className="pt-1">
 				{console.log(this.props.props)}
 					<section >
 						<h1 className="h1-responsive font-weight-bold text-center my-5 mt-3">Local Score</h1>

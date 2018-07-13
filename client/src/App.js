@@ -71,7 +71,7 @@ class App extends Component {
 
 
 <React.Fragment>
-				
+				<SideBar />
 				<Router>
 					<Switch>
 						<Route exact path="/" render={() => <Landing props={this.state} /> } />

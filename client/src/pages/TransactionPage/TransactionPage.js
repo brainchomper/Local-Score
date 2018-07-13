@@ -113,7 +113,9 @@ class TransactionPage extends React.Component {
 							<InputNumeric name="Price" precision={2} value={this.state.Price} step={0.01} className="mb-2" color="success" />
 							<Button onClick = {this.lockPrice}>Lock in Price</Button>
 
-							<Button block color="success" size="lg" onClick={this.submitTxn}>Submit New Transaction</Button>
+							<Button block size="lg" color="success" rounded outline onClick={this.submitTxn}>Submit New Transaction</Button>
+	
+							{/* <Button block color="success" size="lg" onClick={this.submitTxn}>Submit New Transaction</Button> */}
 						</CardBody>
 
 					</Card>
