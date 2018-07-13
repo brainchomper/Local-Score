@@ -156,7 +156,7 @@ render() {
                 <SideNavItem href="/team">Team</SideNavItem>
 								<SideNavItem href="/products">Products</SideNavItem>
 								<SideNavItem href="/account">Account</SideNavItem>
-								<SideNavItem href="/transactionpage">New Transactions</SideNavItem>
+								<SideNavItem href="/transactions">New Transactions</SideNavItem>
               </SideNavNav>
             </SideNav>
             <Navbar style={navStyle} dark expand="md" fixed="top">

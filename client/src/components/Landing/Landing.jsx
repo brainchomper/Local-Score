@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Container, Row } from 'mdbreact';
+import { Container, Row, Button } from 'mdbreact';
 import { Redirect } from 'react-router-dom';
+import TeamPage from '../../pages/TeamPage';
+
 
 
 
@@ -17,11 +19,15 @@ class FeaturesPage extends Component {
 						<p className="lead grey-text w-responsive text-center mx-auto mb-5">Local Score is an early stage web app and platform for recording transactions.  Eventually the goal is to expand the website to implement full blockchain capabilities, but for now it is a social platform broadcasting coffee products to buyers and suppliers.</p>
 						<Row>
 							<a href="/login" className="mx-auto">
-								Login Here and learn more.
+							<Button size="lg" color="primary" rounded outline>Login and learn more</Button>
+								
 						</a>
 						</Row>
 					</section>
+					<hr/>
+					<TeamPage />
 				</Container>
+
 			);
 		}
 	};

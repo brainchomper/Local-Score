@@ -14,8 +14,8 @@ const TeamPage = () => {
 						<Avatar tag="img" src="./images/team/john.png" className="rounded-circle hoverable z-depth-1 img-fluid" alt="Sample avatar" />
 						<h5 className="font-weight-bold mt-4 mb-3">John Stuart</h5>
 						<p className="text-uppercase blue-text">Full Stack Web Developer<br/>API Brain</p>
-						<p className="grey-text hoverable ">Full MERN Developer focused on API building and Data Structure</p>
-						<p className = "grey-text">I like smol dogs, coffee and coding.</p>
+						<p className="grey-text hoverable px-2	 ">Full MERN Developer focused on API building and Data Structure<br/>I like smol dogs, coffee and coding.</p>
+						<p className = "grey-text"></p>
 						<img src="./images/team/QRJohn.png" alt="Kevin Smith PNG" className="img-fluid px-4" href="https://kvnsmith.com" target="blank" />
 
 						<ul className="list-unstyled mb-0">
@@ -34,7 +34,7 @@ const TeamPage = () => {
 						<Avatar tag="img" src="./images/team/kvn.png" className="hoverable rounded-circle z-depth-1 img-fluid" alt="Sample avatar" />
 						<h5 className="font-weight-bold mt-4 mb-3">Kevin Smith</h5>
 						<p className="text-uppercase blue-text">Full Stack Web Developer<br/>Frontend Mastermind</p>
-						<p className="grey-text hoverable px-2">Full MERN Developer specializing in Front End Developement. <p/>
+						<p className="grey-text hoverable px-2">Full MERN Developer specializing in Front End Developement.<br/>
 						<img src="./images/team/QRKevin.png" alt="Kevin Smith PNG" className="img-fluid px-4" href="https://kvnsmith.com" target="blank" />
 						<ul className="list-unstyled mb-0">
 							<a className="p-2 fa-lg" target="blank" href="https://github.com/brainchomper">
