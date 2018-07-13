@@ -8,7 +8,7 @@ const UserSchema = new Schema ({
 	// tracks the products that the user has bought on the app or created.  
 	Inventory: [],
 	Picture: {type: String, required: true},
-	SocialKey: {type: String, unique: true},
+	SocialKey: {type: String},
 	Email: {type: String, unique: true},
 	Password: { type: String}
 });

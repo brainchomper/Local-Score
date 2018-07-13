@@ -10,14 +10,16 @@ const axios = require("axios");
 class TabsPage extends React.Component {
 	constructor(props) {
 		super(props);
-
+		console.log("----------------------")
+		console.log(props.idProp)
+		console.log("----------------------")
 		this.toggleClassicTabs1 = this.toggleClassicTabs1.bind(this);
 		this.state = {
 			activeItemClassicTabs1: '1',
 			PWOM: [],
 			PWOO: [],
 			COMPLETED: [],
-			userID: "5b410bf6c407808d8273d22b",
+			userID: this.props.propID,
 			queriesComplete: false
 		};
 	}
@@ -49,20 +51,6 @@ class TabsPage extends React.Component {
 			)
 	}
 
-// query that runs the api query for transactions waiting on the user
-// renderPWOM() {
-// 	console.log("Seeing if the renderPWOM works????")
-// 	this.state.queriesComplete ?  <PWOMList data={this.state.PWOM} /> : <Button> THIS IS A PLACEHOLDER BUTTON</Button>
-// }
-// renderPWOO() {
-// 	console.log("testing PWOO")
-// 	this.state.queriesComplete ? <PWOOList data={this.state.PWOO} /> : <Button> THIS IS A PLACEHOLDER BUTTON</Button>
-// }
-
-// renderCompleted() {
-// 	console.log("also testing the stupid render for the list")
-// 	this.state.queriesComplete ? <CompletedList data={this.state.COMPLETED} /> : <Button> THIS IS A PLACEHOLDER BUTTON</Button>
-// }
 
 render() {
 	return (
