@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Button} from 'mdbreact';
 import axios from 'axios';
+import {setLocal} from "../../utils/LocalStorage"
 import classnames from 'classnames';
 
 class Register extends Component {
@@ -45,7 +46,19 @@ class Register extends Component {
 
 		axios
 			.post('/api/users/register', { newUser })
-			.then(res => console.log(res.data))
+			.then(response => {
+				console.log(response);
+				const {data} = response;
+				const {FirstName, LastName, Picture, _id} = data;
+					const LSUserValues = {
+						fn: FirstName,
+						ln: LastName,
+						p: Picture,
+						id: _id
+					}
+				setLocal("localScoreLoggedIn", true);
+
+			})
 			.catch(err => this.setState({ Errors: err.response.data }));
 	}
 
