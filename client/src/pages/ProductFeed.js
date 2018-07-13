@@ -22,7 +22,6 @@ class ProductFeed extends Component {
 
 	componentDidMount() {
 		localCheck(({ fn, ln, p, id }) => {
-
 			axios
 				.get("/api/transactions/feed")
 				.then(queryResults =>
@@ -30,7 +29,7 @@ class ProductFeed extends Component {
 						FirstName: fn,
 						LastName: ln,
 						Picture: p,
-						userId: id,
+						userID: id,
 						COMPLETED: queryResults.data,
 						queriesComplete: true
 					}, function () {
