@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import CompletedList from './CompletedList';
-import { Redirect } from 'react-router-dom';
 import { localCheck } from '../utils/LocalStorage';
 
 

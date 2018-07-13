@@ -69,7 +69,7 @@ module.exports = {
 		const {Email, FirstName, LastName, Password} = newUser
     db.User.findOne({ Email: Email }).then(user => {
       if (user) {
-        return res.status(400).json({ Email: "Email already exists" });
+        return res.status(400).json({ user: user });
       } else {
         const avatar = gravatar.url(Email, {
           s: "200", // size
