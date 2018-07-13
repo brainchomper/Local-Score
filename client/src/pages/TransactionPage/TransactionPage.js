@@ -2,7 +2,9 @@ import React from 'react';
 import { Card, Button, CardBody, CardTitle, InputNumeric } from 'mdbreact';
 import UserAutoSearch from "../../components/UserAutoSearch";
 import ProductAutoSearch from "../../components/ProductAutoSearch";
+import "./TransactionPage.css";
 const axios = require('axios');
+
 
 
 class TransactionPage extends React.Component {

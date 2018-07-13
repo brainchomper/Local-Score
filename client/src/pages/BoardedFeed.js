@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, CardImage, CardTitle, Avatar, CardUp } from 'mdbreact';
+import { Button, Card, CardImage, CardTitle, Avatar, CardUp, Container } from 'mdbreact';
 
 export const BoardedFeed = props => {
 	const { data } = props;
@@ -11,7 +11,8 @@ export const BoardedFeed = props => {
 	}
 
 	return (
-		<Card testimonial className = "my-3">
+		<Container className="pt-2">
+		<Card testimonial className = "my-3 hoverable">
 			<div className="row">
 				<div className="col">
 					<CardUp className="blue lighten-1" />
@@ -27,6 +28,7 @@ export const BoardedFeed = props => {
 				</div>
 			</div>
 		</Card>
+		</Container>
 	)
 }
 export default BoardedFeed;

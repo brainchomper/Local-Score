@@ -87,32 +87,33 @@ class BoardingSurvey extends React.Component {
 
 	render() {
 		return (
-			<Container>
+			<Container className="pt-3">
 				<Card>
 					{/* product name */}
 
-					<div className="row">
+					<div className="row px-5 text-center">
 						<div className="col">
+						<h4 className="pt-2">Enter Product Name Here:</h4>
 							<Input name="ProductName" value={this.state.ProductName} onChange={this.handleInputChange} placeholder="Enter Product Name Here" />
 						</div>
-						<div className="col-2"></div>
+						
 					</div>
 
 					{/* type */}
-					<div className="row">
-						<div className="col-6 text-center">
+					<div className="row text-center">
+						<div className="col-6">
 							<h6>Roast:</h6>
 							<Input onClick={this.onClick1} checked={this.state.Roast === "DARK" ? true : false} label="Dark Roast" type="radio" id="dark" />
 							<Input onClick={this.onClick2} checked={this.state.Roast === "LIGHT" ? true : false} label="Light Roast" type="radio" id="light" />
 						</div>
-						<div className="col-6 text-center">
+						<div className="col-6">
 							<h6>Grind Type:</h6>
 							<Input onClick={this.onClick3} checked={this.state.Ground ? true : false} label="Ground" type="radio" id="ground" />
 							<Input onClick={this.onClick4} checked={!this.state.Ground ? true : false} label="Whole Bean" type="radio" id="whole" />
 						</div>
 					</div>
 
-							<Button size="lg" color="primary" rounded outline onClick={this.submitProduct}>Login and learn more</Button>
+							<Button size="lg" color="success" rounded outline onClick={this.submitProduct}>Submit Product</Button>
 								
 
 					{/* <Button block color="primary" onClick={this.submitProduct}>Submit Product</Button> */}
