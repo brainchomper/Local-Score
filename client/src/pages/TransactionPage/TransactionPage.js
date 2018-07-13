@@ -76,10 +76,11 @@ class TransactionPage extends React.Component {
 				Party1: Party1,
 				Party2: Customer,
 				ProductID: Product,
-				Price: 10
+				Price: Price
 			}
+
 			return axios
-				.post("/api/transactions/newTransaction", { newTxn })
+				.post("/api/transactions/new_transaction", { newTxn })
 				.then(results => {console.log("the txn posted like this:" , results)})
 		}
 		else {
