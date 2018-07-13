@@ -17,14 +17,16 @@ module.exports = {
 	// find all the transactions associated with the product id
 	findHistory: function (req, res) {
 		db.Product
-			.findById(req.params.id)
+			.findById(req.params.id, function(results, err){
+					console.log(results)
+					if (typeof results === 'null'){
+						return ("No results")
+					}
+			})
 			.populate('TxnHistory')
 			// if the result doesn't have any PreviousTxns in the key then we know that the transaction is an origination and we can just send it
-			.then((productResults, err) => {
-				if (err) {
-					return err;
-				}
-				if (typeof productResults != 'null') {
+			.then((productResults) => {
+				if (typeof productResults != null){
 					const nonRejects = productResults.TxnHistory.filter(each => {
 						// if the product wasn't rejected and it's completed
 						if (!each.Rejected && each.Completed) {
@@ -32,10 +34,7 @@ module.exports = {
 						}
 					})
 					return res.json(nonRejects)
-				}
-				else return "why tho"
-				return
-			})
+			}})
 	},
 	rejectTxn: function (req, res) {
 		db.Transaction.findById(req.params.id)
