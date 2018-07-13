@@ -111,7 +111,11 @@ class BoardingSurvey extends React.Component {
 							<Input onClick={this.onClick4} checked={!this.state.Ground ? true : false} label="Whole Bean" type="radio" id="whole" />
 						</div>
 					</div>
-					<Button block color="primary" onClick={this.submitProduct}>Submit Product</Button>
+
+							<Button size="lg" color="primary" rounded outline onClick={this.submitProduct}>Login and learn more</Button>
+								
+
+					{/* <Button block color="primary" onClick={this.submitProduct}>Submit Product</Button> */}
 				</Card>
 			</Container>
 
