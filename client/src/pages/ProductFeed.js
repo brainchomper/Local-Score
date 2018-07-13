@@ -36,9 +36,6 @@ class ProductFeed extends Component {
 					}))
 		})
 
-		//call the api 
-		// console.log("the params of the page rendering (AKA /transactionfeed/:id", this.props.match.params.id)
-
 	}
 	// render statement
 	render() {

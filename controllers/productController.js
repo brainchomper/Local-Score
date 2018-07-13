@@ -10,23 +10,29 @@ module.exports = {
 		db.Product.create(newProductDetails)
 			.then(newProduct => {
 				//destructure
-				const { _id, CreatedBy, TxnHistory } = newProduct;
+				const { _id, TxnHistory } = newProduct;
 				//build new object to make a new transaction
+				console.log(newProductDetails.CreatedBy, "THIS IS MY NIGHTMARE")
 				//IE loading a product is a transaction and should be logged
 				const txnInfo = {
 					// both party1 and party2 are the same since there is no moving of goods between parties
 					//this also means that the transaction is completed by default and approved by the non-existant second party by default
-					Party1: CreatedBy,
-					Party2: CreatedBy,
+					Party1: newProductDetails.CreatedBy,
+					Party2: newProductDetails.CreatedBy,
 					Party2Approved: true,
 					ProductID: _id,
 					Completed: true
 				};
+				console.log(txnInfo), txnInfo
 				// take the json object we just built for the txnInfo and create the new txn
 				db.Transaction
 					.create(txnInfo)
 					// take the NEW txn information
 					.then(newTxnInfo => {
+						console.log("--------")
+						console.log(newTxnInfo)
+						console.log("--------")
+
 						//double checking that the _id from above is still referencing the newProduct _id
 						console.log("_id from new product: ", _id)
 						// update the Product that we built by pushing into the TxnHistory

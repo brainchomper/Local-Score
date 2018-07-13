@@ -33,7 +33,7 @@ class BoardingSurvey extends React.Component {
 					userID: id,
 				}
 			)
-		})
+		}, console.log(this.state))
 	}
 
 	onClick1() {

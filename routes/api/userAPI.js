@@ -19,4 +19,7 @@ router.route("/register")
 router.route("/passwordLogin")
 	.post(uController.pwdLogin)
 
+router.route("/ping")
+	.get(uController.ping)
+
 module.exports = router;
