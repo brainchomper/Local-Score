@@ -12,6 +12,7 @@ class TabsPage extends React.Component {
 	constructor(props) {
 		super(props);
 		console.log("----------------------")
+		console.log(props.data)
 		console.log("----------------------")
 		this.toggleClassicTabs1 = this.toggleClassicTabs1.bind(this);
 		this.state = {
@@ -29,7 +30,6 @@ class TabsPage extends React.Component {
 
 	toggleClassicTabs1(tab) {
 		if (this.state.activeItemClassicTabs1 !== tab) {
-			console.log("this.state: ", this.state)
 			this.setState({
 				activeItemClassicTabs1: tab
 			});
@@ -37,16 +37,14 @@ class TabsPage extends React.Component {
 	};
 
 	componentDidMount() {
-		const queryURL = ("api/transactions/allUsersTxns/" + (this.state.userID))
-		console.log("now querying the database");
-		localCheck(({ fn, ln, p, id }) => {
-			console.log('first: ', fn, ln, p)
-			console.log('hello');
 
+		localCheck(({ fn, ln, p, id }) => {
+			const queryURL = ("api/transactions/allUsersTxns/" + id)
+			console.log("now querying the database");
 			axios.get(queryURL)
 				.then(qResults => {
 					console.log("what did we get")
-					console.log(qResults);
+					console.log(qResults.data);
 					this.setState({
 						PWOO: qResults.data.PWOO,
 						PWOM: qResults.data.PWOM,
@@ -60,6 +58,7 @@ class TabsPage extends React.Component {
 				})
 		})
 	}
+
 
 
 	render() {

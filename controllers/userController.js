@@ -5,6 +5,9 @@ const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
 
 module.exports = {
+	ping: function(req, res) {
+		res.json("have to hit the server to get this to work.")
+	},
   findAll: function(req, res) {
     db.User.find({}).then(userResults => {
       const trimmedUsers = userResults.map(user => {

@@ -3,6 +3,7 @@ import { Button, Card, CardImage, CardTitle, Avatar, CardUp } from 'mdbreact';
 
 export const TransactionFeed = props => {
 	const { data } = props;
+	console.log(props.match)
 	const { Party1, Party2, ProductID } = data;
 	const ProductURL = ("TransactionHistory/" + ProductID._id);
 	return (
@@ -11,9 +12,9 @@ export const TransactionFeed = props => {
 				<div className="col">
 					<CardUp className="blue lighten-1" />
 					<Avatar className="mx-auto white">
-						<img src={Party1.Picture} className="rounded-circle z-depth-1 img-fluid" />
+						<img src={Party2.Picture} className="rounded-circle z-depth-1 img-fluid" />
 					</Avatar>
-					<CardTitle className="text-center">{Party1.FirstName} {Party1.LastName}</CardTitle>
+					<CardTitle className="text-center">{Party2.FirstName} {Party2.LastName}</CardTitle>
 				</div>
 				<div className="col">
 					<h4 className="text-center pt-3">Bought {ProductID.Name} From</h4>
@@ -23,9 +24,9 @@ export const TransactionFeed = props => {
 				<div className="col">
 					<CardUp className="orange lighten-1" />
 					<Avatar className="mx-auto white">
-						<img src={Party2.Picture} className="rounded-circle z-depth-1 img-fluid" />
+						<img src={Party1.Picture} className="rounded-circle z-depth-1 img-fluid" />
 					</Avatar>
-					<CardTitle className="text-center">{Party2.FirstName} {Party2.LastName}</CardTitle>
+					<CardTitle className="text-center">{Party1.FirstName} {Party1.LastName}</CardTitle>
 				</div>
 			</div>
 		</Card>

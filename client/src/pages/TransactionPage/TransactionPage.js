@@ -13,6 +13,7 @@ class TransactionPage extends React.Component {
 		this.updateCustomer = this.updateCustomer.bind(this);
 		this.updateProduct = this.updateProduct.bind(this);
 		this.submitTxn = this.submitTxn.bind(this);
+		this.lockPrice = this.lockPrice.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this)
 		this.state = {
 			CustomerLock: false,
@@ -21,7 +22,7 @@ class TransactionPage extends React.Component {
 			Price: 10,
 			Customer: "",
 			Product: "",
-			Party1: "5b45699cc4777613b8084d18"
+			Party1: ""
 		};
 	}
 
@@ -30,9 +31,17 @@ class TransactionPage extends React.Component {
 		console.log(this.state)
 	}
 
-	updateCustomer = (thing) => {
-		console.log("updating the customer", thing)
+	lockPrice = () => {
+		let obj = !this.state.PriceLock
 		this.setState({
+			PriceLock: obj
+		})
+	}
+
+	updateCustomer = (thing, thing2) => {
+		console.log("updating the customer", thing, thing2)
+		this.setState({
+			Party1: thing2,
 			Customer: thing,
 			CustomerLock: true
 		})
@@ -59,19 +68,19 @@ class TransactionPage extends React.Component {
 	submitTxn() {
 		// destructure
 		console.log(this.state)
-		const { Price, Customer, Product, ProductLock, CustomerLock, PriceLock } = this.state;
+		const { Price, Customer, Product, ProductLock, CustomerLock, PriceLock, Party1 } = this.state;
 		//check if the user has locked in their product and customer and price
-		if (ProductLock && CustomerLock && PriceLock) {
+		if (ProductLock && CustomerLock && PriceLock ) {
 			// run the api query to post the transaction
 			const newTxn = {
-				Party1: "Pull me in",
+				Party1: Party1,
 				Party2: Customer,
 				ProductID: Product,
 				Price: 10
 			}
 			return axios
 				.post("/api/transactions/newTransaction", { newTxn })
-				.then(console.log("the txn posted correctly"))
+				.then(results => {console.log("the txn posted like this:" , results)})
 		}
 		else {
 			return console.log("not everything is locked yet")
@@ -102,6 +111,7 @@ class TransactionPage extends React.Component {
 
 							<h5 className="text-center">Item Price $</h5>
 							<InputNumeric name="Price" precision={2} value={this.state.Price} step={0.01} className="mb-2" color="success" />
+							<Button onClick = {this.lockPrice}>Lock in Price</Button>
 
 							<Button block size="lg" color="success" rounded outline onClick={this.submitTxn}>Submit New Transaction</Button>
 	

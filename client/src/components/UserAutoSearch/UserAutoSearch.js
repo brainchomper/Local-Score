@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Autosuggest from 'react-autosuggest';
 import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
 import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
-import {Button} from 'mdbreact';
+import { Button } from 'mdbreact';
+import { localCheck } from '../../utils/LocalStorage'
+
 import "./UserAutoSearch.css";
 const axios = require('axios');
 
@@ -35,7 +37,7 @@ function renderSuggestion(suggestion, { query }) {
 	const suggestionText = `${suggestion.FirstName} ${suggestion.LastName}`;
 	userID = suggestion._id;
 	const matches = AutosuggestHighlightMatch(suggestionText, query);
-	
+
 	const parts = AutosuggestHighlightParse(suggestionText, matches);
 
 	return (
@@ -63,13 +65,15 @@ class UserSearch extends React.Component {
 		this.state = {
 			value: '',
 			suggestions: [],
-			user: this.props.userId
+			submitter: ""
 		};
 	}
 
+
 	updateCustomer = () => {
 		const id = userID;
-		this.props.updateCustomer(userID);
+		const submitterID = this.state.submitter;
+		this.props.updateCustomer(userID, submitterID);
 	}
 
 	onChange = (event, { newValue, method }) => {
@@ -91,37 +95,42 @@ class UserSearch extends React.Component {
 	};
 
 	componentDidMount() {
-		const userTrail = this.state.user
-		const queryURL = ("/api/users/All/" + userTrail)
-		console.log(queryURL, "queryURL")
-		axios.get(queryURL).then(usersResult => {
-			user = usersResult.data;
-			console.log("new users", user)
-		})
-	}
+		localCheck(({ fn, ln, p, id }) => {
+			console.log(id, "the id on the transaction page is here");
+			const userTrail = id
+			const queryURL = ("/api/users/All/" + userTrail)
+			console.log(queryURL, "queryURL")
+			axios.get(queryURL).then(usersResult => {
+				user = usersResult.data;
+				console.log("new users", user)
+
+				this.setState({ submitter: id })
+			})})}
+
+
 
 	render() {
-		const { value, suggestions, userID } = this.state;
-		const inputProps = {
-			placeholder: "Search for customer",
-			value,
-			onChange: this.onChange,
-			id: userID
-		};
+				const { value, suggestions, userID } = this.state;
+				const inputProps = {
+					placeholder: "Search for customer",
+					value,
+					onChange: this.onChange,
+					id: userID
+				};
 
-		return (
+				return(
 			<React.Fragment>
-			<Autosuggest
-				suggestions={suggestions}
-				onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-				onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-				getSuggestionValue={getSuggestionValue}
-				renderSuggestion={renderSuggestion}
-				inputProps={inputProps} />
-				<Button onClick={this.updateCustomer} >Lock in Customer </Button>
+						<Autosuggest
+							suggestions={suggestions}
+							onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+							onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+							getSuggestionValue={getSuggestionValue}
+							renderSuggestion={renderSuggestion}
+							inputProps={inputProps} />
+						<Button onClick={this.updateCustomer} >Lock in Customer </Button>
 				</React.Fragment>
 		);
-	}
+			}
 }
 
-export default UserSearch;
+	export default UserSearch;
