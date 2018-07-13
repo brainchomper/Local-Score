@@ -44,7 +44,7 @@ class TabsPage extends React.Component {
 			axios.get(queryURL)
 				.then(qResults => {
 					console.log("what did we get")
-					console.log(qResults);
+					console.log(qResults.data);
 					this.setState({
 						PWOO: qResults.data.PWOO,
 						PWOM: qResults.data.PWOM,
