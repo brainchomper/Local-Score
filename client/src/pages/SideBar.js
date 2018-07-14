@@ -146,7 +146,7 @@ render() {
   const sideStyle = { backgroundColor: '#6a9ed3', width: "100%"}
   const button1 = <div href="#!" onClick={this.handleToggleClickA} key="sideNavToggleA" style={{lineHeight: '32px', marginRight: '1em', verticalAlign: 'middle'}}><Fa icon="bars" color="white" size="2x"></Fa></div>
 	const specialCaseNavbarStyles = {WebkitBoxOrient: 'horizontal', flexDirection: 'row'};
-	console.log(this.props.props)
+	console.log(this.props.props.Picture)
     return ( 
         <Router>
           <div className="mt-5">
