@@ -67,6 +67,23 @@ const TeamPage = () => {
 						</a>
 					</ul></p>
 			</Col>
+				{/* Joe */}
+				<Col lg="3" md="6" className="mb-lg-0 mb-5">
+				<Avatar tag="img" src="./images/team/joe.png" className="rounded-circle z-depth-1 img-fluid hoverable" alt="Joe" />
+				<h5 className="font-weight-bold mt-4 mb-3">Joe Calderon</h5>
+				<p className="text-uppercase blue-text">Full Stack Web Developer<br />Backend Ninja</p>
+				<p className="grey-text hoverable px-1 ">Full MERN Developer with an emphasis on backend development. I come to chew bubble gum and code, and I'm all out of bubble gum.
+						<img src="./images/team/QRJoe.png" alt="Joe" className="img-fluid px-4" />
+
+					<ul className="list-unstyled mb-0">
+						<a className="p-2 fa-lg" target="blank" href="https://github.com/gbert254">
+							<Fa icon="github" className="blue-text" />
+						</a>
+						<a className="p-2 fa-lg" target="blank" href="https://www.linkedin.com/in/joseph-calderon/">
+							<Fa icon="linkedin" className="blue-text" />
+						</a>
+					</ul></p>
+			</Col>
 			{/* /Joe */}
 
 			{/* Alex */}
