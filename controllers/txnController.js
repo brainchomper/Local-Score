@@ -120,15 +120,6 @@ module.exports = {
 						||
 						(txn.Party2._id.toString() === req.params.userID && txn.Completed)))
 				//build a response obj with the arrays
-				console.log("-------------TWOOOOOOOOOOOOOOOOOOOO")
-				console.log(TWOO)
-				console.log("-------------TWOOOOOOOOOOOOOOOOOOOO")
-				console.log("-------------")
-				console.log(TWOM)
-				console.log("-------------")
-				console.log("-------------COMPLETEEEEEEEEEED")
-				console.log(COMPLETED)
-				console.log("-------------COMPLETEEEEEEEEEED")
 				const APIReturn = {
 					TWOO: TWOO,
 					TWOM: TWOM,

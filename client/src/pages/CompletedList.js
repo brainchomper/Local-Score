@@ -3,7 +3,6 @@ import TransactionFeed from "./TransactionFeed";
 import BoardedFeed from "./BoardedFeed";
 
 const CompletedList = props => {
-	console.log(props)
 	if (props.props.queriesComplete === true && typeof props.props.COMPLETED !== "undefined") {
 
 		return props.props.COMPLETED.map((each, i) => {

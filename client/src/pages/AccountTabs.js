@@ -11,9 +11,6 @@ const axios = require("axios");
 class TabsPage extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log("----------------------")
-		console.log(props.data)
-		console.log("----------------------")
 		this.toggleClassicTabs1 = this.toggleClassicTabs1.bind(this);
 		this.state = {
 			activeItemClassicTabs1: '1',
@@ -46,7 +43,7 @@ class TabsPage extends React.Component {
 					console.log("what did we get")
 					console.log(qResults.data);
 					console.log("qresultsPWOOM")
-					console.log(qResults.TWOM)
+					console.log(qResults.data.TWOO)
 					this.setState({
 						PWOO: qResults.data.TWOO,
 						PWOM: qResults.data.TWOM,

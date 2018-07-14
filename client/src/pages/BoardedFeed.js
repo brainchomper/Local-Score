@@ -3,7 +3,6 @@ import { Button, Card, CardImage, CardTitle, Avatar, CardUp, Container } from 'm
 
 export const BoardedFeed = props => {
 	const { data } = props;
-	console.log(props.match)
 	const { Party1, ProductID } = data;
 	let ground = "ground"
 	if(!ProductID.Ground){
