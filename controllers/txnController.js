@@ -38,17 +38,23 @@ module.exports = {
 			})
 	},
 	rejectTxn: function (req, res) {
+		console.log(req.params)
 		db.Transaction.findById(req.params.id)
 			.then(txnCheck => {
 				if (!txnCheck.Rejected || !txnCheck.Completed) {
 					//do the things
+					console.log("txncheck: " , txnCheck)
+
 					db.Transaction
 						.findByIdAndUpdate(
 						{ _id: req.params.id },
 						{ "$set": { "Rejected": true, "Completed": true } },
-						(err, response) => err ? res.json(err) : res.json(response)
+						(err, response) => {
+							 if(err) {return res.json(err)} 
+							 console.log(response)
+							 res.json(response)}
 						)
-						.catch(err => res.status(422).json(err))
+						.catch(err => console.log(err))
 				} else {
 					// else don't do the things
 					return res.send("FAILURE");
@@ -57,6 +63,7 @@ module.exports = {
 	},
 
 	approveTxn: function (req, res) {
+		console.log(req.params)
 		db.Transaction.findById(req.params.id)
 			.then(txnCheck => {
 				if (!txnCheck.Rejected || !txnCheck.Completed) {
