@@ -12,8 +12,6 @@ class PWOO extends React.Component {
 		const groundState = ProductID.Ground ? "ground" : "not ground";
 		const HistoryURL = "/TrasactionHistory/" + ProductID._id.toString();
 		const RejectURL = "/api/transactions/rejectTxn/" + data._id.toString();
-		const AcceptURL = "/api/transactions/approveTxn/" + data._id.toString();
-		this.acceptTxn = this.acceptTxn.bind(this);
 		this.rejectTxn = this.rejectTxn.bind(this);
 		this.updateAccount = props.updateAccount.bind(this)
 		console.log(this.updateAccount)
@@ -32,9 +30,7 @@ class PWOO extends React.Component {
 		axios.get(this.state.RejectURL).then(response => {this.updateAccount()})
 	};
 
-	acceptTxn() {
-		axios.get(this.state.AcceptURL).then(response => {this.updateAccount()})
-	};
+	
 
 	render() {
 		return (
@@ -47,9 +43,6 @@ class PWOO extends React.Component {
 
 						<Row className="text-center">
 
-							<div className="col">
-								<Button color="success" rounded onClick={this.acceptTxn}><Fa icon="check" /></Button>
-							</div>
 							<div className="col">
 								<Button block rounded color="info" href={this.state.HistoryURL}  >See all transactions with this product</Button>
 							</div>
