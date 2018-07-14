@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Container, Row, Fa, CardBody, Card, CardText, CardTitle, Button } from 'mdbreact';
 import { Link } from 'react-router-dom';
@@ -59,3 +60,16 @@ class PWOM extends React.Component {
 }
 
 export default PWOM;
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About
+Press h to open a hovercard with more details.
