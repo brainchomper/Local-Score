@@ -144,14 +144,9 @@ module.exports = {
   }
 };
 
-// // @route  GET api/users/login
-// // @desc   Login User / Returning JWT Token
-// // @access Public
-// router.post("/login", (req, res) => {});
-
-// // @route  GET api/users/current
-// // @desc   Return current user
-// // @access Private
+// @route  GET api/users/current
+// @desc   Return current user
+// @access Private
 // router.get(
 //   "/current",
 //   passport.authenticate("jwt", { session: false }),
@@ -163,3 +158,4 @@ module.exports = {
 //     });
 //   }
 // );
+

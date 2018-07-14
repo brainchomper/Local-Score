@@ -13,7 +13,7 @@ class FormsPage extends React.Component {
 		console.log(props)
 		this.responseGoogle = this.responseGoogle.bind(this);
 	}
-
+	
 	updateParentLogin = (FirstName, LastName, Picture, _id) =>{
 		this.props.propFn(true, FirstName, LastName, _id, Picture)
 	}
@@ -66,7 +66,7 @@ class FormsPage extends React.Component {
 								
 								<Row className="d-flex align-items-center mb-4">
 									<div className="text-center mb-3 col-md-12">
-										<Button color="success" rounded type="button" className="btn-block z-depth-1  animated hoverable">Sign in</Button>
+										<Button color="success" rounded type="button" className="btn-block z-depth-1  animated hoverable" >Sign in</Button>
 										<Link to="/register"> Click Here to Register</Link>
 									</div>
 								</Row>

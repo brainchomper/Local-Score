@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import {Button} from 'mdbreact';
 import axios from 'axios';
-import {setLocal} from "../../utils/LocalStorage"
 import classnames from 'classnames';
+import {Redirect} from 'react-router-dom';
 
 class Register extends Component {
 	constructor() {
 		super();
 		this.state = {
+			success: false,
 			FirstName: '',
 			LastName: '',
 			Email: '',
@@ -15,18 +16,12 @@ class Register extends Component {
 			Password2: '',
 			Errors: {}
 		};
-		this.cLogState = this.cLogState.bind(this);
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
 	onChange(e) {
 		this.setState({ [e.target.name]: e.target.value });
-	}
-
-	cLogState() {
-		console.log("this.state = ")
-		console.log(this.state)
 	}
 
 	onSubmit(e) {
@@ -46,25 +41,20 @@ class Register extends Component {
 
 		axios
 			.post('/api/users/register', { newUser })
-			.then(response => {
-				console.log(response);
-				const {data} = response;
-				const {FirstName, LastName, Picture, _id} = data;
-					const LSUserValues = {
-						fn: FirstName,
-						ln: LastName,
-						p: Picture,
-						id: _id
-					}
-				setLocal("localScoreLoggedIn", true);
-
+			.then(res => {
+				console.log(res.data);
+				this.setState({ success: res.data })
 			})
 			.catch(err => this.setState({ Errors: err.response.data }));
 	}
 
 	render() {
 		const { Errors } = this.state;
-
+		
+		if (this.state.success) {
+			return <Redirect to="/login" />
+    }
+		
 		return (
 			<div className="register">
 				<div className="container">
