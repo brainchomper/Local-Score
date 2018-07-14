@@ -13,7 +13,9 @@ class ContactPage extends Component {
 			<Container className="pt-2">
 			<section className="text-center" >
 			<img className="pt-3 pb-2" src="./images/main-logo-light-bk-bg.png" alt="Local Score"/>
-						<h2 className="h2-responsive font-weight-bold text-center my-5">Get Started</h2>
+
+			
+						<h2 className="h2-responsive font-weight-bold text-center p-2 ">Get Started</h2>
 						<Row>
 							<Col><a href="/new-product" className="mx-auto">
 							<Button size="lg" color="info" rounded>Create A Product</Button>
