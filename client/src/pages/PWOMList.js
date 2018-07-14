@@ -2,10 +2,14 @@ import React from 'react';
 import PWOM from './PWOM';
 
 const PWOMList = props => {
-	// console.log("props in the PWOMList")
-	// console.log(props)
+	console.log("props in the PWOMList")
+	console.log(props)
+	console.log("---------------")
+	console.log("---------------")
+	console.log("---------------")
+
 	if (props.props.queriesComplete && typeof props.props.PWOO !== "undefined") {
-		return props.PWOM.map((each) => {
+		return props.props.PWOM.map((each) => {
 			<PWOM props={each} />
 		})
 	} else {

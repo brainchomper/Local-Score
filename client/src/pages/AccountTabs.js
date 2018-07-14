@@ -45,16 +45,18 @@ class TabsPage extends React.Component {
 				.then(qResults => {
 					console.log("what did we get")
 					console.log(qResults.data);
+					console.log("qresultsPWOOM")
+					console.log(qResults.TWOM)
 					this.setState({
-						PWOO: qResults.data.PWOO,
-						PWOM: qResults.data.PWOM,
+						PWOO: qResults.data.TWOO,
+						PWOM: qResults.data.TWOM,
 						COMPLETED: qResults.data.COMPLETED,
 						queriesComplete: true,
 						FirstName: fn,
 						LastName: ln,
 						Picture: p,
 						userID: id,
-					})
+					}, console.log(this.state))
 				})
 		})
 	}

@@ -90,7 +90,6 @@ module.exports = {
 
 				// query the product database and update the TxnHistory Array to include the newTxn
 				db.Product.findByIdAndUpdate(req.body.newTxn.ProductID, { "$push": { "TxnHistory": postTxn._id } }, (err, result) => {
-					console.log(result)
 					if (err) {
 						return console.log(err)
 					}
@@ -121,15 +120,15 @@ module.exports = {
 						||
 						(txn.Party2._id.toString() === req.params.userID && txn.Completed)))
 				//build a response obj with the arrays
-				console.log("-------------")
+				console.log("-------------TWOOOOOOOOOOOOOOOOOOOO")
 				console.log(TWOO)
-				console.log("-------------")
+				console.log("-------------TWOOOOOOOOOOOOOOOOOOOO")
 				console.log("-------------")
 				console.log(TWOM)
 				console.log("-------------")
-				console.log("-------------")
+				console.log("-------------COMPLETEEEEEEEEEED")
 				console.log(COMPLETED)
-				console.log("-------------")
+				console.log("-------------COMPLETEEEEEEEEEED")
 				const APIReturn = {
 					TWOO: TWOO,
 					TWOM: TWOM,

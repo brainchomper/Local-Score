@@ -6,9 +6,9 @@ const axios = import("axios");
 
 export const PWOM = props => {
 	const {data} = props;
-	const { Party1, Product } = data;
-	const groundState = Product.Ground ? "ground" : "not ground";
-	const HistoryURL = ("/ProductHistoryFeed/" + Product._id);
+	const { Party1, ProductID } = data;
+	const groundState = ProductID.Ground ? "ground" : "not ground";
+	const HistoryURL = ("/ProductHistoryFeed/" + ProductID._id);
 	const RejectURL = ("/api/transactions/rejectTxn/" + data._id);
 	const AcceptURL = ("/api/transactions/acceptTxn/" + data._id);
 
@@ -20,8 +20,8 @@ export const PWOM = props => {
 		<Card cascade>
 			<CardBody cascade>
 				<CardTitle>Transaction {data._id}</CardTitle>
-				<CardText>{Party1.FirstName} {Party1.LastName} is currently waiting on you to approve this transaction of purchasing {Product.Name} for {data.Price}.</CardText>
-				<CardText>{Product.Name} is a {Product.Roast} coffee that is {groundState}.</CardText>
+				<CardText>{Party1.FirstName} {Party1.LastName} is currently waiting on you to approve this transaction of purchasing {ProductID.Name} for {data.Price}.</CardText>
+				<CardText>{ProductID.Name} is a {ProductID.Roast} coffee that is {groundState}.</CardText>
 				<Link>See all transactions associated with this product</Link>
 				<Row>
 					<CardText>I verify that this transaction is correct:</CardText>
