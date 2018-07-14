@@ -41,9 +41,10 @@ class App extends Component {
 	}
 
 	updateUserState = (auth, fname, lname, userID, picUrl) => {
+		const that = this;
 		console.log("updating the things")
 		console.log(this.state);
-		this.setState({
+		that.setState({
 			LoggedIn: auth,
 			FirstName: fname,
 			LastName: lname,
@@ -83,7 +84,7 @@ class App extends Component {
 						<Route exact path="/account" render={() => < Account props = {this.state} />} />
 						<Route exact path="/new-product" render={() => < BoardingSurvey props = {this.state} />} />
 						<Route exact path="/transactions" render={() => < TransactionPage props = {this.state} />} />
-						<Route path="/TransactionHistory/:id" render={() => < ProductFeed props = {this.state} />} />
+						<Route path="/product-history/:id" render={() => < ProductFeed props = {this.state} />} />
 					</Switch>
 				</Router>
 			</React.Fragment>

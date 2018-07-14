@@ -10,9 +10,17 @@ export const localCheck = (next) => {
 	}
 	next(JSON.parse(localStorage.getItem("LSUserValues")))
 	
-}
+};
 
 export const setLocal = (item, value) => {
 	localStorage.setItem(item, value)
 };
 
+export const checkLogin = () => {
+	if (localStorage.getItem("localScoreLoggedIn") === true)  {
+		return (
+			<Redirect to = '/transactions' />
+		)
+	}
+	return console.log("not logged in")
+}

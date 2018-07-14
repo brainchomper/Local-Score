@@ -3,7 +3,7 @@ import { Container, Row, Col, Input, Button, Fa, Card } from 'mdbreact';
 import "./Login.css";
 import { Redirect, Link } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
-import { setLocal } from '../utils/LocalStorage';
+import { setLocal, checkLogin } from '../utils/LocalStorage';
 const axios = require('axios');
 
 class FormsPage extends React.Component {
@@ -12,10 +12,17 @@ class FormsPage extends React.Component {
 		console.log("Here are the props")
 		console.log(props)
 		this.responseGoogle = this.responseGoogle.bind(this);
+		this.updateParentState = props.propFn.bind(this);
+		this.updateParentLogin = this.updateParentLogin.bind(this);
+		console.log("uuuuuuuu", this.updateParentLogin)
 	}
 
+	componentDidMount() {
+		checkLogin()
+	}
+	
 	updateParentLogin = (FirstName, LastName, Picture, _id) => {
-		this.props.propFn(true, FirstName, LastName, _id, Picture)
+		this.updateParentState(true, FirstName, LastName, _id, Picture)
 	}
 
 	responseGoogle = (response) => {
@@ -62,13 +69,24 @@ class FormsPage extends React.Component {
 								<h3 className="white-text mb-5 mt-4 font-weight-bold"><strong>SIGN</strong> / <strong> IN</strong></h3>
 								<div className="row my-3 d-flex justify-content-center">
 								
-									<GoogleLogin
-										clientId="159481047934-p3svhsktles2sgevg3rg2iab3dlgkd3a.apps.googleusercontent.com"
-										buttonText="Login With Google"
-										onSuccess={this.responseGoogle}
-										onFailure={this.responseGoogle}
-									/>
-								</div>
+
+								<Row className="d-flex align-items-center mb-4">
+									<div className="text-center mb-3 col-md-12">
+										<Button color="success" rounded type="button" className="btn-block z-depth-1  animated hoverable" >Sign in</Button>
+										<Link to="/register"> Click Here to Register</Link>
+									</div>
+								</Row>
+								<Col md="12">
+									<p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2 white-text"> or Sign in with:</p>
+									<div className="row my-3 d-flex justify-content-center">
+										<GoogleLogin
+											clientId="159481047934-p3svhsktles2sgevg3rg2iab3dlgkd3a.apps.googleusercontent.com"
+											buttonText="Login With Google"
+											onSuccess={this.responseGoogle}
+											onFailure={this.responseGoogle}
+										/>
+									</div>
+								</Col>
 							</div>
 
 							<Input className=" animated hoverable text-white" label="Your email" group type="text" validate />
