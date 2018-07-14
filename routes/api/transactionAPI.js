@@ -15,10 +15,10 @@ router.route("/new_transaction")
 		.post(txnController.newTxn);
 
 router.route("/rejectTxn/:id")
-		.put(txnController.rejectTxn);
+		.get(txnController.rejectTxn);
 
 router.route("/approveTxn/:id")
-		.put(txnController.approveTxn);
+		.get(txnController.approveTxn);
 
 router.route("/allUsersTxns/:userID")
 		.get(txnController.allUserTxns);

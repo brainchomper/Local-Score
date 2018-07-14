@@ -1,33 +1,60 @@
 import React from 'react';
-import { Container, Fa,  CardBody, Card, CardText, CardTitle, Button } from 'mdbreact';
-import {Link} from 'react-router-dom';
-const axios = import("axios");
+import { Container, Row, Fa, CardBody, Card, CardText, CardTitle, Button } from 'mdbreact';
+import { Link } from 'react-router-dom';
+const axios = require("axios");
 
-export const PWOO = props => {
-	const { data } = props;
-	const { Party2, Product } = data;
-	const groundState = Product.Ground ? "ground" : "not ground";
-	const HistoryURL = ("/ProductHistoryFeed/" + Product._id);
-	const RejectURL = ("/api/transactions/rejectTxn/" + data._id);
+class PWOO extends React.Component {
+	constructor(props) {
+		super(props)
+		const { data } = props;
+		const { Party1, Party2, ProductID } = data;
+		const groundState = ProductID.Ground ? "ground" : "not ground";
+		const HistoryURL = "/TrasactionHistory/" + ProductID._id.toString();
+		const RejectURL = "/api/transactions/rejectTxn/" + data._id.toString();
+		const AcceptURL = "/api/transactions/acceptTxn/" + data._id.toString();
+		this.acceptTxn = this.acceptTxn.bind(this);
+		this.rejectTxn = this.rejectTxn.bind(this);
 
-	const rejectTxn = (RejectURL) => axios(RejectURL).then( response =>console.log("Modal Pop", response));
+		this.state = {
+			RejectURL: RejectURL,
+			AcceptURL: AcceptURL,
+			HistoryURL: HistoryURL,
+			data: data,
+			Party2: Party2,
+			groundState: groundState,
+			ProductID: ProductID
+		}
+	}
 
-	<Container style={{ maxWidth: '80%' }}>
-		<Card cascade>
-			<CardBody cascade>
-				<CardTitle>Transaction {data._id}</CardTitle>
-				<CardText>You are currently waiting on {Party2.FirstName} {Party2.LastName} to approve this transaction of purchasing {Product.Name} for {data.Price}.</CardText>
-				<CardText>{Product.Name} is a {Product.Roast} coffee that is {groundState}.</CardText>Í
-				<Link to={HistoryURL}>See all transactions associated with this product</Link>
-				<Button onClick = {this.rejectTxn({RejectURL})}>Reject This Transaction </Button>
-			</CardBody>
-			<div className="rounded-bottom mdb-color lighten-3 text-center pt-3">
-				<ul className="list-unstyled list-inline font-small">
-					<li className="list-inline-item pr-2 white-text"><Fa icon="clock-o"></Fa> 05/10/2015</li>
-				</ul>
-			</div>
-		</Card>
-	</Container>
+ rejectTxn()  {
+	 axios.get(this.state.RejectURL).then( response =>console.log("Modal Pop", response))
+	};
 
+ acceptTxn  () {
+	 axios.get(this.state.AcceptURL).then( response => console.log(response))
+	};
+
+	render() {
+		return (
+			<Container style={{ maxWidth: '80%' }}>
+					<Card cascade>
+			 			<CardBody cascade>
+			 				<CardTitle>Transaction {this.state.data._id}</CardTitle>
+			 				<CardText>You are currently waiting on {this.state.Party2.FirstName} {this.state.Party2.LastName} to approve the purchasing of {this.state.ProductID.Name} for $ {this.state.data.Price}.</CardText>
+			 				<CardText>{this.state.ProductID.Name} is a {this.state.ProductID.Roast} coffee that is {this.state.groundState}.</CardText>
+							 <Button href= {this.state.HistoryURL} >See all transactions associated with this product</Button>			 				
+							 <Row>
+			 					<Button onClick = {this.rejectTxn}>Reject This Transaction </Button>
+			 				</Row>
+			 			</CardBody>
+			 			<div className="rounded-bottom mdb-color lighten-3 text-center pt-3">
+							<ul className="list-unstyled list-inline font-small">
+							</ul>
+			 			</div>
+			 		</Card>
+			 	</Container>
+		)
+	}
 }
+
 export default PWOO;

@@ -3,10 +3,10 @@ import PWOO from './PWOO';
 
 
 const PWOOList = props => {
-	console.log("props in the PWOOList")
+
 	if (props.props.queriesComplete && typeof props.props.PWOM !== "undefined") {
-		return props.PWOO.map((each) => {
-			<PWOO props={each} />
+		return props.props.PWOO.map((each, i) => {
+	return			<PWOO data={each} key = {i} />
 		})
 	} else {
 		return <div>There are no Transactions waiting on others.</div>

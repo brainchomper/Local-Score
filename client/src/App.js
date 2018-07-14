@@ -27,7 +27,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			LoggedIn: true,
+			LoggedIn: false,
 			collapsed: false,
 			FirstName: "",
 			LastName: "",
@@ -71,7 +71,7 @@ class App extends Component {
 
 
 <React.Fragment>
-				
+				<SideBar props={this.state} />
 				<Router>
 					<Switch>
 						<Route exact path="/" render={() => <Landing props={this.state} /> } />

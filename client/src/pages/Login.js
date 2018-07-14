@@ -63,16 +63,11 @@ class FormsPage extends React.Component {
 								</div>
 								<Input className=" animated hoverable text-white" label="Your email" group type="text" validate />
 								<Input label="Your password" className="animated hoverable text-white" group type="password" validate />
-								<div className="md-form pb-3">
-									<div className="form-check my-4">
-										<input className="form-check-input" type="checkbox" value="" id="defaultCheck17" />
-										<label className="form-check-label white-text" htmlFor="defaultCheck17">Accept the<a href="#" className="green-text font-weight-bold"> Terms and Conditions</a></label>
-									</div>
-								</div>
+								
 								<Row className="d-flex align-items-center mb-4">
 									<div className="text-center mb-3 col-md-12">
 										<Button color="success" rounded type="button" className="btn-block z-depth-1  animated hoverable">Sign in</Button>
-										<Link to="/products">CLICK</Link>
+										<Link to="/register"> Click Here to Register</Link>
 									</div>
 								</Row>
 								<Col md="12">

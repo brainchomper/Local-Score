@@ -6,6 +6,9 @@ module.exports = {
 	findAll: function (req, res) {
 		db.Transaction
 			.find({})
+			.populate("Party1")
+			.populate("Party2")
+			.populate("ProductID")
 			.sort({ Date: -1 })
 			.then(dbModel => {
 
@@ -20,28 +23,38 @@ module.exports = {
 			.findById(req.params.id)
 			.populate('TxnHistory')
 			// if the result doesn't have any PreviousTxns in the key then we know that the transaction is an origination and we can just send it
-			.then(productResults => {
-				const nonRejects = productResults.TxnHistory.filter( each => {
-					// if the product wasn't rejected and it's completed
-					if (!each.Rejected && each.Completed ){
-						return each
-					}
-				})
-				res.json(nonRejects)
+			.then((productResults) => {
+
+				console.log(typeof productResults)
+				if (typeof productResults === 'null') {
+					const nonRejects = productResults.TxnHistory.filter(each => {
+						// if the product wasn't rejected and it's completed
+						if (!each.Rejected && each.Completed) {
+							return each
+						}
+					})
+					return res.json(nonRejects);
+				}
 			})
 	},
 	rejectTxn: function (req, res) {
+		console.log(req.params)
 		db.Transaction.findById(req.params.id)
 			.then(txnCheck => {
 				if (!txnCheck.Rejected || !txnCheck.Completed) {
 					//do the things
+					console.log("txncheck: " , txnCheck)
+
 					db.Transaction
 						.findByIdAndUpdate(
 						{ _id: req.params.id },
 						{ "$set": { "Rejected": true, "Completed": true } },
-						(err, response) => err ? res.json(err) : res.json(response)
+						(err, response) => {
+							 if(err) {return res.json(err)} 
+							 console.log(response)
+							 res.json(response)}
 						)
-						.catch(err => res.status(422).json(err))
+						.catch(err => console.log(err))
 				} else {
 					// else don't do the things
 					return res.send("FAILURE");
@@ -50,6 +63,7 @@ module.exports = {
 	},
 
 	approveTxn: function (req, res) {
+		console.log(req.params)
 		db.Transaction.findById(req.params.id)
 			.then(txnCheck => {
 				if (!txnCheck.Rejected || !txnCheck.Completed) {
@@ -70,15 +84,30 @@ module.exports = {
 
 	newTxn: function (req, res) {
 		// make a new transaction
-		db.Transaction.create(req.body.data)
+		console.log(req.body.newTxn)
+		db.Transaction.create(req.body.newTxn)
 			// take the new info 
-			.then(newTxn => {
+			.then((postTxn, err) => {
+				if (err) {
+					return console.log(err);
+				}
+				console.log("-------------------")
+				console.log(postTxn)
+				console.log("-------------------")
+
 				// query the product database and update the TxnHistory Array to include the newTxn
-				db.Product.findByIdAndUpdate(req.body.data.ProductID, { "$push": { "TxnHistory": newTxn._id } }, (err, result) => err ? res.json(err) : res.json("SUCCESS")
+				db.Product.findByIdAndUpdate(req.body.newTxn.ProductID, { "$push": { "TxnHistory": postTxn._id } }, (err, result) => {
+					if (err) {
+						return console.log(err)
+					}
+					result.validate = true;
+					res.json(result);
+				}
 				)
 			})
+			.catch(console.log("we are doing .catch for some reason"))
 	},
-	
+
 	allUserTxns: function (req, res) {
 		// first we populate the Transactions w/ the user info
 		db.Transaction
@@ -87,17 +116,17 @@ module.exports = {
 			.populate("Party1")
 			.populate("ProductID")
 			// then we use a filter on the results to return only where the user submitted is in slot one
-			.then( allTxns => {
-				// if the user is in slot 1 that means that they were the submitter of the transaction according to the data schema we set up				
+			.then(allTxns => {
+				// if the user is in slot 1 that means that they were the submitter of the transaction according to the data schema we set up			
 				// we are pinging the server as /api/transactions/:userID so this is why we pass this params in
 				const TWOO = allTxns.filter(txn => txn.Party1._id.toString() === req.params.userID && !txn.Completed)
 				const TWOM = allTxns.filter(txn => txn.Party2._id.toString() === req.params.userID && !txn.Completed);
 				const COMPLETED = allTxns
-				.filter(txn => (
-					txn.Party1._id.toString() === req.params.userID && txn.Completed && txn.Party1._id.toString() != txn.Party2._id.toString()) 
-					|| 
-					(txn.Party2._id.toString() === req.params.userID && txn.Completed && txn.Party1._id.toString() != txn.Party2._id.toString()));
-//build a response obj with the arrays
+					.filter(txn => (
+						(txn.Party1._id.toString() === req.params.userID && txn.Completed)
+						||
+						(txn.Party2._id.toString() === req.params.userID && txn.Completed)))
+				//build a response obj with the arrays
 				const APIReturn = {
 					TWOO: TWOO,
 					TWOM: TWOM,
@@ -107,5 +136,5 @@ module.exports = {
 			})
 			.catch(err => console.log(err))
 	},
-	
-	}
+
+}

@@ -1,12 +1,15 @@
 import React from 'react';
 import TransactionFeed from "./TransactionFeed";
+import BoardedFeed from "./BoardedFeed";
 
 const CompletedList = props => {
-
 	if (props.props.queriesComplete === true && typeof props.props.COMPLETED !== "undefined") {
 
 		return props.props.COMPLETED.map((each, i) => {
-			return <TransactionFeed data={each} key = {i} />
+			if (each.Party1._id !== each.Party2._id){
+				return <TransactionFeed data={each} key = {i} />
+			}
+			return <BoardedFeed data = {each} key = {i} />
 		})
 	} else {
 		return <div>You haven't completed any transactions yet.</div>

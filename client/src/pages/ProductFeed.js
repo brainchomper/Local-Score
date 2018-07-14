@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import CompletedList from './CompletedList';
-import { Redirect } from 'react-router-dom';
 import { localCheck } from '../utils/LocalStorage';
 
 
@@ -22,7 +21,6 @@ class ProductFeed extends Component {
 
 	componentDidMount() {
 		localCheck(({ fn, ln, p, id }) => {
-
 			axios
 				.get("/api/transactions/feed")
 				.then(queryResults =>
@@ -30,16 +28,13 @@ class ProductFeed extends Component {
 						FirstName: fn,
 						LastName: ln,
 						Picture: p,
-						userId: id,
+						userID: id,
 						COMPLETED: queryResults.data,
 						queriesComplete: true
 					}, function () {
 						console.log(this.state)
 					}))
 		})
-
-		//call the api 
-		// console.log("the params of the page rendering (AKA /transactionfeed/:id", this.props.match.params.id)
 
 	}
 	// render statement

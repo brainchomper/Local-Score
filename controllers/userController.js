@@ -5,6 +5,9 @@ const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
 
 module.exports = {
+	ping: function(req, res) {
+		res.json("have to hit the server to get this to work.")
+	},
   findAll: function(req, res) {
     db.User.find({}).then(userResults => {
       const trimmedUsers = userResults.map(user => {
@@ -63,32 +66,37 @@ module.exports = {
       });
   },
   registerFn: (req, res) => {
-    db.User.findOne({ Email: req.body.Email }).then(user => {
+		//deconstruction
+		const {body} = req;
+		const {newUser} = body;
+		const {Email, FirstName, LastName, Password} = newUser
+    db.User.findOne({ Email: Email }).then(user => {
       if (user) {
-        return res.status(400).json({ Email: "Email already exists" });
+        return res.status(400).json({ user: user });
       } else {
-        const avatar = gravatar.url(req.body.Email, {
+        const avatar = gravatar.url(Email, {
           s: "200", // size
           r: "pg", // rating
           d: "mm" // default
         });
 
-        const newUser = {
-          FirstName: req.body.FirstName,
-          LastName: req.body.LastName,
-          Email: req.body.Email,
+        const postUser = {
+          FirstName: FirstName,
+          LastName: LastName,
+          Email: Email,
           Picture: avatar,
-          Password: req.body.Password
+          Password: Password
         };
 
         bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newUser.Password, salt, (err, hash) => {
+          bcrypt.hash(postUser.Password, salt, (err, hash) => {
             if (err) throw err;
             // update the password to the super secret one
-            newUser.Password = hash;
+            postUser.Password = hash;
 
-            db.User.create(newUser, function(err, UserPostRes) {
+            db.User.create(postUser, function(err, UserPostRes) {
               if (err) {
+								console.log(err)
                 return res.json(err);
 							}
 							UserPostRes.validate = true;
