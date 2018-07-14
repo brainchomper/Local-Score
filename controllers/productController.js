@@ -22,7 +22,7 @@ module.exports = {
 					ProductID: _id,
 					Completed: true
 				};
-				console.log(txnInfo), txnInfo
+				console.log(txnInfo)
 				// take the json object we just built for the txnInfo and create the new txn
 				db.Transaction
 					.create(txnInfo)

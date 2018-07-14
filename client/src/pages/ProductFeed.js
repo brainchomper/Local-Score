@@ -11,7 +11,7 @@ class ProductFeed extends Component {
 
 		this.state = {
 			COMPLETED: [],
-			queryResults: false,
+			queriesComplete: false,
 			FirstName: "",
 			LastName: "",
 			Picture: "",
@@ -21,9 +21,11 @@ class ProductFeed extends Component {
 
 	componentDidMount() {
 		localCheck(({ fn, ln, p, id }) => {
+			console.log(id)
 			axios
 				.get("/api/transactions/feed")
-				.then(queryResults =>
+				.then(queryResults =>{
+					console.log(queryResults.data)
 					this.setState({
 						FirstName: fn,
 						LastName: ln,
@@ -31,9 +33,8 @@ class ProductFeed extends Component {
 						userID: id,
 						COMPLETED: queryResults.data,
 						queriesComplete: true
-					}, function () {
-						console.log(this.state)
-					}))
+					}
+					)})
 		})
 
 	}
