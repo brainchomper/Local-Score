@@ -3,25 +3,22 @@ import { Container, Row, Fa, CardBody, Card, CardText, CardTitle, Button } from 
 import { Link } from 'react-router-dom';
 const axios = import("axios");
 
-class PWOM extends React.Component {
+class PWOO extends React.Component {
 	constructor(props) {
 		super(props)
 		const { data } = props;
 		const { Party1, Party2, ProductID } = data;
 		const groundState = ProductID.Ground ? "ground" : "not ground";
-		const HistoryURL = ("/ProductHistoryFeed/" + ProductID._id);
+		const HistoryURL = ("/TrasactionHistory/" + ProductID._id);
 		const RejectURL = ("/api/transactions/rejectTxn/" + data._id);
 		const AcceptURL = ("/api/transactions/acceptTxn/" + data._id);
-		console.log("**************/////*****")
-		console.log(data)
-		console.log("**************/////*****")
 
 		this.state = {
 			RejectURL: RejectURL,
 			AcceptURL: AcceptURL,
 			HistoryURL: HistoryURL,
 			data: data,
-			Party1: Party1,
+			Party2: Party2,
 			groundState: groundState,
 			ProductID: ProductID
 		}
@@ -40,10 +37,10 @@ class PWOM extends React.Component {
 					<Card cascade>
 			 			<CardBody cascade>
 			 				<CardTitle>Transaction {this.state.data._id}</CardTitle>
-			 				<CardText>{this.state.Party1.FirstName} {this.state.Party1.LastName} is currently waiting on you to approve this transaction of purchasing {this.state.ProductID.Name} for {this.state.data.Price}.</CardText>
+			 				<CardText>You are currently waiting on {this.state.Party2.FirstName} {this.state.Party2.LastName} to approve the purchasing of {this.state.ProductID.Name} for $ {this.state.data.Price}.</CardText>
 			 				<CardText>{this.state.ProductID.Name} is a {this.state.ProductID.Roast} coffee that is {this.state.groundState}.</CardText>
-			 				<Link to = {this.state.HistoryURL}>See all transactions associated with this product</Link>
-			 				<Row>
+							 <Button href= {this.state.HistoryURL} >See all transactions associated with this product</Button>			 				
+							 <Row>
 			 					<Button tag="a" floating gradient="blue" onClick = {this.acceptTxn}><Fa icon="check" /></Button>
 			 					<Button onClick = {this.rejectTxn}>Reject This Transaction </Button>
 			 				</Row>
@@ -58,4 +55,4 @@ class PWOM extends React.Component {
 	}
 }
 
-export default PWOM;
+export default PWOO;

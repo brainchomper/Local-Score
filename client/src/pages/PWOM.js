@@ -9,12 +9,9 @@ class PWOM extends React.Component {
 		const { data } = props;
 		const { Party1, Party2, ProductID } = data;
 		const groundState = ProductID.Ground ? "ground" : "not ground";
-		const HistoryURL = ("/ProductHistoryFeed/" + ProductID._id);
+		const HistoryURL = ("/TrasactionHistory/" + ProductID._id);
 		const RejectURL = ("/api/transactions/rejectTxn/" + data._id);
 		const AcceptURL = ("/api/transactions/acceptTxn/" + data._id);
-		console.log("**************/////*****")
-		console.log(data)
-		console.log("**************/////*****")
 
 		this.state = {
 			RejectURL: RejectURL,
@@ -40,9 +37,9 @@ class PWOM extends React.Component {
 					<Card cascade>
 			 			<CardBody cascade>
 			 				<CardTitle>Transaction {this.state.data._id}</CardTitle>
-			 				<CardText>{this.state.Party1.FirstName} {this.state.Party1.LastName} is currently waiting on you to approve this transaction of purchasing {this.state.ProductID.Name} for {this.state.data.Price}.</CardText>
+			 				<CardText>{this.state.Party1.FirstName} {this.state.Party1.LastName} is currently waiting on you to approve this transaction of purchasing {this.state.ProductID.Name} for ${this.state.data.Price}.</CardText>
 			 				<CardText>{this.state.ProductID.Name} is a {this.state.ProductID.Roast} coffee that is {this.state.groundState}.</CardText>
-			 				<Link to = {this.state.HistoryURL}>See all transactions associated with this product</Link>
+			 				<Button href= {this.state.HistoryURL} >See all transactions associated with this product</Button>
 			 				<Row>
 			 					<Button tag="a" floating gradient="blue" onClick = {this.acceptTxn}><Fa icon="check" /></Button>
 			 					<Button onClick = {this.rejectTxn}>Reject This Transaction </Button>
