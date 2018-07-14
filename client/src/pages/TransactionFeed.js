@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, CardImage, CardTitle, Avatar, CardUp } from 'mdbreact';
+import { Button, Card, CardImage, CardTitle, Avatar, CardUp, Container } from 'mdbreact';
 
 export const TransactionFeed = props => {
 	const { data } = props;
@@ -7,6 +7,7 @@ export const TransactionFeed = props => {
 	const { Party1, Party2, ProductID } = data;
 	const ProductURL = ("TransactionHistory/" + ProductID._id);
 	return (
+		<Container className="pt-2">
 		<Card testimonial className = "my-3">
 			<div className="row">
 				<div className="col">
@@ -30,6 +31,7 @@ export const TransactionFeed = props => {
 				</div>
 			</div>
 		</Card>
+		</Container>
 	)
 }
 export default TransactionFeed;
