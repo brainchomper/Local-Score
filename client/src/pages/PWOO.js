@@ -33,7 +33,7 @@ class PWOO extends React.Component {
 
 	render() {
 		return (
-			<Container style={{ maxWidth: '80%' }}>
+			<Container style={{ maxWidth: '80%' }} className="hoverable">
 					<Card cascade>
 			 			<CardBody cascade>
 			 				<CardTitle>Transaction {this.state.data._id}</CardTitle>
@@ -42,13 +42,16 @@ class PWOO extends React.Component {
 							 <Button href= {this.state.HistoryURL} >See all transactions associated with this product</Button>			 				
 							 <Row>
 			 					<Button tag="a" floating gradient="blue" onClick = {this.acceptTxn}><Fa icon="check" /></Button>
-			 					<Button onClick = {this.rejectTxn}>Reject This Transaction </Button>
+								 <div className="col">
+								 
+								 </div>
+								 <div className="col">
+								 </div>
+								 <Button tag="a" floating gradient="purple" onClick = {this.rejectTxn}><Fa icon="x" /></Button>
+			 					{/* <Button onClick = {this.rejectTxn}>Reject This Transaction </Button> */}
 			 				</Row>
 			 			</CardBody>
-			 			<div className="rounded-bottom mdb-color lighten-3 text-center pt-3">
-							<ul className="list-unstyled list-inline font-small">
-							</ul>
-			 			</div>
+			 			
 			 		</Card>
 			 	</Container>
 		)
