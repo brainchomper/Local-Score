@@ -11,7 +11,7 @@ class ProductFeed extends Component {
 
 		this.state = {
 			COMPLETED: [],
-			queryResults: false,
+			queriesComplete: false,
 			FirstName: "",
 			LastName: "",
 			Picture: "",
