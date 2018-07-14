@@ -127,7 +127,7 @@ class UserSearch extends React.Component {
 							getSuggestionValue={getSuggestionValue}
 							renderSuggestion={renderSuggestion}
 							inputProps={inputProps} />
-						<Button onClick={this.updateCustomer} >Lock in Customer </Button>
+						<Button color="deep-orange" rounded onClick={this.updateCustomer} >Lock in Customer </Button>
 				</React.Fragment>
 		);
 			}

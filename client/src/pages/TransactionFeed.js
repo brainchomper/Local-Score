@@ -17,7 +17,7 @@ export const TransactionFeed = props => {
 					<CardTitle className="text-center">{Party2.FirstName} {Party2.LastName}</CardTitle>
 				</div>
 				<div className="col">
-					<h4 className="text-center pt-3">Bought {ProductID.Name} From</h4>
+					<h4 className="text-center pt-3">Bought <b>{ProductID.Name}</b> From</h4>
 					<CardImage className="img-fluid pb-3" src="./images/arrows.png" />
 
 					<Button block className="pt-3" color="success" href={ProductURL}>Learn More About This Product's History</Button></div>
