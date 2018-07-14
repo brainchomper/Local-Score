@@ -72,7 +72,7 @@ class TransactionPage extends React.Component {
 		console.log(this.state)
 		const { Price, Customer, Product, ProductLock, CustomerLock, PriceLock, Party1 } = this.state;
 		//check if the user has locked in their product and customer and price
-		if (ProductLock && CustomerLock && PriceLock ) {
+		if (ProductLock && CustomerLock && PriceLock) {
 			// run the api query to post the transaction
 			const newTxn = {
 				Party1: Party1,
@@ -83,7 +83,7 @@ class TransactionPage extends React.Component {
 
 			return axios
 				.post("/api/transactions/new_transaction", { newTxn })
-				.then(results => {console.log("the txn posted like this:" , results)})
+				.then(results => { console.log("the txn posted like this:", results) })
 		}
 		else {
 			return console.log("not everything is locked yet")
@@ -93,40 +93,44 @@ class TransactionPage extends React.Component {
 
 	render() {
 		return (
-<Container>
-			<div className="row mx-auto">
-				<div className="col mt-4">
-					<Card className="text-center">
-						<CardBody>
-							<CardTitle className="text-center">Create New Transaction</CardTitle>
-							<hr />
-							<div className="row text-center">
-								<div className="col-4">
-									<h4>Select User</h4>
-									<UserAutoSearch updateCustomer={this.updateCustomer} userId={this.state.Party1} />
-								</div>
-								<div className="col-4">
-									<h4>Select Product</h4>
+			<Container className="">
+				<div className="row mx-auto">
+					<div className="col mt-4">
+						<Card className="text-center ">
+							<CardBody className="">
+								<CardTitle className=" text-center">Create New Transaction</CardTitle>
+								<hr />
+								<div className="row text-center">
+									<div className="col">
+										<h4>Select User</h4>
+										<UserAutoSearch updateCustomer={this.updateCustomer} userId={this.state.Party1} />
+									</div>
+									<div className="col">
+										<h4>Select Product</h4>
 
-									<ProductAutoSearch updateProduct={this.updateProduct} />
+										<ProductAutoSearch updateProduct={this.updateProduct} />
+									</div>
 								</div>
-							
-							<div className="col-4">
-							<h4 className="text-center">Item Price $</h4>
-							<InputNumeric name="Price" precision={2} value={this.state.Price} step={0.01} className="mb-2" color="success" />
-							<Button color="deep-orange" rounded onClick = {this.lockPrice}>Lock in Price</Button>
-							</div>
-							</div>
-							
-							
-							<Button block size="lg" color="success" rounded onClick={this.submitTxn}>Submit New Transaction</Button>
-	
-							{/* <Button block color="success" size="lg" onClick={this.submitTxn}>Submit New Transaction</Button> */}
-						</CardBody>
+								<div className="row text-center">
+									<div className="col-4 text-center"></div>
+									<div className="col-4 text-center">
+										<h4 className="text-center">Item Price $</h4>
+										<InputNumeric name="Price" precision={2} value={this.state.Price} step={0.01} className="mb-2" color="success" />
+										<Button color="deep-orange" rounded onClick={this.lockPrice}>Lock in Price</Button>
+									</div></div>
+								<div className="col-4 text-center"></div>
 
-					</Card>
+								<div className="col-4">
+
+								</div>
+								<Button block size="lg" color="success" rounded onClick={this.submitTxn}>Submit New Transaction</Button>
+
+								{/* <Button block color="success" size="lg" onClick={this.submitTxn}>Submit New Transaction</Button> */}
+							</CardBody>
+
+						</Card>
+					</div>
 				</div>
-			</div>
 			</Container>
 
 

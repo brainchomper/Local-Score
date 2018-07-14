@@ -6,8 +6,8 @@ export const TransactionFeed = props => {
 	const { Party1, Party2, ProductID } = data;
 	const ProductURL = ("TransactionHistory/" + ProductID._id);
 	return (
-		<Container className="pt-2">
-		<Card testimonial className = "my-3">
+		<Container className="pb-3">
+		<Card testimonial className = "">
 			<div className="row">
 				<div className="col">
 					<CardUp className="blue lighten-1" />

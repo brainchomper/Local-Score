@@ -93,8 +93,9 @@ class BoardingSurvey extends React.Component {
 
 					<div className="row px-5 text-center">
 						<div className="col">
-						<h4 className="pt-2">Enter Product Name Here:</h4>
-							<Input name="ProductName" value={this.state.ProductName} onChange={this.handleInputChange} placeholder="Enter Product Name Here" />
+						<h4 className="pt-2">Add Product</h4>
+
+							<Input type="text"name="ProductName" value={this.state.ProductName} onChange={this.handleInputChange} label="Enter Product Name Here" />
 						</div>
 						
 					</div>
@@ -113,7 +114,7 @@ class BoardingSurvey extends React.Component {
 						</div>
 					</div>
 
-							<Button size="lg" color="success" rounded outline onClick={this.submitProduct}>Submit Product</Button>
+							<Button size="lg" color="success" rounded  onClick={this.submitProduct}>Submit Product</Button>
 								
 
 					{/* <Button block color="primary" onClick={this.submitProduct}>Submit Product</Button> */}

@@ -10,8 +10,8 @@ export const BoardedFeed = props => {
 	}
 
 	return (
-		<Container className="pt-2">
-		<Card testimonial className = "my-3 hoverable">
+		<Container className="pb-2">
+		<Card testimonial className = "hoverable">
 			<div className="row">
 				<div className="col">
 					<CardUp className="blue lighten-1" />
@@ -24,7 +24,6 @@ export const BoardedFeed = props => {
 					<h4 className="text-center pt-3">Loaded <b>{ProductID.Name}</b> as a product.</h4>
 					<p className="text-center"><b>{ProductID.Name}</b> is a <b>{ProductID.Roast}, {ground}</b> coffee</p>
 					<CardImage className="img-fluid pb-3" src="./images/arrows.png" />
-					<CardImage className="img-fluid px-3" src="./images/arrows.png" />
 				</div>
 			</div>
 		</Card>

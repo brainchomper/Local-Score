@@ -91,7 +91,7 @@ class TabsPage extends React.Component {
 		return (
 			<Router>
 				<Container className="pt-2">
-					<Nav tabs className="nav-justified">
+					<Nav tabs className="nav-justified unique-color">
 						<NavItem>
 							<NavLink to="#" className={classnames({ active: this.state.activeItemClassicTabs1 === '2' })} onClick={() => { this.toggleClassicTabs1('2') }}>
 								Pending Waiting On Others

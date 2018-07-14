@@ -3,7 +3,7 @@ import { Container, Row, Col, Avatar, Fa } from 'mdbreact';
 
 const TeamPage = () => {
 	return (
-		<Container>
+		<Container className="pt-3">
 
 <Row className="text-center">
 
@@ -74,20 +74,21 @@ const TeamPage = () => {
 				<Avatar tag="img" src="./images/team/alex.png" className="hoverable rounded-circle z-depth-1 img-fluid" alt="Alex" />
 				<h5 className="font-weight-bold mt-4 mb-3">Alex Butler</h5>
 				<p className="text-uppercase blue-text">Full Stack Web Developer<br /> Something Here</p>
-				<p className="grey-text hoverable px-1">Full MERN Developer<br />
+				<p className="grey-text hoverable px-1">Full MERN Developer<br /><br /><br /><br /><br />
 					<img src="./images/team/QRAlex.png" alt="Kevin Smith PNG" className="img-fluid px-4" />
-					<ul className="list-unstyled mb-0">
-						<a className="p-2 fa-lg" target="blank" href="https://github.com/brainchomper">
-							<Fa icon="github" className="blue-text" />
-						</a>
-						<a className="p-2 fa-lg" target="blank" href="https://www.linkedin.com/in/kvnsmith">
-							<Fa icon="linkedin" className="blue-text" />
-						</a>
-						<a className="p-2 fa-lg">
+					{/* <ul className="list-unstyled mb-0"> */}
+						{/* <a className="p-2 fa-lg" target="blank" href="https://github.com/brainchomper"> */}
+							{/* <Fa icon="github" className="blue-text" /> */}
+						{/* </a> */}
+						{/* <a className="p-2 fa-lg" target="blank" href="https://www.linkedin.com/in/kvnsmith"> */}
+							{/* <Fa icon="linkedin" className="blue-text" /> */}
+						{/* </a> */}
+						{/* <a className="p-2 fa-lg"> */}
 							{/* <Fa icon="twitter" target="blank" href="https://twitter.com/" className="blue-text" /> */}
-						</a>
-					</ul>
-					<a href="https://kvnsmith.com">kvnsmith.com</a></p>
+						{/* </a> */}
+					{/* </ul> */}
+					{/* <a href="https://kvnsmith.com">kvnsmith.com</a> */}
+					</p>
 
 			</Col>
 			{/* /Alex */}
