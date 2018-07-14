@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Fa, CardBody, Card, CardText, CardTitle, Button } from 'mdbreact';
 import { Link } from 'react-router-dom';
-const axios = import("axios");
+const axios = require("axios");
 
 class PWOO extends React.Component {
 	constructor(props) {
@@ -9,9 +9,11 @@ class PWOO extends React.Component {
 		const { data } = props;
 		const { Party1, Party2, ProductID } = data;
 		const groundState = ProductID.Ground ? "ground" : "not ground";
-		const HistoryURL = ("/TrasactionHistory/" + ProductID._id);
-		const RejectURL = ("/api/transactions/rejectTxn/" + data._id);
-		const AcceptURL = ("/api/transactions/acceptTxn/" + data._id);
+		const HistoryURL = "/TrasactionHistory/" + ProductID._id.toString();
+		const RejectURL = "/api/transactions/rejectTxn/" + data._id.toString();
+		const AcceptURL = "/api/transactions/acceptTxn/" + data._id.toString();
+		this.acceptTxn = this.acceptTxn.bind(this);
+		this.rejectTxn = this.rejectTxn.bind(this);
 
 		this.state = {
 			RejectURL: RejectURL,
@@ -22,14 +24,15 @@ class PWOO extends React.Component {
 			groundState: groundState,
 			ProductID: ProductID
 		}
-
-		this.acceptTxn = this.acceptTxn.bind(this);
-		this.rejectTxn = this.rejectTxn.bind(this);
 	}
 
- rejectTxn = () => axios.post(this.state.RejectURL).then( response =>console.log("Modal Pop", response));
+ rejectTxn()  {
+	 axios.get(this.state.RejectURL).then( response =>console.log("Modal Pop", response))
+	};
 
- acceptTxn = () => axios.post(this.state.AcceptURL.then( response => console.log(response)));
+ acceptTxn  () {
+	 axios.get(this.state.AcceptURL).then( response => console.log(response))
+	};
 
 	render() {
 		return (
@@ -48,7 +51,7 @@ class PWOO extends React.Component {
 								 <div className="col">
 								 </div>
 								 <Button tag="a" floating gradient="purple" onClick = {this.rejectTxn}><Fa icon="x" /></Button>
-			 					{/* <Button onClick = {this.rejectTxn}>Reject This Transaction </Button> */}
+
 			 				</Row>
 			 			</CardBody>
 			 			
