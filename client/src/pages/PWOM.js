@@ -13,6 +13,8 @@ class PWOM extends React.Component {
 		const AcceptURL = "/api/transactions/approveTxn/" + data._id.toString();
 		this.acceptTxn = this.acceptTxn.bind(this);
 		this.rejectTxn = this.rejectTxn.bind(this);
+		this.updateAccount = props.updateAccount.bind(this);
+		console.log(this.updateAccount)
 		this.state = {
 			RejectURL: RejectURL,
 			AcceptURL: AcceptURL,
@@ -25,11 +27,11 @@ class PWOM extends React.Component {
 	}
 
 	rejectTxn() {
-		axios.get(this.state.RejectURL).then(response => console.log("Modal Pop", response))
+		axios.get(this.state.RejectURL).then(response => {this.updateAccount()})
 	};
 
 	acceptTxn() {
-		axios.get(this.state.AcceptURL).then(response => console.log(response))
+		axios.get(this.state.AcceptURL).then(response => {this.updateAccount()})
 	};
 
 	render() {
