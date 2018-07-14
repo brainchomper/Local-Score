@@ -33,7 +33,7 @@ class PWOO extends React.Component {
 
 	render() {
 		return (
-			<Container className="pb-3" >
+			<Container className="pb-3 text-center" >
 				<Card className="hoverable">
 					<CardBody >
 						<CardTitle>Transaction: {this.state.data._id}</CardTitle>

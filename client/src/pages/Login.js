@@ -43,9 +43,9 @@ class FormsPage extends React.Component {
 					// { this.LoginUserState(response, true) }
 					console.log("ugh")
 					console.log(this.props.propFn);
-					const {data} = response;
+					const { data } = response;
 					console.log(data)
-					const {FirstName, LastName, Picture, _id} = data;
+					const { FirstName, LastName, Picture, _id } = data;
 					const LSUserValues = {
 						fn: FirstName,
 						ln: LastName,
@@ -54,23 +54,22 @@ class FormsPage extends React.Component {
 					}
 					setLocal("localScoreLoggedIn", true);
 					setLocal("LSUserValues", JSON.stringify(LSUserValues))
-					this.updateParentLogin( FirstName, LastName, Picture, _id)
+					this.updateParentLogin(FirstName, LastName, Picture, _id)
 				} else (console.log("the user login was unsuccesful"))
 			}
 			)
 	}
 	render() {
-			return (
-				<Container className="mx-auto">
-					<section className="form-dark">
-						<Card className="card-image animated hoverable" style={{ backgroundImage: 'url(../../../public/img/coffee-login.png)' }}>
-							<div className="text-white rgba-stylish-light py-5 px-5 z-depth-4">
-								<div className="text-center">
-									<h3 className="white-text mb-5 mt-4 font-weight-bold"><strong>SIGN</strong> <a className="green-text font-weight-bold"><strong> UP</strong></a><strong> /</strong><a className="green-text font-weight-bold"><strong> IN</strong></a></h3>
-								</div>
-								<Input className=" animated hoverable text-white" label="Your email" group type="text" validate />
-								<Input label="Your password" className="animated hoverable text-white" group type="password" validate />
+		return (
+			<Container className="mx-auto">
+				<section className="form-dark">
+					<Card className="card-image animated hoverable" style={{ backgroundImage: 'url(images/coffee-beans.jpg)' }}>
+						<div className="text-white rgba-stylish-light py-5 px-5 z-depth-4">
+							<div className="text-center">
+								<h3 className="white-text mb-5 mt-4 font-weight-bold"><strong>SIGN</strong> / <strong> IN</strong></h3>
+								<div className="row my-3 d-flex justify-content-center">
 								
+
 								<Row className="d-flex align-items-center mb-4">
 									<div className="text-center mb-3 col-md-12">
 										<Button color="success" rounded type="button" className="btn-block z-depth-1  animated hoverable" >Sign in</Button>
@@ -82,17 +81,40 @@ class FormsPage extends React.Component {
 									<div className="row my-3 d-flex justify-content-center">
 										<GoogleLogin
 											clientId="159481047934-p3svhsktles2sgevg3rg2iab3dlgkd3a.apps.googleusercontent.com"
-											buttonText="Login"
+											buttonText="Login With Google"
 											onSuccess={this.responseGoogle}
 											onFailure={this.responseGoogle}
 										/>
 									</div>
 								</Col>
 							</div>
-						</Card>
-					</section>
-				</Container>
-			);
+
+							<Input className=" animated hoverable text-white" label="Your email" group type="text" validate />
+							<Input label="Your password" className="animated hoverable text-white" group type="password" validate />
+
+							<Row className="d-flex align-items-center mb-4">
+								<div className="text-center mb-3 col-md-12">
+									<Button color="success" size="lg"rounded type="button" className="btn-block z-depth-1 hoverable">Sign in</Button>
+									<div className="text-center">
+										<h3 className="white-text mb-5 mt-4 font-weight-bold"><strong>NOT A MEMBER?</strong></h3>
+									</div>
+									<Button color="primary" size="lg" block href="/register" rounded type="button" className="btn-block z-depth-1 hoverable">Register</Button>
+								{/* <Link to="/register"> </Link> */}
+								{/* <div className="text-center">
+									<h3 className="white-text mb-5 mt-4 font-weight-bold"><strong>OR</strong></h3>
+								</div> */}
+								</div>
+							</Row>
+							<Col md="12">
+								
+								{/* <p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2 white-text"> or Sign in with:</p> */}
+
+							</Col>
+						</div>
+					</Card>
+				</section>
+			</Container>
+		);
 	}
 };
 
