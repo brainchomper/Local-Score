@@ -67,12 +67,12 @@ class TabsPage extends React.Component {
 					<Nav tabs className="nav-justified">
 						<NavItem>
 							<NavLink to="#" className={classnames({ active: this.state.activeItemClassicTabs1 === '2' })} onClick={() => { this.toggleClassicTabs1('2') }}>
-								Pending Waiting On Me
+								Pending Waiting On Others
                   </NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink to="#" className={classnames({ active: this.state.activeItemClassicTabs1 === '3' })} onClick={() => { this.toggleClassicTabs1('3') }}>
-								Pending Waiting On Other
+								Pending Waiting On Me
                   </NavLink>
 						</NavItem>
 						<NavItem>
