@@ -3,7 +3,7 @@ import { Container, Row, Col, Input, Button, Fa, Card } from 'mdbreact';
 import "./Login.css";
 import { Redirect, Link } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
-import { setLocal } from '../utils/LocalStorage';
+import { setLocal, checkLogin } from '../utils/LocalStorage';
 const axios = require('axios');
 
 class FormsPage extends React.Component {
@@ -12,10 +12,17 @@ class FormsPage extends React.Component {
 		console.log("Here are the props")
 		console.log(props)
 		this.responseGoogle = this.responseGoogle.bind(this);
+		this.updateParentState = props.propFn.bind(this);
+		this.updateParentLogin = this.updateParentLogin.bind(this);
+		console.log("uuuuuuuu", this.updateParentLogin)
+	}
+
+	componentDidMount() {
+		checkLogin()
 	}
 	
-	updateParentLogin = (FirstName, LastName, Picture, _id) =>{
-		this.props.propFn(true, FirstName, LastName, _id, Picture)
+	updateParentLogin = (FirstName, LastName, Picture, _id) => {
+		this.updateParentState(true, FirstName, LastName, _id, Picture)
 	}
 
 	responseGoogle = (response) => {

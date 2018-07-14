@@ -8,7 +8,7 @@ class PWOM extends React.Component {
 		const { data } = props;
 		const { Party1, Party2, ProductID } = data;
 		const groundState = ProductID.Ground ? "ground" : "not ground";
-		const HistoryURL = "/TrasactionHistory/" + ProductID._id.toString();
+		const HistoryURL = "/product-history/" + ProductID._id.toString();
 		const RejectURL = "/api/transactions/rejectTxn/" + data._id.toString();
 		const AcceptURL = "/api/transactions/approveTxn/" + data._id.toString();
 		this.acceptTxn = this.acceptTxn.bind(this);
