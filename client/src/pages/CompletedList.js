@@ -15,6 +15,4 @@ const CompletedList = props => {
 		return <div>You haven't completed any transactions yet.</div>
 	}
 }
-
-
 export default CompletedList;
