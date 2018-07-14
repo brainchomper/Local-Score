@@ -12,6 +12,7 @@ class TabsPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.toggleClassicTabs1 = this.toggleClassicTabs1.bind(this);
+		this.updateParent = this.updateParent.bind(this);
 		this.state = {
 			activeItemClassicTabs1: '1',
 			PWOM: [],
@@ -21,8 +22,34 @@ class TabsPage extends React.Component {
 			LastName: "",
 			Picture: "",
 			userID: "",
-			queriesComplete: false
+			queriesComplete: false,
+			update: false
 		};
+	}
+	updateParent = () =>{
+		console.log("ugh")
+		const that = this
+		localCheck(({ fn, ln, p, id }) => {
+			const queryURL = ("api/transactions/allUsersTxns/" + id)
+			console.log("now querying the database");
+			axios.get(queryURL)
+				.then(qResults => {
+					console.log("what did we get")
+					console.log(qResults.data);
+					console.log("qresultsPWOOM")
+					console.log(qResults.data.TWOO)
+					that.setState({
+						PWOO: qResults.data.TWOO,
+						PWOM: qResults.data.TWOM,
+						COMPLETED: qResults.data.COMPLETED,
+						queriesComplete: true,
+						FirstName: fn,
+						LastName: ln,
+						Picture: p,
+						userID: id,
+					})
+				})
+		})
 	}
 
 	toggleClassicTabs1(tab) {
@@ -84,12 +111,12 @@ class TabsPage extends React.Component {
 					<TabContent activeItem={this.state.activeItemClassicTabs1}>
 						<TabPane tabId="2">
 							<Container>
-								<PWOOList props={this.state} />
+								<PWOOList props={this.state} updateParent = {this.updateParent} />
 							</Container>
 						</TabPane>
 						<TabPane tabId="3">
 							<Container>
-								<PWOMList props={this.state} />
+								<PWOMList props={this.state} updateParent = {this.updateParent} />
 							</Container>
 						</TabPane>
 						<TabPane tabId="4">
