@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Row, Col, Input, Button, Fa, Card } from 'mdbreact';
+import { Container, Row, Col, Input, Button, Card } from 'mdbreact';
 import "./Login.css";
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import { setLocal, checkLogin } from '../utils/LocalStorage';
 const axios = require('axios');

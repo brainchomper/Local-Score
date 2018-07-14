@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Row, Fa, CardBody, Card, CardText, CardTitle, Button } from 'mdbreact';
-import { Link } from 'react-router-dom';
 const axios = require("axios");
 
 class PWOO extends React.Component {
@@ -8,7 +7,7 @@ class PWOO extends React.Component {
 		super(props)
 		const { data } = props;
 		console.log(props)
-		const { Party1, Party2, ProductID } = data;
+		const {  Party2, ProductID } = data;
 		const groundState = ProductID.Ground ? "ground" : "not ground";
 		const HistoryURL = "/product-history/" + ProductID._id.toString();
 		const RejectURL = "/api/transactions/rejectTxn/" + data._id.toString();

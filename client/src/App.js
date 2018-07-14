@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import mdbreact from 'mdbreact';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.css';
 import SideBar from "./pages/SideBar";
 import Login from "./pages/Login.js";
@@ -10,8 +9,8 @@ import Landing from './components/Landing';
 import Account from './pages/Account.js';
 import TransactionPage from "./pages/TransactionPage";
 import BoardingSurvey from "./components/BoardingSurvey"
-import UI from "./pages/UI";
 import Register from "./components/Auth/Register";
+import HistoryPage from "./pages/HistoryPage";
 
 // context
 // const Context = React.createContext();
@@ -84,7 +83,7 @@ class App extends Component {
 						<Route exact path="/account" render={() => < Account props = {this.state} />} />
 						<Route exact path="/new-product" render={() => < BoardingSurvey props = {this.state} />} />
 						<Route exact path="/transactions" render={() => < TransactionPage props = {this.state} />} />
-						<Route path="/product-history/:id" render={() => < ProductFeed props = {this.state} />} />
+						<Route path="/product-history/:productid" render={() => < HistoryPage props = {this.state} />} />
 					</Switch>
 				</Router>
 			</React.Fragment>

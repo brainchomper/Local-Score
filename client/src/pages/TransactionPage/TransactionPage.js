@@ -3,6 +3,7 @@ import { Card, Button, CardBody, CardTitle, InputNumeric, Container } from 'mdbr
 import UserAutoSearch from "../../components/UserAutoSearch";
 import ProductAutoSearch from "../../components/ProductAutoSearch";
 import "./TransactionPage.css";
+// import {localCheck} from "../../utils/LocalStorage"
 const axios = require('axios');
 
 
@@ -26,6 +27,9 @@ class TransactionPage extends React.Component {
 			Product: "",
 			Party1: ""
 		};
+	}
+
+	componentDidMount(){
 	}
 
 	cLogState() {
