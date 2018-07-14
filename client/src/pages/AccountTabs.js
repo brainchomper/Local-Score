@@ -64,45 +64,41 @@ class TabsPage extends React.Component {
 	render() {
 		return (
 			<Router>
-				<Container className="mt-4">
-					<Row>
-						<Col md="12">
-							<Nav classicTabs color="cyan">
-								<NavItem>
-									<NavLink to="#" className={classnames({ active: this.state.activeItemClassicTabs1 === '2' })} onClick={() => { this.toggleClassicTabs1('2') }}>
-										Pending Waiting On Me
+				<Container className="pt-2">
+					<Nav tabs className="nav-justified">
+						<NavItem>
+							<NavLink to="#" className={classnames({ active: this.state.activeItemClassicTabs1 === '2' })} onClick={() => { this.toggleClassicTabs1('2') }}>
+								Pending Waiting On Me
                   </NavLink>
-								</NavItem>
-								<NavItem>
-									<NavLink to="#" className={classnames({ active: this.state.activeItemClassicTabs1 === '3' })} onClick={() => { this.toggleClassicTabs1('3') }}>
-										Pending Waiting On Other
+						</NavItem>
+						<NavItem>
+							<NavLink to="#" className={classnames({ active: this.state.activeItemClassicTabs1 === '3' })} onClick={() => { this.toggleClassicTabs1('3') }}>
+								Pending Waiting On Other
                   </NavLink>
-								</NavItem>
-								<NavItem>
-									<NavLink to="#" className={classnames({ active: this.state.activeItemClassicTabs1 === '4' })} onClick={() => { this.toggleClassicTabs1('4'); }}>
-										Completed Transactions
+						</NavItem>
+						<NavItem>
+							<NavLink to="#" className={classnames({ active: this.state.activeItemClassicTabs1 === '4' })} onClick={() => { this.toggleClassicTabs1('4'); }}>
+								Completed Transactions
                   </NavLink>
-								</NavItem>
-							</Nav>
-							<TabContent className="card" activeItem={this.state.activeItemClassicTabs1}>
-								<TabPane tabId="2">
-									<Container>
-										<PWOOList props={this.state} />
-									</Container>
-								</TabPane>
-								<TabPane tabId="3">
-									<Container>
-										<PWOMList props={this.state} />
-									</Container>
-								</TabPane>
-								<TabPane tabId="4">
-									<Container>
-										<CompletedList props={this.state} />
-									</Container>
-								</TabPane>
-							</TabContent>
-						</Col>
-					</Row>
+						</NavItem>
+					</Nav>
+					<TabContent activeItem={this.state.activeItemClassicTabs1}>
+						<TabPane tabId="2">
+							<Container>
+								<PWOOList props={this.state} />
+							</Container>
+						</TabPane>
+						<TabPane tabId="3">
+							<Container>
+								<PWOMList props={this.state} />
+							</Container>
+						</TabPane>
+						<TabPane tabId="4">
+							<Container>
+								<CompletedList props={this.state} />
+							</Container>
+						</TabPane>
+					</TabContent>
 				</Container>
 			</Router>
 		);
