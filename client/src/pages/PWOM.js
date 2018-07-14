@@ -1,3 +1,21 @@
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ @johnstuart670 Sign out
+1
+0 0 brainchomper/Local-Score
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
+Local-Score/client/src/pages/PWOM.js
+aed9703  35 minutes ago
+@johnstuart670 johnstuart670 updated PWOM but it ugly
+@johnstuart670 @t-alex-b @brainchomper
+     
+62 lines (54 sloc)  2.22 KB
 import React from 'react';
 import { Container, Row, Fa, CardBody, Card, CardText, CardTitle, Button } from 'mdbreact';
 import { Link } from 'react-router-dom';
@@ -59,3 +77,16 @@ class PWOM extends React.Component {
 }
 
 export default PWOM;
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About
+Press h to open a hovercard with more details.
