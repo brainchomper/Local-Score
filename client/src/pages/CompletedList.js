@@ -3,11 +3,9 @@ import TransactionFeed from "./TransactionFeed";
 import BoardedFeed from "./BoardedFeed";
 
 const CompletedList = props => {
-	console.log(props)
 	if (props.props.queriesComplete === true && typeof props.props.COMPLETED !== "undefined") {
 
 		return props.props.COMPLETED.map((each, i) => {
-			console.log({each})
 			if (each.Party1._id !== each.Party2._id){
 				return <TransactionFeed data={each} key = {i} />
 			}

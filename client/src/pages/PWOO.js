@@ -5,21 +5,23 @@ const axios = import("axios");
 
 export const PWOO = props => {
 	const { data } = props;
-	const { Party2, Product } = data;
-	const groundState = Product.Ground ? "ground" : "not ground";
-	const HistoryURL = ("/ProductHistoryFeed/" + Product._id);
+	const { Party2, ProductID } = data;
+	console.log(data)
+	console.log("/././././././././././.")
+	const groundState = ProductID.Ground ? "ground" : "not ground";
+	const HistoryURL = ("/ProductHistoryFeed/" + ProductID._id);
 	const RejectURL = ("/api/transactions/rejectTxn/" + data._id);
 
-	const rejectTxn = (RejectURL) => axios(RejectURL).then( response =>console.log("Modal Pop", response));
-
+	// const rejectTxn = () => axios.post(RejectURL).then( response =>console.log("Modal Pop", response));
+return (
 	<Container style={{ maxWidth: '80%' }}>
 		<Card cascade>
 			<CardBody cascade>
 				<CardTitle>Transaction {data._id}</CardTitle>
-				<CardText>You are currently waiting on {Party2.FirstName} {Party2.LastName} to approve this transaction of purchasing {Product.Name} for {data.Price}.</CardText>
-				<CardText>{Product.Name} is a {Product.Roast} coffee that is {groundState}.</CardText>Í
+				<CardText>You are currently waiting on {Party2.FirstName} {Party2.LastName} to approve this transaction of purchasing {ProductID.Name} for {data.Price}.</CardText>
+				<CardText>{ProductID.Name} is a {ProductID.Roast} coffee that is {groundState}.</CardText>Í
 				<Link to={HistoryURL}>See all transactions associated with this product</Link>
-				<Button onClick = {this.rejectTxn({RejectURL})}>Reject This Transaction </Button>
+				<Button>Reject This Transaction </Button>
 			</CardBody>
 			<div className="rounded-bottom mdb-color lighten-3 text-center pt-3">
 				<ul className="list-unstyled list-inline font-small">
@@ -28,6 +30,6 @@ export const PWOO = props => {
 			</div>
 		</Card>
 	</Container>
-
+)
 }
 export default PWOO;
