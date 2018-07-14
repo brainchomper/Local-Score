@@ -10,7 +10,7 @@ export const BoardedFeed = props => {
 	}
 
 	return (
-		<Container className="pb-2">
+		<Container className="pb-3">
 		<Card testimonial className = "hoverable">
 			<div className="row">
 				<div className="col">

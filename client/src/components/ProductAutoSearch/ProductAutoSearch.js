@@ -93,7 +93,7 @@ class ProductAutoSearch extends React.Component {
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
 				inputProps={inputProps} />
-				<Button color="deep-orange" rounded onClick = {this.updateProduct} > Lock in Product </Button>
+				<Button color="deep-orange" rounded onClick = {this.updateProduct} >Lock in Product</Button>
 				</React.Fragment>
     );
   }
