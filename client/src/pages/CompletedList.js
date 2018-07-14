@@ -6,11 +6,12 @@ const CompletedList = props => {
 	if (props.props.queriesComplete === true && typeof props.props.COMPLETED !== "undefined") {
 
 		return props.props.COMPLETED.map((each, i) => {
-			console.log(each)
+			console.log(each, i)
 
 			if (each.Party1._id !== each.Party2._id){
 				return <TransactionFeed data={each} key = {i} />
 			}
+
 			return <BoardedFeed data = {each} key = {i} />
 		})
 	} else {
