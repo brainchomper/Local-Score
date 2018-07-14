@@ -153,7 +153,7 @@ render() {
             <SideNav logo="./images/logo.png" isOpenWithButton={isOpenWithButtonA} breakWidth={1300} style={sideStyle} hidden href="/">
 						<div className="row text-center">
 						<div className="col">
-						<Avatar tag="img" src={this.props.props.Picture} className="rounded-circle z-depth-1-half img-fluid m-3 text-center" alt="User Image"/>
+						<Avatar tag="img" src="" className="rounded-circle z-depth-1-half img-fluid m-3 text-center" alt="User Image"/>
 						</div>
 						</div>
 						
