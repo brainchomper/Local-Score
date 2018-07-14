@@ -4,7 +4,7 @@ import { Button, Card, CardImage, CardTitle, Avatar, CardUp, Container } from 'm
 export const TransactionFeed = props => {
 	const { data } = props;
 	const { Party1, Party2, ProductID } = data;
-	const ProductURL = ("TransactionHistory/" + ProductID._id);
+	const ProductURL = ("product-history/" + ProductID._id);
 	return (
 		<Container className="pb-3">
 		<Card testimonial className = "">

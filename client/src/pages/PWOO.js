@@ -10,14 +10,13 @@ class PWOO extends React.Component {
 		console.log(props)
 		const { Party1, Party2, ProductID } = data;
 		const groundState = ProductID.Ground ? "ground" : "not ground";
-		const HistoryURL = "/TrasactionHistory/" + ProductID._id.toString();
+		const HistoryURL = "/product-history/" + ProductID._id.toString();
 		const RejectURL = "/api/transactions/rejectTxn/" + data._id.toString();
 		this.rejectTxn = this.rejectTxn.bind(this);
 		this.updateAccount = props.updateAccount.bind(this)
 		console.log(this.updateAccount)
 		this.state = {
 			RejectURL: RejectURL,
-			AcceptURL: AcceptURL,
 			HistoryURL: HistoryURL,
 			data: data,
 			Party2: Party2,
