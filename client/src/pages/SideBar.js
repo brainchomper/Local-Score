@@ -153,16 +153,17 @@ render() {
             <SideNav logo="./images/logo.png" isOpenWithButton={isOpenWithButtonA} breakWidth={1300} style={sideStyle} hidden href="/">
 						<div className="row text-center">
 						<div className="col">
-						<Avatar tag="img" src="" className="rounded-circle z-depth-1-half img-fluid m-3 text-center" alt="User Image"/>
+						<Avatar tag="img" src={this.props.props.Picture} className="rounded-circle z-depth-1-half img-fluid m-3 text-center" alt="User Image"/>
 						</div>
 						</div>
 						
               <SideNavNav>
 								<SideNavItem href="/login">Login - Sign Up</SideNavItem>
-                <SideNavItem href="/team">Team</SideNavItem>
-								<SideNavItem href="/products">Products</SideNavItem>
 								<SideNavItem href="/account">Account</SideNavItem>
-								<SideNavItem href="/transactions">New Transactions</SideNavItem>
+								<SideNavItem href="/products">View All Transactions</SideNavItem>
+								<SideNavItem href="/new-product">Add New Product</SideNavItem>
+								<SideNavItem href="/transactions">Create New Transaction</SideNavItem>
+								<SideNavItem href="/team">Our Team</SideNavItem>
               </SideNavNav>
             </SideNav>
             <Navbar style={navStyle} dark expand="md" fixed="top">
@@ -177,7 +178,7 @@ render() {
               <NavbarNav right style={specialCaseNavbarStyles}>
                 
                 <NavItem>
-                    <NavLink to="#!"><Fa icon="user" className="d-inline-inline"/>  <div className="d-none d-md-inline">Account</div></NavLink>
+                    <NavLink to="account"><Fa icon="user" className="d-inline-inline"/>  <div className="d-none d-md-inline">Account</div></NavLink>
                 </NavItem>
               </NavbarNav>
             </Navbar>
