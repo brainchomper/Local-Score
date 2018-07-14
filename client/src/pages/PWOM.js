@@ -24,34 +24,37 @@ class PWOM extends React.Component {
 		}
 	}
 
-	rejectTxn ()  {
-		axios.get(this.state.RejectURL).then( response =>console.log("Modal Pop", response))
-	 };
- 
-	acceptTxn  () {
-		axios.get(this.state.AcceptURL).then( response => console.log(response))
-	 };
+	rejectTxn() {
+		axios.get(this.state.RejectURL).then(response => console.log("Modal Pop", response))
+	};
+
+	acceptTxn() {
+		axios.get(this.state.AcceptURL).then(response => console.log(response))
+	};
 
 	render() {
 		return (
-			<Container style={{ maxWidth: '80%' }}>
-					<Card cascade>
-			 			<CardBody cascade>
-			 				<CardTitle>Transaction {this.state.data._id}</CardTitle>
-			 				<CardText>{this.state.Party1.FirstName} {this.state.Party1.LastName} is currently waiting on you to approve this transaction of purchasing {this.state.ProductID.Name} for ${this.state.data.Price}.</CardText>
-			 				<CardText>{this.state.ProductID.Name} is a {this.state.ProductID.Roast} coffee that is {this.state.groundState}.</CardText>
-			 				<Button href= {this.state.HistoryURL} >See all transactions associated with this product</Button>
-			 				<Row>
-			 					<Button tag="a" floating gradient="blue" onClick = {this.acceptTxn}><Fa icon="check" /></Button>
-			 					<Button onClick = {this.rejectTxn}>Reject This Transaction </Button>
-			 				</Row>
-			 			</CardBody>
-			 			<div className="rounded-bottom mdb-color lighten-3 text-center pt-3">
-							<ul className="list-unstyled list-inline font-small">
-							</ul>
-			 			</div>
-			 		</Card>
-			 	</Container>
+			<Container className=" pb-2">
+				<Card className="hoverable text-center">
+					<CardBody>
+						<CardTitle>Transaction: {this.state.data._id}</CardTitle>
+						<CardText><b>{this.state.Party1.FirstName} {this.state.Party1.LastName}</b> is currently waiting on you to approve this transaction of purchasing <b>{this.state.ProductID.Name}</b> for <b>${this.state.data.Price}</b>.</CardText>
+						<CardText><b>{this.state.ProductID.Name}</b> is a <b>{this.state.ProductID.Roast}</b> coffee that is<b> {this.state.groundState}</b>.</CardText>
+						<Row className="text-center">
+
+							<div className="col">
+								<Button color="success" rounded onClick={this.acceptTxn}><Fa icon="check" /></Button>
+							</div>
+							<div className="col">
+								<Button  rounded color="info" href={this.state.HistoryURL}  >All transactions with this product</Button>
+							</div>
+							<div className="col">
+								<Button color="danger" rounded onClick={this.rejectTxn}><Fa icon="times" /></Button>
+							</div>
+						</Row>
+					</CardBody>
+				</Card>
+			</Container>
 		)
 	}
 }

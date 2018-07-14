@@ -26,37 +26,41 @@ class PWOO extends React.Component {
 		}
 	}
 
- rejectTxn()  {
-	 axios.get(this.state.RejectURL).then( response =>console.log("Modal Pop", response))
+	rejectTxn() {
+		axios.get(this.state.RejectURL).then(response => console.log("Modal Pop", response))
 	};
 
- acceptTxn  () {
-	 axios.get(this.state.AcceptURL).then( response => console.log(response))
+	acceptTxn() {
+		axios.get(this.state.AcceptURL).then(response => console.log(response))
 	};
 
 	render() {
 		return (
-			<Container style={{ maxWidth: '80%' }} className="hoverable">
-					<Card cascade>
-			 			<CardBody cascade>
-			 				<CardTitle>Transaction {this.state.data._id}</CardTitle>
-			 				<CardText>You are currently waiting on {this.state.Party2.FirstName} {this.state.Party2.LastName} to approve the purchasing of {this.state.ProductID.Name} for $ {this.state.data.Price}.</CardText>
-			 				<CardText>{this.state.ProductID.Name} is a {this.state.ProductID.Roast} coffee that is {this.state.groundState}.</CardText>
-							 <Button href= {this.state.HistoryURL} >See all transactions associated with this product</Button>			 				
-							 <Row>
-			 					<Button tag="a" floating gradient="blue" onClick = {this.acceptTxn}><Fa icon="check" /></Button>
-								 <div className="col">
-								 
-								 </div>
-								 <div className="col">
-								 </div>
-								 <Button tag="a" floating gradient="purple" onClick = {this.rejectTxn}><Fa icon="x" /></Button>
+			<Container className="pb-2" >
+				<Card className="hoverable">
+					<CardBody >
+						<CardTitle>Transaction: {this.state.data._id}</CardTitle>
+						<CardText>You are currently waiting on <b>{this.state.Party2.FirstName} {this.state.Party2.LastName}</b> to approve the purchasing of <b>{this.state.ProductID.Name}</b> for $ <b>{this.state.data.Price}</b>.</CardText>
+						<CardText>{this.state.ProductID.Name} is a {this.state.ProductID.Roast} coffee that is {this.state.groundState}.</CardText>
 
-			 				</Row>
-			 			</CardBody>
-			 			
-			 		</Card>
-			 	</Container>
+						<Row className="text-center">
+
+							<div className="col">
+								<Button color="success" rounded onClick={this.acceptTxn}><Fa icon="check" /></Button>
+							</div>
+							<div className="col">
+								<Button block rounded color="info" href={this.state.HistoryURL}  >See all transactions with this product</Button>
+							</div>
+							<div className="col">
+								<Button color="danger" rounded onClick={this.rejectTxn}><Fa icon="times" /></Button>
+							</div>
+
+
+						</Row>
+					</CardBody>
+
+				</Card>
+			</Container>
 		)
 	}
 }
