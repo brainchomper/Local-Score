@@ -70,46 +70,46 @@ class FormsPage extends React.Component {
 								<div className="row my-3 d-flex justify-content-center">
 								
 
-								<Row className="d-flex align-items-center mb-4">
-									<div className="text-center mb-3 col-md-12">
-										<Button color="success" rounded type="button" className="btn-block z-depth-1  animated hoverable" >Sign in</Button>
-										<Link to="/register"> Click Here to Register</Link>
-									</div>
-								</Row>
-								<Col md="12">
-									<p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2 white-text"> or Sign in with:</p>
-									<div className="row my-3 d-flex justify-content-center">
+								
+								<Col md="6">
+									
 										<GoogleLogin
 											clientId="159481047934-p3svhsktles2sgevg3rg2iab3dlgkd3a.apps.googleusercontent.com"
 											buttonText="Login With Google"
 											onSuccess={this.responseGoogle}
 											onFailure={this.responseGoogle}
 										/>
-									</div>
+									
 								</Col>
+								
 							</div>
 
 							<Input className=" animated hoverable text-white" label="Your email" group type="text" validate />
 							<Input label="Your password" className="animated hoverable text-white" group type="password" validate />
 
 							<Row className="d-flex align-items-center mb-4">
+							<Col>
 								<div className="text-center mb-3 col-md-12">
 									<Button color="success" size="lg"rounded type="button" className="btn-block z-depth-1 hoverable">Sign in</Button>
+									</div>
 									<div className="text-center">
 										<h3 className="white-text mb-5 mt-4 font-weight-bold"><strong>NOT A MEMBER?</strong></h3>
+										<Button color="primary" size="lg" block href="/register" rounded type="button" className="btn-block z-depth-1 hoverable">Register</Button>
 									</div>
-									<Button color="primary" size="lg" block href="/register" rounded type="button" className="btn-block z-depth-1 hoverable">Register</Button>
+									</Col>
+								
 								{/* <Link to="/register"> </Link> */}
 								{/* <div className="text-center">
 									<h3 className="white-text mb-5 mt-4 font-weight-bold"><strong>OR</strong></h3>
 								</div> */}
-								</div>
-							</Row>
-							<Col md="12">
+								
+							{/* </Row>
+							{/* <Col md="12">
 								
 								{/* <p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2 white-text"> or Sign in with:</p> */}
 
-							</Col>
+							</Row> 
+						</div>
 						</div>
 					</Card>
 				</section>
