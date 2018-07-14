@@ -145,12 +145,18 @@ render() {
   const navStyle = { backgroundColor: "#2c2f34", color: "#fff"}
   const sideStyle = { backgroundColor: '#6a9ed3', width: "100%"}
   const button1 = <div href="#!" onClick={this.handleToggleClickA} key="sideNavToggleA" style={{lineHeight: '32px', marginRight: '1em', verticalAlign: 'middle'}}><Fa icon="bars" color="white" size="2x"></Fa></div>
-  const specialCaseNavbarStyles = {WebkitBoxOrient: 'horizontal', flexDirection: 'row'};
+	const specialCaseNavbarStyles = {WebkitBoxOrient: 'horizontal', flexDirection: 'row'};
+	console.log(this.props.props)
     return ( 
         <Router>
           <div className="mt-5">
             <SideNav logo="./images/logo.png" isOpenWithButton={isOpenWithButtonA} breakWidth={1300} style={sideStyle} hidden href="/">
-						<Avatar tag="img" src="https://mdbootstrap.com/img/Photos/Avatars/img%20(10).jpg" className="rounded-circle z-depth-1-half img-fluid mt-3 px-1" alt="User Image"/>
+						<div className="row text-center">
+						<div className="col">
+						<Avatar tag="img" src={this.props.props.Picture} className="rounded-circle z-depth-1-half img-fluid m-3 text-center" alt="User Image"/>
+						</div>
+						</div>
+						
               <SideNavNav>
 								<SideNavItem href="/login">Login - Sign Up</SideNavItem>
                 <SideNavItem href="/team">Team</SideNavItem>
