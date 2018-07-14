@@ -41,7 +41,7 @@ class PWOO extends React.Component {
 					<CardBody >
 						<CardTitle>Transaction: {this.state.data._id}</CardTitle>
 						<CardText>You are currently waiting on <b>{this.state.Party2.FirstName} {this.state.Party2.LastName}</b> to approve the purchasing of <b>{this.state.ProductID.Name}</b> for $ <b>{this.state.data.Price}</b>.</CardText>
-						<CardText>{this.state.ProductID.Name} is a {this.state.ProductID.Roast} coffee that is {this.state.groundState}.</CardText>
+						<CardText><b>{this.state.ProductID.Name}</b> is a <b>{this.state.ProductID.Roast}</b> coffee that is {this.state.groundState}.</CardText>
 
 						<Row className="text-center">
 

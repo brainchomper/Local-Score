@@ -21,8 +21,9 @@ export const BoardedFeed = props => {
 					<CardTitle className="text-center">{Party1.FirstName} {Party1.LastName}</CardTitle>
 				</div>
 				<div className="col">
-					<h4 className="text-center pt-3">Loaded {ProductID.Name} as a product.</h4>
-					<p>{ProductID.Name} is a {ProductID.Roast}, {ground} coffee</p>
+					<h4 className="text-center pt-3">Loaded <b>{ProductID.Name}</b> as a product.</h4>
+					<p className="text-center"><b>{ProductID.Name}</b> is a <b>{ProductID.Roast}, {ground}</b> coffee</p>
+					<CardImage className="img-fluid pb-3" src="./images/arrows.png" />
 					<CardImage className="img-fluid px-3" src="./images/arrows.png" />
 				</div>
 			</div>

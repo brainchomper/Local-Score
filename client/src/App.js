@@ -75,7 +75,7 @@ class App extends Component {
 				<Router>
 					<Switch>
 						<Route exact path="/" render={() => <Landing props={this.state} /> } />
-						<Route exact path="/welcome" render={() => <UI props={this.state} /> } />
+						<Route exact path="/welcome" render={() => <Account props={this.state} /> } />
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/team" render={() => < TeamPage props = {this.state} />} />
 						<Route exact path="/login" render={() => < Login props = {this.state} propFn = {this.updateUserState} />} />

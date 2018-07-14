@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, CardBody, CardTitle, InputNumeric } from 'mdbreact';
+import { Card, Button, CardBody, CardTitle, InputNumeric, Container } from 'mdbreact';
 import UserAutoSearch from "../../components/UserAutoSearch";
 import ProductAutoSearch from "../../components/ProductAutoSearch";
 import "./TransactionPage.css";
@@ -93,30 +93,33 @@ class TransactionPage extends React.Component {
 
 	render() {
 		return (
-
-			<div className="row mx-auto" style={{ maxWidth: '50%' }}>
+<Container>
+			<div className="row mx-auto">
 				<div className="col mt-4">
-					<Card>
+					<Card className="text-center">
 						<CardBody>
 							<CardTitle className="text-center">Create New Transaction</CardTitle>
 							<hr />
 							<div className="row text-center">
-								<div className="col">
+								<div className="col-4">
 									<h4>Select User</h4>
 									<UserAutoSearch updateCustomer={this.updateCustomer} userId={this.state.Party1} />
 								</div>
-								<div className="col">
+								<div className="col-4">
 									<h4>Select Product</h4>
 
 									<ProductAutoSearch updateProduct={this.updateProduct} />
 								</div>
-							</div>
-
-							<h5 className="text-center">Item Price $</h5>
+							
+							<div className="col-4">
+							<h4 className="text-center">Item Price $</h4>
 							<InputNumeric name="Price" precision={2} value={this.state.Price} step={0.01} className="mb-2" color="success" />
-							<Button onClick = {this.lockPrice}>Lock in Price</Button>
-
-							<Button block size="lg" color="success" rounded outline onClick={this.submitTxn}>Submit New Transaction</Button>
+							<Button color="deep-orange" rounded onClick = {this.lockPrice}>Lock in Price</Button>
+							</div>
+							</div>
+							
+							
+							<Button block size="lg" color="success" rounded onClick={this.submitTxn}>Submit New Transaction</Button>
 	
 							{/* <Button block color="success" size="lg" onClick={this.submitTxn}>Submit New Transaction</Button> */}
 						</CardBody>
@@ -124,6 +127,7 @@ class TransactionPage extends React.Component {
 					</Card>
 				</div>
 			</div>
+			</Container>
 
 
 		);
