@@ -10,7 +10,7 @@ class BoardingSurvey extends React.Component {
 		this.state = {
 			ProductName: "",
 			Roast: "DARK",
-			Ground: false,
+			Ground: true,
 			FirstName: "",
 			LastName: "",
 			Picture: "",
@@ -80,6 +80,11 @@ class BoardingSurvey extends React.Component {
 			.then(results => {
 				console.log(results);
 				console.log("This is where Kevin's sideover thing will come in")
+				this.setState({
+					ProductName: '',
+					Roast: 'DARK',
+					Ground: true
+				})
 			})
 		// console.log("newproduct")
 		// console.log(newProduct)

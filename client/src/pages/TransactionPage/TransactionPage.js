@@ -17,7 +17,8 @@ class TransactionPage extends React.Component {
 		this.updateProduct = this.updateProduct.bind(this);
 		this.submitTxn = this.submitTxn.bind(this);
 		this.lockPrice = this.lockPrice.bind(this);
-		this.handleInputChange = this.handleInputChange.bind(this)
+		this.handleInputChange = this.handleInputChange.bind(this);
+		this.clearTxn = this.clearTxn.bind(this);
 		this.state = {
 			CustomerLock: false,
 			ProductLock: false,
@@ -35,6 +36,18 @@ class TransactionPage extends React.Component {
 	cLogState() {
 		console.log("the state is currently:");
 		console.log(this.state)
+	}
+
+	clearTxn () {
+		this.setState({
+			CustomerLock: false,
+			ProductLock: false,
+			PriceLock: false,
+			Price: 10,
+			Customer: "",
+			Product: "",
+			Party1: ""
+		})
 	}
 
 	lockPrice = () => {
