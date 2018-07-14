@@ -12,7 +12,6 @@ module.exports = {
 				//destructure
 				const { _id, TxnHistory } = newProduct;
 				//build new object to make a new transaction
-				console.log(newProductDetails.CreatedBy, "THIS IS MY NIGHTMARE")
 				//IE loading a product is a transaction and should be logged
 				const txnInfo = {
 					// both party1 and party2 are the same since there is no moving of goods between parties

@@ -1,12 +1,13 @@
 import React from 'react';
 import { Container, Row, Fa, CardBody, Card, CardText, CardTitle, Button } from 'mdbreact';
 import { Link } from 'react-router-dom';
+// import {setLocal} from '../utils/LocalStorage'
 const axios = require('axios');
 class PWOM extends React.Component {
 	constructor(props) {
 		super(props)
 		const { data } = props;
-		const { Party1, Party2, ProductID } = data;
+		const { Party1, ProductID } = data;
 		const groundState = ProductID.Ground ? "ground" : "not ground";
 		const HistoryURL = "/product-history/" + ProductID._id.toString();
 		const RejectURL = "/api/transactions/rejectTxn/" + data._id.toString();
@@ -48,7 +49,7 @@ class PWOM extends React.Component {
 								<Button color="success" rounded onClick={this.acceptTxn}><Fa icon="check" /></Button>
 							</div>
 							<div className="col">
-								<Button  rounded color="info" href={this.state.HistoryURL}  >All transactions with this product</Button>
+								<Link to ={this.state.HistoryURL}  rounded color="info"  >All transactions with this product</Link>
 							</div>
 							<div className="col">
 								<Button color="danger" rounded onClick={this.rejectTxn}><Fa icon="times" /></Button>

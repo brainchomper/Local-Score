@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, CardImage, CardTitle, Avatar, CardUp, Container } from 'mdbreact';
+import { Card, CardImage, CardTitle, Avatar, CardUp, Container } from 'mdbreact';
 
 export const BoardedFeed = props => {
 	const { data } = props;
