@@ -164,7 +164,16 @@ class DoubleNavigationWithHiddenSideNavFixedNavbar extends React.Component {
 		// checking if the pictureTag is passed through or not and updating to the passed values for authChange 
 		if (this.props.props.LoggedIn) {
 			PictureTag = this.props.props.Picture;
-			AuthChange = <SideNavItem href="/logout">Logout</SideNavItem>;
+
+			AuthChange =
+				<React.Fragment>
+					<SideNavItem href="/logout">Logout</SideNavItem>
+					<SideNavItem href="/account">Account</SideNavItem>
+					<SideNavItem href="/products">View All Transactions</SideNavItem>
+					<SideNavItem href="/new-product">Add New Product</SideNavItem>
+					<SideNavItem href="/transactions">Create New Transaction</SideNavItem>
+				</React.Fragment>;
+
 			miniAvatar = <Avatar tag="img" src={PictureTag} className="rounded-circle z-depth-1-half img-fluid m-3 text-center" alt="User Image" />;
 			topLink = <NavLink to="/account"><Fa icon="user" className="d-inline-inline" />  <div className="d-none d-md-inline">Account</div></NavLink>;
 		}
@@ -181,10 +190,6 @@ class DoubleNavigationWithHiddenSideNavFixedNavbar extends React.Component {
 
 						<SideNavNav>
 							{AuthChange}
-							<SideNavItem href="/account">Account</SideNavItem>
-							<SideNavItem href="/products">View All Transactions</SideNavItem>
-							<SideNavItem href="/new-product">Add New Product</SideNavItem>
-							<SideNavItem href="/transactions">Create New Transaction</SideNavItem>
 							<SideNavItem href="/team">Our Team</SideNavItem>
 						</SideNavNav>
 					</SideNav>
