@@ -47,11 +47,26 @@ class FormsPage extends React.Component {
 			Password: Password
 		}
 		axios
-		.put("/api/users/passwordLogin", {valueSubmit})
+		.put("/api/users/passwordLogin", valueSubmit)
 		.then( response =>{
-			if (response.validate){
+			console.log(response)
+			if (response.status ===200){
 				console.log("Response for password", response)
-			}
+				const {data } = response;
+				const {user} = data;
+				const { FirstName, LastName, Picture, _id } = user;
+				const LSUserValues = {
+					fn: FirstName,
+					ln: LastName,
+					p: Picture,
+					id: _id
+				}
+				setLocal("localScoreLoggedIn", true);;
+				setLocal("LSUserValues", JSON.stringify(LSUserValues));
+				this.updateParentLogin(FirstName, LastName, Picture, _id);		
+				this.setState({
+					reload: true
+				})	}
 		})
 	}
 	responseGoogle = (response) => {

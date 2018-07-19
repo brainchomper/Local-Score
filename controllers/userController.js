@@ -108,20 +108,22 @@ module.exports = {
   },
   pwdLogin: (req, res) => {
 		const { body } = req;
-		const {valueSubmit } = body;
-		const {Email, Password} = valueSubmit
-    console.log(req.body);
+		// const {valueSubmit } = body;
+		const {Email, Password} = req.body
+		console.log(req.body);
+		console.log(Email);
     // Find User by email
     db.User.findOne({ Email: Email }).then(user => {
       // Check for user
       if (!user) {
         return res.status(404).json({ Email: "User not found" });
       }
-
+			console.log(user)
       // Check Password
       bcrypt.compare(Password, user.Password).then(isMatch => {
         if (isMatch) {
-          // User Matched
+					// User Matched
+					console.log(isMatch)
           const payload = { id: user._id }; // Create JWT payload
 
           //     // sign token
@@ -131,6 +133,7 @@ module.exports = {
             { expiresIn: 3600 },
             (err, token) => {
 							user.validate = true
+							console.log(user, "user farther down")
               res.json({
                 user
               });
