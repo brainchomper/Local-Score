@@ -183,6 +183,7 @@ class DoubleNavigationWithHiddenSideNavFixedNavbar extends React.Component {
 				<div className="mt-5">
 					<SideNav logo="./images/logo.png" isOpenWithButton={isOpenWithButtonA} breakWidth={1300} style={sideStyle} hidden href="/">
 						<div className="row text-center">
+
 							<div className="col">
 								{miniAvatar}
 							</div>
