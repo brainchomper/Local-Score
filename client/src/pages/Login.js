@@ -15,9 +15,13 @@ class FormsPage extends React.Component {
 		this.updateParentState = props.propFn.bind(this);
 		this.updateParentLogin = this.updateParentLogin.bind(this);
 		this.cLog = this.cLog.bind(this)
+		this.loginManually = this.loginManually.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
 		console.log("uuuuuuuu", this.updateParentLogin)
 		this.state = {
-			reload: false
+			reload: false,
+			Email: "",
+			Password: "",
 		}
 	}
 
@@ -28,8 +32,28 @@ class FormsPage extends React.Component {
 	updateParentLogin = (FirstName, LastName, Picture, _id) => {
 		this.updateParentState(true, FirstName, LastName, _id, Picture)
 	}
-	
 
+	handleInputChange  =(event) => {
+		const { name, value } = event.target;
+		this.setState({
+      [name]: value
+    });
+	}	
+
+	loginManually = () => {
+		const {Email, Password } = this.state;
+		const valueSubmit = {
+			Email: Email,
+			Password: Password
+		}
+		axios
+		.put("/api/users/passwordLogin", {valueSubmit})
+		.then( response =>{
+			if (response.validate){
+				console.log("Response for password", response)
+			}
+		})
+	}
 	responseGoogle = (response) => {
 		console.log(response);
 		const { profileObj } = response
@@ -100,13 +124,13 @@ class FormsPage extends React.Component {
 								
 							</div>
 
-							<Input className=" animated hoverable text-white" label="Your email" group type="text" validate />
-							<Input label="Your password" className="animated hoverable text-white" group type="password" validate />
+							<Input className=" animated hoverable text-white" label="Your email" group type="text" validate name = "Email" value = {this.state.Email} onChange = {this.handleInputChange}/>
+							<Input label="Your password" className="animated hoverable text-white" group type="password" validate name="Password" value = {this.state.Password} onChange = {this.handleInputChange}/>
 
 							<Row className="d-flex align-items-center mb-4">
 							<Col>
 								<div className="text-center mb-3 col-md-12">
-									<Button color="success" size="lg"rounded type="button" className="btn-block z-depth-1 hoverable">Sign in</Button>
+									<Button color="success" size="lg"rounded type="button" className="btn-block z-depth-1 hoverable" onClick = {this.loginManually}>Sign in</Button>
 									</div>
 									<div className="text-center">
 										<h3 className="white-text mb-5 mt-4 font-weight-bold"><strong>NOT A MEMBER?</strong></h3>

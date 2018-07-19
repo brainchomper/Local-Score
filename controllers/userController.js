@@ -67,9 +67,8 @@ module.exports = {
   },
   registerFn: (req, res) => {
 		//deconstruction
-		const {body} = req;
-		const {newUser} = body;
-		const {Email, FirstName, LastName, Password} = newUser
+		console.log(req.body)
+		const {Email, FirstName, LastName, Password} = req.body
     db.User.findOne({ Email: Email }).then(user => {
       if (user) {
         return res.status(400).json({ user: user });
@@ -108,7 +107,9 @@ module.exports = {
     });
   },
   pwdLogin: (req, res) => {
-    const { Email, Password } = req.body;
+		const { body } = req;
+		const {valueSubmit } = body;
+		const {Email, Password} = valueSubmit
     console.log(req.body);
     // Find User by email
     db.User.findOne({ Email: Email }).then(user => {
@@ -129,10 +130,9 @@ module.exports = {
             keys.secretOrKey,
             { expiresIn: 3600 },
             (err, token) => {
+							user.validate = true
               res.json({
-                validate: true,
-                token: "Bearer " + token,
-                user: user
+                user
               });
             }
           );

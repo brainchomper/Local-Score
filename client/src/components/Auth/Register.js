@@ -26,7 +26,7 @@ class Register extends Component {
 
 	onSubmit(e) {
 		e.preventDefault();
-
+		console.log("????")
 		const newUser = {
 			FirstName: this.state.FirstName,
 			LastName: this.state.LastName,
@@ -34,16 +34,16 @@ class Register extends Component {
 			Password: this.state.Password,
 			Password2: this.state.Password2
 		};
-
+		console.log(this.state, newUser)
 		if (newUser.Password != newUser.Password2) {
 			return console.log("figure out the password")
 		}
 
 		axios
-			.post('/api/users/register', { newUser })
+			.post('/api/users/register',  newUser )
 			.then(res => {
-				console.log(res.data);
-				this.setState({ success: res.data })
+				console.log(res);
+				this.setState({ success: res })
 			})
 			.catch(err => this.setState({ Errors: err.response.data }));
 	}

@@ -17,7 +17,7 @@ router.route("/register")
 .post(uController.registerFn)
 
 router.route("/passwordLogin")
-	.post(uController.pwdLogin)
+	.put(uController.pwdLogin)
 
 router.route("/ping")
 	.get(uController.ping)
