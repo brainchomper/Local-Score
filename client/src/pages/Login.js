@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Input, Button, Card } from 'mdbreact';
 import "./Login.css";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import { setLocal, checkLogin } from '../utils/LocalStorage';
 const axios = require('axios');
@@ -14,7 +14,15 @@ class FormsPage extends React.Component {
 		this.responseGoogle = this.responseGoogle.bind(this);
 		this.updateParentState = props.propFn.bind(this);
 		this.updateParentLogin = this.updateParentLogin.bind(this);
+		this.cLog = this.cLog.bind(this)
+		this.loginManually = this.loginManually.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
 		console.log("uuuuuuuu", this.updateParentLogin)
+		this.state = {
+			reload: false,
+			Email: "",
+			Password: "",
+		}
 	}
 
 	componentDidMount() {
@@ -25,6 +33,42 @@ class FormsPage extends React.Component {
 		this.updateParentState(true, FirstName, LastName, _id, Picture)
 	}
 
+	handleInputChange  =(event) => {
+		const { name, value } = event.target;
+		this.setState({
+      [name]: value
+    });
+	}	
+
+	loginManually = () => {
+		const {Email, Password } = this.state;
+		const valueSubmit = {
+			Email: Email,
+			Password: Password
+		}
+		axios
+		.put("/api/users/passwordLogin", valueSubmit)
+		.then( response =>{
+			console.log(response)
+			if (response.status ===200){
+				console.log("Response for password", response)
+				const {data } = response;
+				const {user} = data;
+				const { FirstName, LastName, Picture, _id } = user;
+				const LSUserValues = {
+					fn: FirstName,
+					ln: LastName,
+					p: Picture,
+					id: _id
+				}
+				setLocal("localScoreLoggedIn", true);;
+				setLocal("LSUserValues", JSON.stringify(LSUserValues));
+				this.updateParentLogin(FirstName, LastName, Picture, _id);		
+				this.setState({
+					reload: true
+				})	}
+		})
+	}
 	responseGoogle = (response) => {
 		console.log(response);
 		const { profileObj } = response
@@ -52,16 +96,27 @@ class FormsPage extends React.Component {
 						p: Picture,
 						id: _id
 					}
-					setLocal("localScoreLoggedIn", true);
-					setLocal("LSUserValues", JSON.stringify(LSUserValues))
-					this.updateParentLogin(FirstName, LastName, Picture, _id)
+					setLocal("localScoreLoggedIn", true);;
+					setLocal("LSUserValues", JSON.stringify(LSUserValues));
+					this.updateParentLogin(FirstName, LastName, Picture, _id);
+					console.log("????")
+					console.log(this.state)
+					this.setState({
+						reload: true
+					})
 				} else (console.log("the user login was unsuccesful"))
 			}
 			)
 	}
+
+	cLog() {
+		console.log(this.state)
+	}
 	render() {
+		if (this.state.reload === false ) {
 		return (
 			<Container className="mx-auto">
+			<Button onClick = {this.cLog}> Loggin state </Button>
 				<section className="form-dark">
 					<Card className="card-image animated hoverable" style={{ backgroundImage: 'url(images/coffee-beans.jpg)' }}>
 						<div className="text-white rgba-stylish-light py-5 px-5 z-depth-4">
@@ -84,37 +139,29 @@ class FormsPage extends React.Component {
 								
 							</div>
 
-							<Input className=" animated hoverable text-white" label="Your email" group type="text" validate />
-							<Input label="Your password" className="animated hoverable text-white" group type="password" validate />
+							<Input className=" animated hoverable text-white" label="Your email" group type="text" validate name = "Email" value = {this.state.Email} onChange = {this.handleInputChange}/>
+							<Input label="Your password" className="animated hoverable text-white" group type="password" validate name="Password" value = {this.state.Password} onChange = {this.handleInputChange}/>
 
 							<Row className="d-flex align-items-center mb-4">
 							<Col>
 								<div className="text-center mb-3 col-md-12">
-									<Button color="success" size="lg"rounded type="button" className="btn-block z-depth-1 hoverable">Sign in</Button>
+									<Button color="success" size="lg"rounded type="button" className="btn-block z-depth-1 hoverable" onClick = {this.loginManually}>Sign in</Button>
 									</div>
 									<div className="text-center">
 										<h3 className="white-text mb-5 mt-4 font-weight-bold"><strong>NOT A MEMBER?</strong></h3>
 										<Button color="primary" size="lg" block href="/register" rounded type="button" className="btn-block z-depth-1 hoverable">Register</Button>
 									</div>
 									</Col>
-								
-								{/* <Link to="/register"> </Link> */}
-								{/* <div className="text-center">
-									<h3 className="white-text mb-5 mt-4 font-weight-bold"><strong>OR</strong></h3>
-								</div> */}
-								
-							{/* </Row>
-							{/* <Col md="12">
-								
-								{/* <p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2 white-text"> or Sign in with:</p> */}
-
 							</Row> 
 						</div>
 						</div>
 					</Card>
 				</section>
 			</Container>
-		);
+		);}
+		else {
+			return ( <Redirect to ="/products" />)
+		}
 	}
 };
 

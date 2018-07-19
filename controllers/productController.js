@@ -5,7 +5,7 @@ module.exports = {
 		//reference the new product details we sent in from the boarding survery 
 		const newProductDetails = req.body.newProduct;
 		//console log for good measure
-		console.log("this is the newProductDetails JSON OBJECT :", newProductDetails)
+		console.log("this is the newProductDetails JSON OBJECT :", newProductDetails.CreatedBy)
 		// take the JSON obejct and make a new product with it
 		db.Product.create(newProductDetails)
 			.then(newProduct => {
@@ -13,6 +13,8 @@ module.exports = {
 				const { _id, TxnHistory } = newProduct;
 				//build new object to make a new transaction
 				//IE loading a product is a transaction and should be logged
+				console.log(newProductDetails)
+
 				const txnInfo = {
 					// both party1 and party2 are the same since there is no moving of goods between parties
 					//this also means that the transaction is completed by default and approved by the non-existant second party by default
@@ -22,7 +24,7 @@ module.exports = {
 					ProductID: _id,
 					Completed: true
 				};
-				console.log(txnInfo), txnInfo
+				console.log(txnInfo)
 				// take the json object we just built for the txnInfo and create the new txn
 				db.Transaction
 					.create(txnInfo)
