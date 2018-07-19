@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Input, Button, Card } from 'mdbreact';
 import "./Login.css";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import { setLocal, checkLogin } from '../utils/LocalStorage';
 const axios = require('axios');
@@ -14,7 +14,11 @@ class FormsPage extends React.Component {
 		this.responseGoogle = this.responseGoogle.bind(this);
 		this.updateParentState = props.propFn.bind(this);
 		this.updateParentLogin = this.updateParentLogin.bind(this);
+		this.cLog = this.cLog.bind(this)
 		console.log("uuuuuuuu", this.updateParentLogin)
+		this.state = {
+			reload: false
+		}
 	}
 
 	componentDidMount() {
@@ -24,6 +28,7 @@ class FormsPage extends React.Component {
 	updateParentLogin = (FirstName, LastName, Picture, _id) => {
 		this.updateParentState(true, FirstName, LastName, _id, Picture)
 	}
+	
 
 	responseGoogle = (response) => {
 		console.log(response);
@@ -52,16 +57,27 @@ class FormsPage extends React.Component {
 						p: Picture,
 						id: _id
 					}
-					setLocal("localScoreLoggedIn", true);
-					setLocal("LSUserValues", JSON.stringify(LSUserValues))
-					this.updateParentLogin(FirstName, LastName, Picture, _id)
+					setLocal("localScoreLoggedIn", true);;
+					setLocal("LSUserValues", JSON.stringify(LSUserValues));
+					this.updateParentLogin(FirstName, LastName, Picture, _id);
+					console.log("????")
+					console.log(this.state)
+					this.setState({
+						reload: true
+					})
 				} else (console.log("the user login was unsuccesful"))
 			}
 			)
 	}
+
+	cLog() {
+		console.log(this.state)
+	}
 	render() {
+		if (this.state.reload === false ) {
 		return (
 			<Container className="mx-auto">
+			<Button onClick = {this.cLog}> Loggin state </Button>
 				<section className="form-dark">
 					<Card className="card-image animated hoverable" style={{ backgroundImage: 'url(images/coffee-beans.jpg)' }}>
 						<div className="text-white rgba-stylish-light py-5 px-5 z-depth-4">
@@ -97,24 +113,16 @@ class FormsPage extends React.Component {
 										<Button color="primary" size="lg" block href="/register" rounded type="button" className="btn-block z-depth-1 hoverable">Register</Button>
 									</div>
 									</Col>
-								
-								{/* <Link to="/register"> </Link> */}
-								{/* <div className="text-center">
-									<h3 className="white-text mb-5 mt-4 font-weight-bold"><strong>OR</strong></h3>
-								</div> */}
-								
-							{/* </Row>
-							{/* <Col md="12">
-								
-								{/* <p className="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2 white-text"> or Sign in with:</p> */}
-
 							</Row> 
 						</div>
 						</div>
 					</Card>
 				</section>
 			</Container>
-		);
+		);}
+		else {
+			return ( <Redirect to ="/products" />)
+		}
 	}
 };
 
