@@ -12,6 +12,7 @@ import BoardingSurvey from "./components/BoardingSurvey"
 import Register from "./components/Auth/Register";
 import HistoryPage from "./pages/HistoryPage";
 import LoginPage from "./pages/LoginPage"
+import Logout from "./pages/Logout"
 
 class App extends Component {
 	constructor(props) {
@@ -76,6 +77,7 @@ class App extends Component {
 						<Route exact path="/new-product" render={() => < BoardingSurvey props={this.state} propFn={this.updateUserState} />} />
 						<Route exact path="/transactions" render={() => < TransactionPage props={this.state} propFn={this.updateUserState} />} />
 						<Route path="/product-history/:productid" component = {HistoryPage} />
+						<Route path ="/logout" render ={()=> <Logout propFn = {this.updateUserState} /> } />
 					</Switch>
 				</Router>
 			</React.Fragment>

@@ -12,6 +12,10 @@ export const localCheck = (next) => {
 	
 };
 
+export const deleteLocal = (item) => {
+	localStorage.removeItem(item)
+}
+
 export const setLocal = (item, value) => {
 	localStorage.setItem(item, value)
 };

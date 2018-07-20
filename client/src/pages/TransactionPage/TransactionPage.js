@@ -20,6 +20,10 @@ class TransactionPage extends React.Component {
 		this.submitTxn = this.submitTxn.bind(this);
 		this.lockPrice = this.lockPrice.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
+
+		this.updateParentState = props.propFn.bind(this);
+		this.updateParentLogin = this.updateParentLogin.bind(this);
+
 		this.clearTxn = this.clearTxn.bind(this);
 		this.state = {
 			CustomerLock: false,
