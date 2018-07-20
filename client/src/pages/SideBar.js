@@ -148,12 +148,12 @@ class DoubleNavigationWithHiddenSideNavFixedNavbar extends React.Component {
 	}
 
 	render() {
+		console.log("props in sidebar", this.props)
 		const isOpenWithButtonA = this.state.toggleStateA;
 		const navStyle = { backgroundColor: "#2c2f34", color: "#fff" }
 		const sideStyle = { backgroundColor: '#6a9ed3', width: "100%" }
 		const button1 = <div href="#!" onClick={this.handleToggleClickA} key="sideNavToggleA" style={{ lineHeight: '32px', marginRight: '1em', verticalAlign: 'middle' }}><Fa icon="bars" color="white" size="2x"></Fa></div>
 		const specialCaseNavbarStyles = { WebkitBoxOrient: 'horizontal', flexDirection: 'row' };
-		console.log(this.props.props.Picture)
 
 		// build out the conditionals/placeholder items
 		let PictureTag = "./images/logo.png";

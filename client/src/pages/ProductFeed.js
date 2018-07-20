@@ -7,8 +7,9 @@ import { localCheck } from '../utils/LocalStorage';
 class ProductFeed extends Component {
 	constructor(props) {
 		super(props)
-		console.log(this.state)
-
+		this.updateParentState = props.propFn.bind(this);
+		this.updateParentLogin = this.updateParentLogin.bind(this);
+			console.log(this.updateParentState)
 		this.state = {
 			COMPLETED: [],
 			queriesComplete: false,
@@ -19,14 +20,17 @@ class ProductFeed extends Component {
 		}
 	};
 
+	updateParentLogin = (FirstName, LastName, Picture, _id) => {
+		this.updateParentState(true, FirstName, LastName, _id, Picture)
+	}
+
 	componentDidMount() {
 		localCheck(({ fn, ln, p, id }) => {
-			console.log(id)
-			console.log('why')
 			axios
 				.get("/api/transactions/feed")
 				.then(queryResults =>{
-					console.log(queryResults)
+					console.log(fn, ln, p, id)
+					console.log("fn, ln, p, id")
 					this.setState({
 						FirstName: fn,
 						LastName: ln,
@@ -34,14 +38,14 @@ class ProductFeed extends Component {
 						userID: id,
 						COMPLETED: queryResults.data,
 						queriesComplete: true
-					}
+					}, this.updateParentLogin( fn, ln, p, id)
 					)})
 		})
 
 	}
 	// render statement
 	render() {
-		return <CompletedList props={this.state} />
+		return <CompletedList props={this.state} propFn = {this.updateParentState} />
 	}
 }
 

@@ -24,8 +24,3 @@ export const checkLogin = () => {
 	}
 	return console.log("not logged in")
 }
-
-export const getID = (next) => {
-	const setID = localStorage.getItem("productID")
-	return next(setID)
-}

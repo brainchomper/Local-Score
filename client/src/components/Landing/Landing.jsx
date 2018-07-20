@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import { Container, Row, Button } from 'mdbreact';
 import { Redirect } from 'react-router-dom';
 import TeamPage from '../../pages/TeamPage';
-
+import {localCheck} from "../../utils/LocalStorage"
 
 
 
 class FeaturesPage extends Component {
+
+	componentDidMount() {
+		localCheck()
+		console.log(localStorage.getItem("LSUserValues"))
+	}
+
 	render() {
 		if (this.props.props.LoggedIn) {
 			return (<Redirect to="/welcome" />)

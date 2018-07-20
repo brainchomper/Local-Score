@@ -2,13 +2,28 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Button, Section} from 'mdbreact';
 import { Redirect } from 'react-router-dom';
 import AccountTabs from "./AccountTabs.js";
+import { localCheck } from '../utils/LocalStorage';
 
 
 class ContactPage extends Component {
+	constructor(props){
+		super(props);
+		this.updateParentState = props.propFn.bind(this);
+		this.updateParentLogin = this.updateParentLogin.bind(this);
+		console.log(props)
+	}
+
+	updateParentLogin = (FirstName, LastName, Picture, _id) => {
+		this.updateParentState(true, FirstName, LastName, _id, Picture)
+	}
+
+	componentDidMount() {
+		localCheck(({ fn, ln, p, id }) => {
+			this.updateParentLogin(fn, ln, id, p)
+		})
+	}
+
 	render() {
-		if (this.props.props.LoggedIn) {
-			return (<Redirect to="/welcome" />)
-		} else {
 		return (
 			<Container className="pt-2">
 			<section className="text-center" >
@@ -29,7 +44,7 @@ class ContactPage extends Component {
 				<AccountTabs />
 			</Container>
 		);
-	};}
+	};
 }
 
 export default ContactPage;

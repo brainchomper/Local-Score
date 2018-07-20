@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Card, CardImage, CardTitle, Avatar, CardUp, Container } from 'mdbreact';
 
 export const TransactionFeed = props => {
-	console.log(props.mid)
 	const { data } = props;
 	const { Party1, Party2, ProductID } = data;
 	const ProductURL = ("product-history/" + ProductID._id);

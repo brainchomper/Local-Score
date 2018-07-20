@@ -69,7 +69,7 @@ class App extends Component {
 						<Route exact path="/" render={() => <Landing props={this.state} propFn={this.updateUserState} />} />
 						<Route exact path="/welcome" render={() => <Account props={this.state} propFn={this.updateUserState} />} />
 						<Route exact path="/register" component={Register} />
-						<Route exact path="/team" render={() => < TeamPage props={this.state} />} />
+						<Route exact path="/team" component={TeamPage} />
 						<Route exact path="/login" render={() => < Login props={this.state} propFn={this.updateUserState} />} />
 						<Route exact path="/products" render={() => < ProductFeed props={this.state} propFn={this.updateUserState} />} />
 						<Route exact path="/account" render={() => < Account props={this.state} propFn={this.updateUserState} />} />
