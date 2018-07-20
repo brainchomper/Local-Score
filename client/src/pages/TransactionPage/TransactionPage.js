@@ -3,6 +3,8 @@ import { Card, Button, CardBody, CardTitle, InputNumeric, Container } from 'mdbr
 import UserAutoSearch from "../../components/UserAutoSearch";
 import ProductAutoSearch from "../../components/ProductAutoSearch";
 import "./TransactionPage.css";
+import { localCheck } from '../../utils/LocalStorage';
+
 // import {localCheck} from "../../utils/LocalStorage"
 const axios = require('axios');
 
@@ -18,6 +20,10 @@ class TransactionPage extends React.Component {
 		this.submitTxn = this.submitTxn.bind(this);
 		this.lockPrice = this.lockPrice.bind(this);
 		this.handleInputChange = this.handleInputChange.bind(this);
+
+		this.updateParentState = props.propFn.bind(this);
+		this.updateParentLogin = this.updateParentLogin.bind(this);
+
 		this.clearTxn = this.clearTxn.bind(this);
 		this.state = {
 			CustomerLock: false,
@@ -30,7 +36,21 @@ class TransactionPage extends React.Component {
 		};
 	}
 
+	updateParentLogin = (FirstName, LastName, Picture, _id) => {
+		this.updateParentState(true, FirstName, LastName, _id, Picture)
+	}
+
 	componentDidMount(){
+		localCheck(({ fn, ln, p, id }) => {
+			this.setState(
+				{
+					FirstName: fn,
+					LastName: ln,
+					Picture: p,
+					userID: id,
+				}, this.updateParentLogin( fn, ln, p, id)
+			)
+		})
 	}
 
 	cLogState() {
@@ -100,7 +120,7 @@ class TransactionPage extends React.Component {
 
 			return axios
 				.post("/api/transactions/new_transaction", { newTxn })
-				.then(results => { console.log("the txn posted like this:", results) })
+				.then(results => { this.clearTxn })
 		}
 		else {
 			return console.log("not everything is locked yet")

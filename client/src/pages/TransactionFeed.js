@@ -5,6 +5,13 @@ export const TransactionFeed = props => {
 	const { data } = props;
 	const { Party1, Party2, ProductID } = data;
 	const ProductURL = ("product-history/" + ProductID._id);
+
+	let mid = 	<Button block className="pt-3" color="success" href={ProductURL}>Learn More About This Product's History</Button> ;
+
+	if (!props.mid) {
+		mid = ''
+	}
+
 	return (
 		<Container className="pb-3">
 		<Card testimonial className = "">
@@ -20,7 +27,8 @@ export const TransactionFeed = props => {
 					<h4 className="text-center pt-3">Bought <b>{ProductID.Name}</b> From</h4>
 					<CardImage className="img-fluid pb-3" src="./images/arrows.png" />
 
-					<Button block className="pt-3" color="success" href={ProductURL}>Learn More About This Product's History</Button></div>
+				{mid}
+					</div>
 				<div className="col d-inline-block">
 					<CardUp className="orange lighten-1" />
 					<Avatar className="mx-auto white">

@@ -12,6 +12,10 @@ export const localCheck = (next) => {
 	
 };
 
+export const deleteLocal = (item) => {
+	localStorage.removeItem(item)
+}
+
 export const setLocal = (item, value) => {
 	localStorage.setItem(item, value)
 };
@@ -23,9 +27,4 @@ export const checkLogin = () => {
 		)
 	}
 	return console.log("not logged in")
-}
-
-export const getID = (next) => {
-	const setID = localStorage.getItem("productID")
-	return next(setID)
 }

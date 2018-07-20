@@ -7,20 +7,27 @@ const axios = require('axios');
 class BoardingSurvey extends React.Component {
 	constructor(props) {
 		super(props);
+		this.onClick1 = this.onClick1.bind(this);
+		this.onClick2 = this.onClick2.bind(this);
+		this.onClick3 = this.onClick3.bind(this);
+		this.onClick4 = this.onClick4.bind(this);
+		this.updateParentState = props.propFn.bind(this);
+		this.updateParentLogin = this.updateParentLogin.bind(this);
+
 		this.state = {
 			ProductName: "",
 			Roast: "DARK",
-			Ground: false,
+			Ground: true,
 			FirstName: "",
 			LastName: "",
 			Picture: "",
 			userID: ""
 		}
-		this.onClick1 = this.onClick1.bind(this);
-		this.onClick2 = this.onClick2.bind(this);
-		this.onClick3 = this.onClick3.bind(this);
-		this.onClick4 = this.onClick4.bind(this);
 
+	}
+
+	updateParentLogin = (FirstName, LastName, Picture, _id) => {
+		this.updateParentState(true, FirstName, LastName, _id, Picture)
 	}
 
 	componentDidMount() {
@@ -31,9 +38,9 @@ class BoardingSurvey extends React.Component {
 					LastName: ln,
 					Picture: p,
 					userID: id,
-				}
+				}, this.updateParentLogin(fn, ln, p, id)
 			)
-		}, console.log(this.state))
+		})
 	}
 
 	onClick1() {
@@ -78,8 +85,11 @@ class BoardingSurvey extends React.Component {
 		};
 		axios.post("/api/products/newProduct", { newProduct })
 			.then(results => {
-				console.log(results);
-				console.log("This is where Kevin's sideover thing will come in")
+				this.setState({
+					ProductName: "",
+					Roast: "DARK",
+					Ground: true,
+				})
 			})
 		// console.log("newproduct")
 		// console.log(newProduct)
@@ -93,11 +103,11 @@ class BoardingSurvey extends React.Component {
 
 					<div className="row px-5 text-center">
 						<div className="col">
-						<h4 className="pt-2">Add Product</h4>
+							<h4 className="pt-2">Add Product</h4>
 
-							<Input type="text"name="ProductName" value={this.state.ProductName} onChange={this.handleInputChange} label="Enter Product Name Here" />
+							<Input type="text" name="ProductName" value={this.state.ProductName} onChange={this.handleInputChange} label="Enter Product Name Here" />
 						</div>
-						
+
 					</div>
 
 					{/* type */}
@@ -114,8 +124,8 @@ class BoardingSurvey extends React.Component {
 						</div>
 					</div>
 
-							<Button size="lg" color="success" rounded  onClick={this.submitProduct}>Submit Product</Button>
-								
+					<Button size="lg" color="success" rounded onClick={this.submitProduct}>Submit Product</Button>
+
 
 					{/* <Button block color="primary" onClick={this.submitProduct}>Submit Product</Button> */}
 				</Card>
