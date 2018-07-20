@@ -19,15 +19,10 @@ class LoginPage extends React.Component {
 	}
 
 	render() {
-		if (this.state.LoggedIn === false  || this.state.LoggedIn === "undefined" || this.state.Login ===  true) {
-			console.log("Yas it's false")
+	
 			return (<Login props = {this.state} propFn = {this.propFn}/> )
 		}
-	// 	else {
-	// 		console.log("Y U NO UPDATE")
-	// 		return (<Redirect to="/products" />)
-	// 	}
-	}
+	
 
 }
 export default LoginPage;

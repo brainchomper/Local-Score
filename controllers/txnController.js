@@ -11,6 +11,7 @@ module.exports = {
 			.populate("ProductID")
 			.sort({ Date: -1 })
 			.then(dbModel => {
+				console.log(dbModel)
 				res.send(dbModel)
 
 			})
@@ -18,24 +19,26 @@ module.exports = {
 	},
 	// find all the transactions associated with the product id
 	findHistory: function (req, res) {
-		db.Product
-			.findById(req.params.id)
-			.populate('TxnHistory')
+		let placeholder = [];
+		console.log("...................")
+		console.log(req.params.id)
+		db.Transaction
+			.find({ ProductID: req.params.id})
+			.populate("Party1")
+			.populate("Party2")
+			.populate("ProductID")
 			// if the result doesn't have any PreviousTxns in the key then we know that the transaction is an origination and we can just send it
-			.then((productResults) => {
-
-				console.log(typeof productResults)
-				if (typeof productResults === 'null') {
-					const nonRejects = productResults.TxnHistory.filter(each => {
-						// if the product wasn't rejected and it's completed
-						if (!each.Rejected && each.Completed) {
-							return each
-						}
-					})
-					return res.json(nonRejects);
-				}
+			.then((productResult) => {
+				console.log(productResult)
+				const completedOnly = productResult.filter( each => {
+					console.log(each.Completed);
+					each.Completed && !each.Rejected
+				} )
+				res.json(productResult)
 			})
+			.catch("I am writing a catch statement")
 	},
+
 	rejectTxn: function (req, res) {
 		console.log(req.params)
 		db.Transaction.findById(req.params.id)

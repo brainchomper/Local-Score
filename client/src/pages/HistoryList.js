@@ -7,9 +7,9 @@ const HistoryList = props => {
 
 		return props.props.Products.map((each, i) => {
 			if (each.Party1._id !== each.Party2._id){
-				return <TransactionFeed data={each} key = {i} />
-			}
-			return <BoardedFeed data = {each} key = {i} />
+				return <TransactionFeed data={each} mid = {false} key = {i} />
+			} else {
+			return <BoardedFeed data = {each} key = {i} /> }
 		})
 	} else {
 		return <div>You haven't completed any transactions yet.</div>

@@ -62,21 +62,20 @@ class App extends Component {
 		return (
 
 
-<React.Fragment>
+			<React.Fragment>
 				<SideBar props={this.state} />
 				<Router>
-					<Switch props = {this.state}>
-						<Route exact path="/" render={() => <Landing props={this.state} /> } />
-						<Route exact path="/welcome" render={() => <Account props={this.state} /> } />
+					<Switch props={this.state}>
+						<Route exact path="/" render={() => <Landing props={this.state} propFn={this.updateUserState} />} />
+						<Route exact path="/welcome" render={() => <Account props={this.state} propFn={this.updateUserState} />} />
 						<Route exact path="/register" component={Register} />
-						<Route exact path="/team" render={() => < TeamPage props = {this.state} />} />
-						<Route exact path="/login" render={() => < Login props = {this.state} propFn = {this.updateUserState} />} />
-						<Route exact path = "/logintesting" component = {Login} state = {this.state} propFn = {this.updateUserState} />
-						<Route exact path="/products" render={() => < ProductFeed props = {this.state} />} />
-						<Route exact path="/account" render={() => < Account props = {this.state} />} />
-						<Route exact path="/new-product" render={() => < BoardingSurvey props = {this.state} />} />
-						<Route exact path="/transactions" render={() => < TransactionPage props = {this.state} />} />
-						<Route path="/product-history/:productid" render={() => < HistoryPage props = {this.state} />} />
+						<Route exact path="/team" render={() => < TeamPage props={this.state} />} />
+						<Route exact path="/login" render={() => < Login props={this.state} propFn={this.updateUserState} />} />
+						<Route exact path="/products" render={() => < ProductFeed props={this.state} propFn={this.updateUserState} />} />
+						<Route exact path="/account" render={() => < Account props={this.state} propFn={this.updateUserState} />} />
+						<Route exact path="/new-product" render={() => < BoardingSurvey props={this.state} propFn={this.updateUserState} />} />
+						<Route exact path="/transactions" render={() => < TransactionPage props={this.state} propFn={this.updateUserState} />} />
+						<Route path="/product-history/:productid" component = {HistoryPage} />
 					</Switch>
 				</Router>
 			</React.Fragment>

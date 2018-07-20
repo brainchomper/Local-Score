@@ -8,7 +8,7 @@ router.route("/feed")
 		txnController.findAll);
 
 // match for the individual transaction routes being passed as /api/transactions/:id
-router.route("/:id")
+router.route("/findHistory/:id")
 	.get(txnController.findHistory);
 
 router.route("/new_transaction")
