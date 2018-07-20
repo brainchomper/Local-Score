@@ -5,6 +5,7 @@ import BoardedFeed from "./BoardedFeed";
 const CompletedList = props => {
 	if (props.props.queriesComplete === true && typeof props.props.COMPLETED !== "undefined") {
 
+		console.log(props, "props in the completed list")
 		return props.props.COMPLETED.map((each, i) => {
 			console.log(each, i)
 

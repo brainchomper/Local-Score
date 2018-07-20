@@ -11,7 +11,6 @@ module.exports = {
 			.populate("ProductID")
 			.sort({ Date: -1 })
 			.then(dbModel => {
-
 				res.send(dbModel)
 
 			})
