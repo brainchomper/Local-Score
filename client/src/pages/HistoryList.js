@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'mdbreact';
-import TransactionFeed from "./TransactionFeed";
+import TransactionFeedHistory from "./TransactionFeedHistory";
 import BoardedFeed from "./BoardedFeed";
 
 const HistoryList = props => {
@@ -8,7 +8,7 @@ const HistoryList = props => {
 
 		return props.props.Products.map((each, i) => {
 			if (each.Party1._id !== each.Party2._id){
-				return <TransactionFeed data={each} mid = {false} key = {i} />
+				return <TransactionFeedHistory data={each} key = {i} />
 			} else {
 			return <BoardedFeed data = {each} key = {i} /> }
 

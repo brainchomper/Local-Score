@@ -9,7 +9,7 @@ import {localCheck} from "../../utils/LocalStorage"
 class FeaturesPage extends Component {
 
 	componentDidMount() {
-		localCheck()
+		// localCheck()
 		console.log(localStorage.getItem("LSUserValues"))
 	}
 
