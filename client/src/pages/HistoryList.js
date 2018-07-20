@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container } from 'mdbreact';
 import TransactionFeed from "./TransactionFeed";
 import BoardedFeed from "./BoardedFeed";
 
@@ -10,6 +11,7 @@ const HistoryList = props => {
 				return <TransactionFeed data={each} mid = {false} key = {i} />
 			} else {
 			return <BoardedFeed data = {each} key = {i} /> }
+
 		})
 	} else {
 		return <div>You haven't completed any transactions yet.</div>
