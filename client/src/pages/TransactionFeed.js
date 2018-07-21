@@ -22,7 +22,6 @@ export const TransactionFeed = props => {
 				<div className="col d-inline-block">
 					<h4 className="text-center pt-3">Bought <b>{ProductID.Name}</b> From</h4>
 
-    //{mid}
 
 					<CardImage className="img-fluid pb-3" src="https://local-score.herokuapp.com/images/arrows.png" />
 					<Button block className="pt-3" color="success" href={ProductURL}>Learn More About This Product's History</Button> 
