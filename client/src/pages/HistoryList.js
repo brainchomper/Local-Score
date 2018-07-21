@@ -14,7 +14,10 @@ const HistoryList = props => {
 
 		})
 	} else {
-		return <div>You haven't completed any transactions yet.</div>
+		return <div className="text-center">
+		<img src="https://local-score.herokuapp.com/images/loading.png" alt="Loading" className="pt-6"/>
+
+		</div>
 	}
 }
 export default HistoryList;

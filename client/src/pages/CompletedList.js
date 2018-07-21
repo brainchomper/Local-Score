@@ -12,8 +12,8 @@ const CompletedList = props => {
 		return props.props.COMPLETED.map((each, i) => {
 			if (each.Party1._id !== each.Party2._id){
 				return 
+			
 				<TransactionFeed data={each} key = {i} />
-
 			}
 
 			return <BoardedFeed data = {each} key = {i} />
