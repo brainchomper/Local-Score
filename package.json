@@ -41,12 +41,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brainchomper/new-local-score.git"
+    "url": "git+https://github.com/brainchomper/local-score.git"
   },
   "bugs": {
-    "url": "https://github.com/brainchomper/new-local-score/issues"
+    "url": "https://github.com/brainchomper/local-score/issues"
   },
-  "homepage": "https://github.com/brainchomper/new-local-score#readme",
+  "homepage": "https://github.com/brainchomper/local-score#readme",
   "proxy": {
     "/api": {
       "target": "http://localhost:3001/"
