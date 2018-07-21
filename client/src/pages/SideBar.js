@@ -174,7 +174,7 @@ class DoubleNavigationWithHiddenSideNavFixedNavbar extends React.Component {
 					<SideNavItem href="/transactions">Create New Transaction</SideNavItem>
 				</React.Fragment>;
 
-			miniAvatar = <Avatar tag="img" src={PictureTag} className="rounded-circle z-depth-1-half img-fluid m-3 text-center" alt="User Image" />;
+			miniAvatar = <Avatar tag="img" src={this.props.props.Picture} className="rounded-circle z-depth-1-half img-fluid m-3 text-center" alt="User Image" />;
 			topLink = <NavLink to="/account"><Fa icon="user" className="d-inline-inline" />  <div className="d-none d-md-inline">Account</div></NavLink>;
 		}
 
