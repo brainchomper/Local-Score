@@ -1,6 +1,8 @@
 import React from 'react';
 import TransactionFeed from "./TransactionFeed";
 import BoardedFeed from "./BoardedFeed";
+// import { Container } from 'mdbreact';
+
 
 const CompletedList = props => {
 
@@ -9,7 +11,9 @@ const CompletedList = props => {
 		console.log(props, "props in the completed list")
 		return props.props.COMPLETED.map((each, i) => {
 			if (each.Party1._id !== each.Party2._id){
-				return <TransactionFeed data={each} key = {i} />
+				return 
+			
+				<TransactionFeed data={each} key = {i} />
 			}
 
 			return <BoardedFeed data = {each} key = {i} />

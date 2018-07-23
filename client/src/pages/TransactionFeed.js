@@ -7,7 +7,9 @@ export const TransactionFeed = props => {
 	const ProductURL = ("product-history/" + ProductID._id);
 
 	return (
+
 		<Container className="pb-3">
+		
 		<Card testimonial className = "">
 			<div className="row">
 				<div className="col d-inline-block">
@@ -25,7 +27,7 @@ export const TransactionFeed = props => {
 				<div className="col d-inline-block">
 					<CardUp className="orange lighten-1" />
 					<Avatar className="mx-auto white">
-						<img src={Party1.Picture} className="rounded-circle z-depth-1 img-fluid" />
+						<img src={Party1.Picture} className="rounded-circle z-depth-1 img-fluid" alt="User 1 Picture" />
 					</Avatar>
 					<CardTitle className="text-center">{Party1.FirstName} {Party1.LastName}</CardTitle>
 				</div>

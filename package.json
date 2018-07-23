@@ -1,7 +1,10 @@
 {
   "name": "local-score",
   "version": "1.0.0",
-  "main": "server.js",
+	"main": "server.js",
+	"engines": {
+    "node": "8.9.3"
+  },
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
@@ -41,12 +44,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brainchomper/new-local-score.git"
+    "url": "git+https://github.com/brainchomper/local-score.git"
   },
   "bugs": {
-    "url": "https://github.com/brainchomper/new-local-score/issues"
+    "url": "https://github.com/brainchomper/local-score/issues"
   },
-  "homepage": "https://github.com/brainchomper/new-local-score#readme",
+  "homepage": "https://github.com/brainchomper/local-score#readme",
   "proxy": {
     "/api": {
       "target": "http://localhost:3001/"
