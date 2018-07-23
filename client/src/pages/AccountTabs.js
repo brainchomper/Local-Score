@@ -94,17 +94,17 @@ class TabsPage extends React.Component {
 					<Nav tabs className="nav-justified unique-color">
 						<NavItem>
 							<NavLink to="#" className={classnames({ active: this.state.activeItemClassicTabs1 === '2' })} onClick={() => { this.toggleClassicTabs1('2') }}>
-							<Badge>{this.state.PWOO.length}</Badge>		Pending Waiting On Others
+							<Badge>{this.state.PWOO.length}</Badge> Waiting On Others
                   </NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink to="#" className={classnames({ active: this.state.activeItemClassicTabs1 === '3' })} onClick={() => { this.toggleClassicTabs1('3') }}>
-								<Badge>{this.state.PWOM.length}</Badge>	Pending Waiting On Me
+								<Badge>{this.state.PWOM.length}</Badge>	Waiting On Me
                   </NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink to="#" className={classnames({ active: this.state.activeItemClassicTabs1 === '4' })} onClick={() => { this.toggleClassicTabs1('4'); }}>
-								Completed Transactions
+								Completed
                   </NavLink>
 						</NavItem>
 					</Nav>
