@@ -42,7 +42,7 @@ class PWOO extends React.Component {
 						<Row className="text-center">
 
 							<div className="col">
-								<Button block rounded color="info" href={this.state.HistoryURL}  >See all transactions with this product</Button>
+								<Button block rounded color="info" href={this.state.HistoryURL}  >All transactions with this product</Button>
 							</div>
 							<div className="col">
 								<Button color="danger" rounded onClick={this.rejectTxn}><Fa icon="times" /></Button>

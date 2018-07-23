@@ -18,7 +18,7 @@ export const TransactionFeedHistory = props => {
 				</div>
 				<div className="col d-inline-block">
 					<h4 className="text-center pt-3">Bought <b>{ProductID.Name}</b> From</h4>
-					<CardImage className="img-fluid pb-3" src="./images/arrows.png" />
+					<CardImage className="img-fluid pb-3" src="http://local-score.herokuapp.com/images/arrows.png" />
 					</div>
 				<div className="col d-inline-block">
 					<CardUp className="orange lighten-1" />
