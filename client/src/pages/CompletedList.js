@@ -16,7 +16,7 @@ const CompletedList = props => {
 		})
 	} else {
 		return <div className="text-center">
-					<img src="https://loacal-score.herokuapp.com/images/loading.gif" alt="Loading" className="pt-6"/>
+					<img src="http://loacal-score.herokuapp.com/images/loading.gif" alt="Loading" className="pt-6"/>
 		
 					</div>
 	}
