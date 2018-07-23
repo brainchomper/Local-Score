@@ -15,7 +15,10 @@ const CompletedList = props => {
 			return <BoardedFeed data = {each} key = {i} />
 		})
 	} else {
-		return <div>You haven't completed any transactions yet.</div>
+		return <div className="text-center">
+					<img src="https://loacal-score.herokuapp.com/images/loading.gif" alt="Loading" className="pt-6"/>
+		
+					</div>
 	}
 }
 export default CompletedList;

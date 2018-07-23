@@ -160,7 +160,7 @@ class FormsPage extends React.Component {
 			</Container>
 		);}
 		else {
-			return ( <Redirect to ="/products" />)
+			return ( <Redirect to ="/account" />)
 		}
 	}
 };
