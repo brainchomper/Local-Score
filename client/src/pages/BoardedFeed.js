@@ -24,6 +24,7 @@ export const BoardedFeed = props => {
 					<h4 className="text-center pt-3">Loaded <b>{ProductID.Name}</b> as a product.</h4>
 					<p className="text-center"><b>{ProductID.Name}</b> is a <b>{ProductID.Roast}, {ground}</b> coffee</p>
 					<CardImage className="img-fluid p-3" src="https://local-score.herokuapp.com/images/arrows.png" />
+
 				</div>
 			</div>
 		</Card>
