@@ -181,7 +181,7 @@ class DoubleNavigationWithHiddenSideNavFixedNavbar extends React.Component {
 		return (
 			<Router>
 				<div className="mt-5">
-					<SideNav logo="./images/logo.png" isOpenWithButton={isOpenWithButtonA} breakWidth={1300} style={sideStyle} hidden href="/">
+					<SideNav logo="https://local-score.herokuapp.com/images/logo.png" isOpenWithButton={isOpenWithButtonA} breakWidth={1300} style={sideStyle} hidden href="/">
 						<div className="row text-center">
 
 							<div className="col">
