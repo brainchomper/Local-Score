@@ -3,8 +3,7 @@ import PWOM from './PWOM';
 
 const PWOMList = props => {
 	this.updateAccount = props.updateParent;
-
-	if (props.props.queriesComplete && typeof props.props.PWOO !== "undefined") {
+	if (props.props.queriesComplete && typeof props.props.PWOO !== "undefined" && props) {
 		return props.props.PWOM.map((each, i) => {
 		return	<PWOM data={each} key = {i} updateAccount = {this.updateAccount}   />
 		})
