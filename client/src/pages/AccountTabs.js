@@ -27,17 +27,12 @@ class TabsPage extends React.Component {
 		};
 	}
 	updateParent = () =>{
-		console.log("ugh")
 		const that = this
 		localCheck(({ fn, ln, p, id }) => {
 			const queryURL = ("api/transactions/allUsersTxns/" + id)
 			console.log("now querying the database");
 			axios.get(queryURL)
 				.then(qResults => {
-					console.log("what did we get")
-					console.log(qResults.data);
-					console.log("qresultsPWOOM")
-					console.log(qResults.data.TWOO)
 					that.setState({
 						PWOO: qResults.data.TWOO,
 						PWOM: qResults.data.TWOM,
@@ -67,10 +62,6 @@ class TabsPage extends React.Component {
 			console.log("now querying the database");
 			axios.get(queryURL)
 				.then(qResults => {
-					console.log("what did we get")
-					console.log(qResults.data);
-					console.log("qresultsPWOOM")
-					console.log(qResults.data.TWOO)
 					this.setState({
 						PWOO: qResults.data.TWOO,
 						PWOM: qResults.data.TWOM,

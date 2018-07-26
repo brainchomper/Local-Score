@@ -6,6 +6,9 @@ const axios = require('axios');
 class HistoryPage extends React.Component {
 	constructor(props) {
 		super(props);
+		console.log("~~~~~~~~~~~~~~~~~~~")
+		console.log(props)
+		console.log("~~~~~~~~~~~~~~~~~~~")
 		this.propFn = props.propFn
 		this.searchID = this.props.match.params.productid
 		this.state = {

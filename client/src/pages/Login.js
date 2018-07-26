@@ -116,7 +116,7 @@ class FormsPage extends React.Component {
 		if (this.state.reload === false ) {
 		return (
 			<Container className="mx-auto">
-			{/* <Button onClick = {this.cLog}> Loggin state </Button> */}
+
 				<section className="form-dark">
 					<Card className="card-image animated hoverable" style={{ backgroundImage: 'url(images/coffee-beans.jpg)' }}>
 						<div className="text-white rgba-stylish-light py-5 px-5 z-depth-4">
