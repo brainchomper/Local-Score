@@ -5,6 +5,9 @@ export const TransactionFeed = props => {
 	const { data } = props;
 	const { Party1, Party2, ProductID } = data;
 	const ProductURL = ("product-history/" + ProductID._id);
+	console.log("???????????")
+	console.log(data)
+	console.log("???????????")
 
 	return (
 
